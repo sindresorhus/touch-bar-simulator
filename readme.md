@@ -20,9 +20,11 @@ This app also comes with a handy screenshot button.
 
 ## Screenshot
 
-1. Click the screenshot button in the Touch Bar window to save to `~/Desktop`.
-2. Press <kbd>Command</kbd> <kbd>Shift</kbd> <kbd>6</kbd> to save to `~/Desktop`.
-2. Press <kbd>Command</kbd> <kbd>Control</kbd> <kbd>Shift</kbd> <kbd>6</kbd> to save to clipboard.
+You can capture a screenshot of the Touch Bar by either:
+
+1. Clicking the screenshot button in the Touch Bar window which saves it to `~/Desktop`.
+2. Pressing <kbd>Command</kbd> <kbd>Shift</kbd> <kbd>6</kbd> which saves it to `~/Desktop`.
+3. Pressing <kbd>Command</kbd> <kbd>Control</kbd> <kbd>Shift</kbd> <kbd>6</kbd> which saves it to the clipboard.
 
 
 ## FAQ
@@ -34,6 +36,14 @@ This app also comes with a handy screenshot button.
 - Screenshot button
 - Doesn't steal focus when launched
 - Doesn't take up space in the Dock or app switcher
+
+### Why is this not on the App Store?
+
+Apple would never allow it as it uses private APIs.
+
+### How does this work?
+
+I [class-dumped](https://github.com/nygard/class-dump) a private Xcode framework and used that to expose a private class to get a reference to the Touch Bar window controller. I then launch that window and add a screenshot button to it. I've bundled the required private frameworks to make it work without Xcode. That's why the binary is so big.
 
 
 ## License
