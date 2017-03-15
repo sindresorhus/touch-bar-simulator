@@ -1,0 +1,943 @@
+// C++
+(
+
+/****************************************************************************/
+// MARK: C++ keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.cpp.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                // Keywords from C
+                "__alignof__",
+                "__asm__",
+                "__attribute__",
+                "__complex__",
+                "__extension__",
+                "__imag__",
+                "__label__",
+                "__nonnull",
+                "__nullable",
+                "__null_unspecified",
+                "__real__",
+                "__restrict",
+                "__restrict__",
+                "__typeof__",
+                "_Bool",
+                "_Complex",
+                "_Imaginary",
+                "_Nonnull",
+                "_Nullable",
+                "_Null_unspecified",
+                "__block",
+                "asm",
+                "auto",
+                "bool",
+                "break",
+                "case",
+                "char",
+                "const",
+                "continue",
+                "default",
+                "do",
+                "double",
+                "else",
+                "enum",
+                "extern",
+                "false",
+                "float",
+                "for",
+                "goto",
+                "if",
+                "inline",
+                "int",
+                "long",
+                "register",
+                "restrict",
+                "return",
+                "short",
+                "signed",
+                "sizeof",
+                "static",
+                "struct",
+                "switch",
+                "true",
+                "typedef",
+                "typeof",
+                "union",
+                "unsigned",
+                "void",
+                "volatile",
+                "while",
+                "FALSE",
+                "NULL",
+                "TRUE",
+                
+                // Keywords from C++
+                "__private_extern__",
+                "and",
+                "and_eq",
+                "bitand",
+                "bitor",
+                "catch",
+                "class",
+                "compl",
+                "const_cast",
+                "delete",
+                "dynamic_cast",
+                "explicit",
+                "export",
+                "friend",
+                "mutable",
+                "namespace",
+                "new",
+                "not",
+                "not_eq",
+                "operator",
+                "or",
+                "or_eq",
+                "private",
+                "protected",
+                "public",
+                "reinterpret_cast",
+                "static_cast",
+                "template",
+                "this",
+                "throw",
+                "try",
+                "typeid",
+                "typename",
+                "typeid",
+                "using",
+                "virtual",
+                "wchar_t",
+                "xor",
+                "xor_eq",
+
+                // Keywords from C++0x
+                "alignof",
+                "char16_t",
+                "char32_t",
+                "constexpr",
+                "decltype",
+                "noexcept",
+                "nullptr",
+                "override",
+                "static_assert",
+                "thread_local",
+
+                // Keywords from Clang C++ extensions
+                "__has_nothrow_assign",
+                "__has_nothrow_copy",
+                "__has_nothrow_constructor",
+                "__has_trivial_assign",
+                "__has_trivial_copy",
+                "__has_trivial_constructor",
+                "__has_trivial_destructor",
+                "__has_virtual_destructor",
+                "__is_abstract",
+                "__is_base_of",
+                "__is_class",
+                "__is_convertible_to",
+                "__is_empty",
+                "__is_enum",
+                "__is_literal",
+                "__is_literal_type",
+                "__is_pod",
+                "__is_polymorphic",
+                "__is_trivial",
+                "__is_union",
+                "__is_trivially_copyable",
+                "__underlying_type",
+             );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.interestingOperators";
+        Syntax = {
+            Words = (
+                "...",
+                "->",
+                "::",
+                ".",
+             );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+/****************************************************************************/
+// MARK: C++ Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.cpp";
+        Description = "C++ Coloring";
+        BasedOn = "xcode.lang.c";       // for text macros
+        IncludeInMenu = YES;
+        UsesCLikeIndentation = YES;
+        Name = "C++";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            IncludeRules = (
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.class",
+                "xcode.lang.cpp.method.definition",
+                "xcode.lang.cpp.function.declaration",
+                "xcode.lang.cpp.function.definition",
+                "xcode.lang.cpp.typedef",
+                "xcode.lang.cpp.templatedefinition",
+                "xcode.lang.cpp.enumblock",
+                "xcode.lang.cpp.nsenumblock",
+                "xcode.lang.cpp.structblock",
+                "xcode.lang.cpp.unionblock",
+                "xcode.lang.cpp.block.toplevel",
+                "xcode.lang.cpp.initializer",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.cpp.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.degenerate",
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment.headerdoc.star",
+                "xcode.lang.comment.headerdoc.singleline.bang",
+                "xcode.lang.comment.headerdoc.singleline.slash",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.cpp.attribute",
+                "xcode.lang.cpp.identifier",
+                "xcode.lang.number",
+                "xcode.lang.cpp.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.lexer.toplevel";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.degenerate",
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment.headerdoc.star",
+                "xcode.lang.comment.headerdoc.singleline.bang",
+                "xcode.lang.comment.headerdoc.singleline.slash",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.cpp.attribute",
+                "xcode.lang.cpp.operatorclause",
+                "xcode.lang.cpp.identifier",
+                "xcode.lang.number",
+                "xcode.lang.cpp.interestingOperators",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.cpp.attribute";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.attribute";
+            Rules = (
+                "__attribute__",
+                "xcode.lang.cpp.parenexpr.attribute",
+            );
+            Type = "xcode.syntax.c.attribute";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.lexer.attribute";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.degenerate",
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment.headerdoc.star",
+                "xcode.lang.comment.headerdoc.singleline.bang",
+                "xcode.lang.comment.headerdoc.singleline.slash",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.cpp.identifier",
+                "xcode.lang.number",
+                "xcode.lang.cpp.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.parenexpr.attribute";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.attribute";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.lexer.operator";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.cpp.identifier",
+                "xcode.lang.cpp.anoperator",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.identifier.qualified";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.identifier",
+                "::",                               // need at least one qualifier or this rule shouldn't match at all
+                "xcode.lang.cpp.operatorclause|xcode.lang.cpp.identifier",
+                "xcode.lang.cpp.identifier.qualified.more*",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.identifier.qualified.more";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "::",
+                "xcode.lang.cpp.operatorclause|xcode.lang.cpp.identifier",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.function.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.function.declarator",
+                "const?",
+                "override?",
+                "xcode.lang.cpp.throwclause?",
+                "xcode.lang.cpp.identifier?",
+                ";",
+            );
+            Type = "xcode.syntax.declaration.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.function.definition";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.function.declarator",
+                "const?",
+                "override?",
+                "xcode.lang.cpp.throwclause?",
+                "xcode.lang.cpp.identifier?",
+                "xcode.lang.cpp.block",
+            );
+            Type = "xcode.syntax.definition.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.function.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.operatorclause|xcode.lang.cpp.identifier",
+                "xcode.lang.cpp.templateclause?",
+                "xcode.lang.cpp.parenexpr",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.operatorclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.operator";
+            Rules = (
+                "operator",
+                "xcode.lang.cpp.anoperator",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.cpp.anoperator";
+        Syntax = {
+            Match = (
+                "^[ \t]*(new|delete|->\\*|->|,|\\+\\+|--|\\|\\||&&|>>=|<<=|>>|<<|>=|<=|==|!=|\\|=|&=|\\^=|%=|/=|\\*=|-=|\\+=|>|<|\\+|-|\\*|/|%|\\^|&|\\||~|!|=|\\[\\]|\\(\\))[ \t]*",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.cpp.class";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.class.declarator",
+                "xcode.lang.cpp.block.class",
+            );
+            Type = "xcode.syntax.definition.cpp.class";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.class.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "class",
+                "xcode.lang.cpp.class.name",
+                "xcode.lang.cpp.class.declarator.superclass?",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.class.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.class.declarator.superclass";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                ":",
+                "public?",
+                "private?",
+                "protected?",
+                "xcode.lang.cpp.identifier+",
+                "xcode.lang.cpp.classnames.list*",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.class.classnames.list";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                ",",
+                "public?",
+                "private?",
+                "protected?",
+                "xcode.lang.cpp.identifier+",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.method.declaration.classscope";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.function.declarator",   // Looks like a function, but it's really a method.
+                "const?",
+                "xcode.lang.cpp.throwclause?",
+                "xcode.lang.cpp.identifier?",
+                ";",
+            );
+            Type = "xcode.syntax.declaration.method";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.method.definition.classscope";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.function.declarator",   // Looks like a function, but it's really a method.
+                "const?",
+                "xcode.lang.cpp.throwclause?",
+                "xcode.lang.cpp.identifier?",
+                "xcode.lang.cpp.initializerclause?",
+                "xcode.lang.cpp.block",
+            );
+            Type = "xcode.syntax.definition.method";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.method.definition";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.method.declarator",
+                "const?",
+                "xcode.lang.cpp.throwclause?",
+                "xcode.lang.cpp.identifier?",
+                "xcode.lang.cpp.initializerclause?",
+                "xcode.lang.cpp.block",
+            );
+            Type = "xcode.syntax.definition.method";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.method.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Rules = (
+                "xcode.lang.cpp.identifier.qualified",
+                "xcode.lang.cpp.templateclause?",
+                "xcode.lang.cpp.parenexpr",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.throwclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "throw",
+                "xcode.lang.cpp.parenexpr",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.templatedefinition";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "template",
+                "xcode.lang.cpp.templateclause",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.templateclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Start = "<";
+            End = ">";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.cpp.block",
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.cpp.initializerclause";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Start = ":";
+            Until = "{";
+            IncludeRules = (
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.enumblock";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.enum.declarator",
+                "xcode.lang.cpp.block",
+            );
+            Type = "xcode.syntax.declaration.enum";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.enum.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "enum",
+                "xcode.lang.cpp.enum.name?",
+                ":?",
+                "xcode.lang.cpp.typeidentifier*",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.nsenumblock";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.nsenum.declarator",
+                "xcode.lang.cpp.block",
+            );
+            Type = "xcode.syntax.declaration.enum";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.nsenum.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "NS_ENUM",
+                "(",
+                "xcode.lang.cpp.identifier",
+                ",",
+                "xcode.lang.cpp.enum.name",
+                ")",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.enum.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.structblock";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.struct.declarator",
+                "xcode.lang.cpp.typeblock",
+            );
+            Type = "xcode.syntax.declaration.struct";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.struct.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "struct",
+                "xcode.lang.cpp.struct.name?",
+                ":?",
+                "xcode.lang.cpp.typeidentifier*",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.struct.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.unionblock";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.union.declarator",
+                "xcode.lang.cpp.typeblock",
+            );
+            Type = "xcode.syntax.declaration.union";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.union.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "union",
+                "xcode.lang.cpp.union.name?",
+                ":?",
+                "xcode.lang.cpp.typeidentifier*",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.union.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.typeidentifier";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.identifier|int|char|float|double|short|long|unsigned|signed",
+            );
+        };
+    },
+
+/****************************************************************************/
+// MARK: Typedefs
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.cpp.lexer.typedef";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.degenerate",
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment.headerdoc.star",
+                "xcode.lang.comment.headerdoc.singleline.bang",
+                "xcode.lang.comment.headerdoc.singleline.slash",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.cpp.attribute",
+                "xcode.lang.cpp.operatorclause",
+                "xcode.lang.cpp.typedef.end",
+                "xcode.lang.cpp.identifier",
+                "xcode.lang.number",
+                "xcode.lang.cpp.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.lexer.typedef.name";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.degenerate",
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment.headerdoc.star",
+                "xcode.lang.comment.headerdoc.singleline.bang",
+                "xcode.lang.comment.headerdoc.singleline.slash",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.cpp.attribute",
+                "xcode.lang.cpp.operatorclause",
+                "xcode.lang.cpp.typedef.name",
+                "xcode.lang.cpp.identifier",
+                "xcode.lang.number",
+                "xcode.lang.cpp.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.typedef";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.typedef";
+            Start = "typedef";
+            End = "xcode.lang.cpp.typedef.end";
+            AltEnd = ";";
+            IncludeRules = (
+                "xcode.lang.cpp.enumblock",
+                "xcode.lang.cpp.nsenumblock",
+                "xcode.lang.cpp.structblock",
+                "xcode.lang.cpp.unionblock",
+                "xcode.lang.cpp.typedef.function",
+                "xcode.lang.cpp.block",
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+            );
+            Type = "xcode.syntax.typedef";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.typedef.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Rules = (
+                "xcode.lang.cpp.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.typedef.end";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.typedef.name";
+            Rules = (
+                "xcode.lang.cpp.typedef.name",
+                ";"
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.typedef.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.typedef.name";
+            Rules = (
+                "(",
+                "*",
+                "xcode.lang.cpp.typedef.name",
+                ")",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    
+
+/****************************************************************************/
+// MARK: C++ Blocks
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.cpp.block";
+        BasedOn = "xcode.lang.c.block";     // for text macros
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.typeblock";
+        BasedOn = "xcode.lang.c.block";     // for text macros
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.structblock",
+                "xcode.lang.cpp.unionblock",
+            );
+        };
+    },
+
+    // toplevel blocks like namespaces and extern "C"
+    {
+        Identifier = "xcode.lang.cpp.block.toplevel";
+        BasedOn = "xcode.lang.cpp.block";     // for text macros
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.cpp.class",
+                "xcode.lang.cpp.method.definition",
+                "xcode.lang.cpp.function.declaration",
+                "xcode.lang.cpp.function.definition",
+                "xcode.lang.cpp.typedef",
+                "xcode.lang.cpp.templatedefinition",
+                "xcode.lang.cpp.enumblock",
+                "xcode.lang.cpp.nsenumblock",
+                "xcode.lang.cpp.structblock",
+                "xcode.lang.cpp.unionblock",
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.initializer",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.cpp.block.class";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.cpp.method.declaration.classscope",
+                "xcode.lang.cpp.method.definition.classscope",
+                "xcode.lang.cpp.typedef",
+                "xcode.lang.cpp.enumblock",
+                "xcode.lang.cpp.nsenumblock",
+                "xcode.lang.cpp.structblock",
+                "xcode.lang.cpp.unionblock",
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.parenexpr";
+        BasedOn = "xcode.lang.c.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.cpp.bracketexpr",
+                "xcode.lang.cpp.block",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.cpp.bracketexpr";
+        BasedOn = "xcode.lang.c.bracketexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer";
+            Start = "[";
+            End = "]";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.cpp.parenexpr",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.cpp.initializer";
+        Syntax = {
+            Tokenizer = "xcode.lang.cpp.lexer.toplevel";
+            Start = "=";
+            End = ";";
+            Recursive = NO;
+            IncludeRules = (
+                "xcode.lang.cpp.block",
+                "xcode.lang.cpp.parenexpr",
+                "xcode.lang.cpp.bracketexpr",
+            );
+        };
+    },
+)
+

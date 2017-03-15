@@ -1,0 +1,192 @@
+// PHP
+(
+
+/****************************************************************************/
+// MARK: PHP keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.php.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                ".",
+                "AND",
+                "OR",
+                "XOR",
+                "array",
+                "as",
+                "bool",
+                "boolean",
+                "break",
+                "case",
+                "class",
+                "continue",
+                "default",
+                "die",
+                "do",
+                "double",
+                "echo",
+                "else",
+                "elseif",
+                "empty",
+                "enddeclare",
+                "endfor",
+                "endforeach",
+                "endif",
+                "endswitch",
+                "endwhile",
+                "eval",
+                "exit",
+                "extends",
+                "float",
+                "for",
+                "foreach",
+                "function",
+                "global",
+                "if",
+                "include",
+                "include_once",
+                "int",
+                "isset",
+                "list",
+                "new",
+                "object",
+                "print",
+                "real",
+                "require",
+                "require_once",
+                "return",
+                "static",
+                "string",
+                "switch",
+                "unset",
+                "use",
+                "var",
+                "while",
+                "<?php",
+                "<?PHP",
+                "?>",
+             );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: PHP Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.php";
+        Description = "PHP Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        UsesCLikeIndentation = YES;
+        Name = "PHP";
+        Syntax = {
+            Tokenizer = "xcode.lang.php.lexer";
+            IncludeRules = (
+                "xcode.lang.php.function",
+                "xcode.lang.php.block",
+                "xcode.lang.php.parenexpr",
+                "xcode.lang.php.inxml",
+                "xcode.lang.php.inxml2",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+		// XML uses this rule for embedded php
+        Identifier = "xcode.lang.php.inxml";
+        BasedOn = "xcode.lang.php";
+        Syntax = {
+            Start = "<?php";
+            End = "?>";
+            ParseEndBeforeIncludedRules = YES;
+			Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.php",
+            );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+    {
+		// XML uses this rule for embedded php
+        Identifier = "xcode.lang.php.inxml2";
+        BasedOn = "xcode.lang.php";
+        Syntax = {
+            Start = "<?PHP";
+            End = "?>";
+            ParseEndBeforeIncludedRules = YES;
+			Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.php",
+            );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+    {
+        Identifier = "xcode.lang.php.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.singleline.pound",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.comment",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.php.identifier",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.php.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.php.lexer";
+            Rules = (
+                "xcode.lang.php.function.declarator",
+                "xcode.lang.php.parenexpr",
+                "xcode.lang.php.block",
+            );
+            Type = "xcode.syntax.definition.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.php.function.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.php.lexer";
+            Rules = (
+                "xcode.lang.php.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.php.block";
+        Syntax = {
+            // Handle nested blocks
+            Tokenizer = "xcode.lang.php.lexer";
+            Start = "{";
+            End = "}";
+            Recursive = YES;
+            Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.php.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.php.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.php.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+        };
+    },
+)

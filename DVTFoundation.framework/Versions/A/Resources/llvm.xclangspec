@@ -1,0 +1,383 @@
+// LLVM Assembler language specs
+
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.llvm.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$.%@";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$_.-%";
+            Words = (
+                "add",
+                "addrspace",
+                "alias",
+                "align",
+                "alloca",
+                "and",
+                "appending",
+                "ashr",
+                "asm",
+                "begin",
+                "big",
+                "bitcast",
+                "bool",
+                "br",
+                "byval",
+                "call",
+                "cast",
+                "cc",
+                "ccc",
+                "coldcc",
+                "const",
+                "constant",
+                "declare",
+                "define",
+                "deplibs",
+                "div",
+                "dllexport",
+                "dllimport",
+                "double",
+                "end",
+                "endian",
+                "eq",
+                "eq",
+                "except",
+                "extern_weak",
+                "external",
+                "extractelement",
+                "false",
+                "fastcc",
+                "fcmp",
+                "fdiv",
+                "float",
+                "fp128",
+                "fpext",
+                "fptosi",
+                "fptoui",
+                "fptrunc",
+                "free",
+                "frem",
+                "gc",
+                "ge",
+                "getelementptr",
+                "global",
+                "gt",
+                "hidden",
+                "icmp",
+                "implementation",
+                "inreg",
+                "insertelement",
+                "int",
+                "internal",
+                "inttoptr",
+                "invoke",
+                "label",
+                "le",
+                "linkonce",
+                "little",
+                "load",
+                "long",
+                "lshr",
+                "lt",
+                "malloc",
+                "module",
+                "mul",
+                "ne",
+                "ne",
+                "nest",
+                "noalias",
+                "noreturn",
+                "not",
+                "nounwind",
+                "null",
+                "oeq",
+                "oge",
+                "ogt",
+                "ole",
+                "olt",
+                "one",
+                "opaque",
+                "or",
+                "ord",
+                "phi",
+                "pointersize",
+                "ppc_fp128",
+                "protected",
+                "ptrtoint",
+                "readnone",
+                "readonly",
+                "rem",
+                "ret",
+                "sbyte",
+                "sdiv",
+                "section",
+                "select",
+                "set",
+                "seteq",
+                "setge",
+                "setgt",
+                "setle",
+                "setlt",
+                "setne",
+                "sext",
+                "sge",
+                "sgt",
+                "shl",
+                "short",
+                "shr",
+                "shufflevector",
+                "sideeffect",
+                "signext",
+                "sitofp",
+                "sle",
+                "slt",
+                "srem",
+                "sret",
+                "store",
+                "sub",
+                "switch",
+                "tail",
+                "target",
+                "thread_local",
+                "to",
+                "true",
+                "trunc",
+                "type",
+                "ubyte",
+                "udiv",
+                "ueq",
+                "uge",
+                "ugt",
+                "uint",
+                "uitofp",
+                "ule",
+                "ulong",
+                "ult",
+                "undef",
+                "une",
+                "uninitialized",
+                "uno",
+                "unreachable",
+                "unwind",
+                "urem",
+                "ushort",
+                "va_arg",
+                "void",
+                "volatile",
+                "weak",
+                "x86_fastcallcc",
+                "x86_fp80",
+                "x86_stdcallcc",
+                "xor",
+                "zeroext",
+                "zeroinitializer",
+                "zext",
+            );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.inttype";
+        Syntax = {
+            StartChars = "i";
+            Chars = "0123456789";
+            Match = (
+                "^i[0-9]+$",
+            );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+/****************************************************************************/
+// MARK: Simple Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.llvm";
+        Description = "LLVM Assembler Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "Assembly (LLVM)";
+        Syntax = {
+            Tokenizer = "xcode.lang.llvm.lexer";
+            IncludeRules = (
+                "xcode.lang.llvm.function.declaration",
+                "xcode.lang.llvm.function.definition",
+                "xcode.lang.llvm.block",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.llvm.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.number",
+                "xcode.lang.llvm.inttype",
+                "xcode.lang.llvm.identifier",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.function.name.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.llvm.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.number",
+                "xcode.lang.llvm.function.declarator",
+                "xcode.lang.llvm.inttype",
+                "xcode.lang.llvm.identifier",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.name.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.llvm.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.number",
+                "xcode.lang.llvm.function.name",
+                "xcode.lang.llvm.inttype",
+                "xcode.lang.llvm.identifier",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.llvm.comment.singleline";
+        Syntax = {
+            Start = ";";
+            EscapeChar = "\\";
+            End = "\n";
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.label";
+        Syntax = {
+            StartAtBOL = YES;
+            Tokenizer = "xcode.lang.llvm.lexer";
+            Rules = (
+                "xcode.lang.llvm.label.name",
+                ":",
+            );
+            Type = "xcode.syntax.definition.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.llvm.label.name";
+        Syntax = {
+            StartAtBOL = YES;
+            Tokenizer = "xcode.lang.llvm.lexer";
+            Rules = (
+                "xcode.lang.llvm.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.llvm.function.definition";
+        Syntax = {
+            Tokenizer = "xcode.lang.llvm.function.name.lexer";
+            Rules = (
+                "xcode.lang.llvm.function.definition.declarator",
+                "xcode.lang.llvm.block",
+            );
+            Type = "xcode.syntax.definition.c.function";
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.function.definition.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.llvm.function.name.lexer";
+            Start = "define";
+            Until = "{";
+            Foldable = NO;
+            Recursive = NO;
+            IncludeRules = (
+                "xcode.lang.llvm.function.declarator",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.function.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.llvm.function.name.lexer";
+            Rules = (
+                "xcode.lang.llvm.function.declaration.declarator",
+            );
+            Type = "xcode.syntax.declaration.c.function";
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.function.declaration.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.llvm.function.name.lexer";
+            Start = "declare";
+            End = "xcode.lang.llvm.function.declarator";
+            Foldable = NO;
+            Recursive = NO;
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.function.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.llvm.name.lexer";
+            Rules = (
+                "xcode.lang.llvm.function.name",
+                "xcode.lang.llvm.parenexpr",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.llvm.function.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.llvm.lexer";
+            Rules = (
+                "xcode.lang.llvm.identifier|xcode.lang.string",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.llvm.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.llvm.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            // No labels. If you want them, you can uncomment these lines.
+//            IncludeRules = (
+//                "xcode.lang.llvm.label",
+//            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.llvm.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.llvm.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+        };
+    },
+
+)

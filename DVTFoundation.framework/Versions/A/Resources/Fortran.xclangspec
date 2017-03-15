@@ -1,0 +1,223 @@
+// Fortran language specs
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.fortran.keyword";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyz_";
+            Chars = "abcdefghijklmnopqrstuvwxyz$_";
+            CaseSensitive = NO;
+            Words = (
+                "allocatable",
+                "allocate",
+                "assign",
+                "assignment",
+                "backspace",
+                "block",
+                "blockdata",
+                "call",
+                "case",
+                "character",
+                "close",
+                "common",
+                "complex",
+                "contains",
+                "continue",
+                "cycle",
+                "data",
+                "deallocate",
+                "default",
+                "dimension",
+                "do",
+                "double",
+                "doublecomplex",
+                "doubleprecision",
+                "else",
+                "elseif",
+                "elsewhere",
+                "end",
+                "endblock",
+                "endblockdata",
+                "enddo",
+                "endfile",
+                "endforall",
+                "endfunction",
+                "endif",
+                "endinterface",
+                "endmodule",
+                "endprogram",
+                "endselect",
+                "endsubroutine",
+                "endtype",
+                "endwhere",
+                "endmap",
+                "endstructure",
+                "endunion",
+                "entry",
+                "equivalence",
+                "exit",
+                "external",
+                "extrinsic",
+                "forall",
+                "format",
+                "function",
+                "global",
+                "go",
+                "goto",
+                "if",
+                "implicit",
+                "in",
+                "inout",
+                "include",
+                "inquire",
+                "integer",
+                "intent",
+                "interface",
+                "intrinsic",
+                "logical",
+                "map",
+                "module",
+                "namelist",
+                "none",
+                "nullify",
+                "open",
+                "operator",
+                "optional",
+                "out",
+                "parameter",
+                "pause",
+                "pointer",
+                "precision",
+                "print",
+                "private",
+                "procedure",
+                "program",
+                "public",
+                "pure",
+                "read",
+                "real",
+                "record",
+                "recursive",
+                "return",
+                "rewind",
+                "save",
+                "select",
+                "selectcase",
+                "sequence",
+                "stop",
+                "string",
+                "structure",
+                "subroutine",
+                "target",
+                "then",
+                "to",
+                "type",
+                "union",
+                "use",
+                "where",
+                "while",
+                "write",
+            );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+    {
+        Identifier = "xcode.lang.fortran.logicals";
+        Syntax = {
+            StartChars = ".";
+            CaseSensitive = NO;
+            Match = (
+                "^\.(lt|le|gt|ge|eq|ne|or|and|not|true|false)\.",
+            );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: FORTRAN Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.fortran";
+        Description = "Fortran Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "Fortran 77";
+        Syntax = {
+            IncludeRules = (        // processed in order
+                "xcode.lang.fortran.comment.fullline",
+                "xcode.lang.fortran.comment.singleline",
+                "xcode.lang.fortran.string",
+                "xcode.lang.fortran.string.singlequote",
+                "xcode.lang.number",
+                "xcode.lang.fortran.logicals",
+                "xcode.lang.fortran.keyword",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.fortran.f90";
+        Description = "Fortran 90 Coloring";
+        BasedOn = "xcode.lang.fortran";
+        IncludeInMenu = YES;
+        Name = "Fortran 90";
+        Syntax = {
+            IncludeRules = (        // processed in order
+                "xcode.lang.fortran.comment.singleline",
+                "xcode.lang.fortran.string",
+                "xcode.lang.fortran.string.singlequote",
+                "xcode.lang.number",
+                "xcode.lang.fortran.logicals",
+                "xcode.lang.fortran.keyword",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.fortran.comment.singleline";
+        Syntax = {
+            Start = "!";
+            End = "\n";
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    {
+        Identifier = "xcode.lang.fortran.comment.fullline";
+        Syntax = {
+            StartAtColumnZero = YES;
+            Match = (
+                "^[^ \t0-9].*$",
+            );
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    {
+        Identifier = "xcode.lang.fortran.string";
+        Syntax = {
+            Start = "\"";
+            EscapeChar = "&";
+            End = "\"";
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.fortran.string.singlequote";
+        Syntax = {
+            Start = "'";
+            EscapeChar = "&";
+            End = "'";
+            Type = "xcode.syntax.string";
+        };
+    },
+)

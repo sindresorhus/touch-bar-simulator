@@ -1,0 +1,163 @@
+// Markdown
+(
+    {
+        Identifier = "xcode.lang.markdown";
+        Description = "Markdown Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "Markdown";
+        Syntax = {
+            Tokenizer = "xcode.lang.markdown.lexer";
+            IncludeRules = (
+                "xcode.lang.markdown.code.double",
+                "xcode.lang.markdown.code.single",
+                "xcode.lang.markdown.link.auto",
+                "xcode.lang.markdown.image",
+                "xcode.lang.markdown.link",
+                "xcode.lang.markdown.header",
+            );
+            Type = "xcode.syntax.plain";
+        };
+        PreservesTrailingWhitespace = YES;
+    },
+    
+    {
+        Identifier = "xcode.lang.markdown.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.markdown.comment",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.markdown.comment";
+        Syntax = {
+            Start = "<!--";
+            EscapeChar = "\\";
+            End = "-->";
+            Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.url",
+                "xcode.lang.url.mail"
+            );
+            Type = "xcode.syntax.comment";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.markdown.code.double";
+        Syntax = {
+            Start = "``";
+            End = "``";
+            ParseEndBeforeIncludedRules = YES;
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.markdown.code.single";
+        Syntax = {
+            Start = "`";
+            End = "`";
+            ParseEndBeforeIncludedRules = YES;
+            Type = "xcode.syntax.string";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.markdown.link.auto";
+        Syntax = {
+            Start = "<";
+            EscapeChar = "\\";
+            End = ">";
+            IncludeRules = (
+                "xcode.lang.url",
+                "xcode.lang.url.mail",
+            );
+            ParseEndBeforeIncludedRules = YES;
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.markdown.link";
+        Syntax = {
+            Tokenizer = "xcode.lang.markdown.lexer";
+            Rules = (
+                "xcode.lang.markdown.link.text",
+                "xcode.lang.markdown.link.url",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.markdown.link.url";
+        Syntax = {
+            Start = "(";
+            EscapeChar = "\\";
+            End = ")";
+            IncludeRules = (
+                "xcode.lang.url",
+                "xcode.lang.url.mail",
+            );
+            ParseEndBeforeIncludedRules = YES;
+        };
+    },
+    {
+        Identifier = "xcode.lang.markdown.link.text";
+        Syntax = {
+            Start = "[";
+            EscapeChar = "\\";
+            End = "]";
+            Type = "xcode.syntax.string";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.markdown.image";
+        Syntax = {
+            Tokenizer = "xcode.lang.markdown.lexer";
+            Rules = (
+                "!",
+                "xcode.lang.markdown.link.text",
+                "xcode.lang.markdown.image.url",
+            );
+            Type = "xcode.syntax.string";
+        };
+    },
+    {
+        Identifier = "xcode.lang.markdown.image.url";
+        Syntax = {
+            Start = "(";
+            EscapeChar = "\\";
+            End = ")";
+            IncludeRules = (
+                "xcode.lang.url",
+                "xcode.lang.string",
+                "xcode.lang.character",
+            );
+            ParseEndBeforeIncludedRules = YES;
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.markdown.header";
+        Syntax = {
+            StartAtBOL = YES;
+            MaxLinesPerToken = 2; // for Setext-style headers
+            Match = (
+                "^([^=].*?)[\r\n]=+$",
+                "^([^-].*?)[\r\n]-+$",
+
+                "^#{1,6}\\s*(.+?)\\s*#*$",
+
+                "^(-)\\s*(?:-\\s*){2,}$",
+                "^((?:\\*\\s*){3,})$",
+                "^((?:_\\s*){3,})$",
+            );
+            CaptureTypes = (
+                "xcode.syntax.mark",
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+
+)

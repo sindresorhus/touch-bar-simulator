@@ -1,0 +1,29 @@
+(
+    {
+        Identifier = "xcode.lang.xcconfig";
+        Description = "Xcode Build Configuration Properties";
+        IncludeInMenu = YES;
+        Name = "Xcode Build Configuration";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.singleline",
+                "xcode.lang.xcconfig.include",
+                "xcode.lang.string",
+                "xcode.lang.string.singlequote",
+                "xcode.lang.number",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.xcconfig.include";
+        Syntax = {
+            Start = "#include";
+            Until = "\n";
+            StartAtBOL = YES;
+            IncludeRules = ( "xcode.lang.string", );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+)

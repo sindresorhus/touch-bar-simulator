@@ -1,0 +1,187 @@
+(
+	{
+		Identifier = "xcode.lang.url";
+		Syntax = {
+			StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
+			Match = (
+				"^(acap|afp|afs|cid|data|fax|feed|file|ftp|go|gopher|http|https|imap|ldap|mailserver|mid|modem|news|nntp|opaquelocktoken|pop|prospero|rdar|rtsp|service|sip|soap\\.beep|soap\\.beeps|tel|telnet|tip|tn3270|urn|vemmi|wais|xcdoc|z39\\.50r|z39\\.50s)://([a-zA-Z0-9\\-_.]+/)?[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
+				"^(mailto|im):[a-zA-Z0-9\\-_]+@[a-zA-Z0-9\\-_\\.!%]+$",
+				"^radar:[a-zA-Z0-9;/?:@\\&=+$,\\-_.!~*'()%#]+$",
+			);
+			Type = "xcode.syntax.url";
+		};
+	},
+	{
+		Identifier = "xcode.lang.url.mail";
+		Syntax = {
+			StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789;/?:@&=+$,-_.!~*'()%#";
+			Match = (
+				"^[a-zA-Z0-9\\-_\\.]+@[a-zA-Z0-9\\-_\\.!%]+$",
+			);
+			Type = "xcode.syntax.url.mail";
+		};
+	},
+	{
+		Identifier = "xcode.lang.string";
+		Syntax = {
+			Start = "\"";
+			EscapeChar = "\\";
+			End = "\"";
+			AltEnd = "\n";
+			Type = "xcode.syntax.string";
+		};
+	},
+	{
+		Identifier = "xcode.lang.character";
+		Syntax = {
+			Start = "'";
+			EscapeChar = "\\";
+			End = "'";
+			AltEnd = "\n";
+			Type = "xcode.syntax.character";
+		};
+	},
+	{
+		Identifier = "xcode.lang.string.singlequote";
+		BasedOn = "xcode.lang.string";
+		Syntax = {
+			Start = "'";
+			EscapeChar = "\\";
+			End = "'";
+			AltEnd = "\n";
+			Type = "xcode.syntax.string";
+		};
+	},
+	{
+		Identifier = "xcode.lang.completionplaceholder";
+		Syntax = {
+			Start = "<#";
+			End = "#>";
+			Type = "xcode.syntax.completionplaceholder";
+		};
+	},
+	{
+		Identifier = "xcode.lang.comment";
+		Syntax = {
+			Start = "/*";
+			End = "*/";
+			"ParseEndBeforeIncludedRules" = YES;
+			Foldable = YES;
+			IncludeRules = (
+				"xcode.lang.url",
+				"xcode.lang.url.mail",
+				"xcode.lang.comment.mark",
+			);
+			Type = "xcode.syntax.comment";
+		};
+	},
+	{
+		Identifier = "xcode.lang.comment.singleline";
+		BasedOn = "xcode.lang.comment";
+		Syntax = {
+			Start = "//";
+			EscapeChar = "\\";
+			Until = "\n";
+			IncludeRules = (
+				"xcode.lang.url",
+				"xcode.lang.url.mail",
+				"xcode.lang.comment.mark",
+			);
+			Type = "xcode.syntax.comment";
+		};
+	},
+	{
+		Identifier = "xcode.lang.comment.singleline.pound";
+		BasedOn = "xcode.lang.comment";
+		Syntax = {
+			Start = "#";
+			EscapeChar = "\\";
+			Until = "\n";
+			IncludeRules = (
+				"xcode.lang.url",
+				"xcode.lang.url.mail",
+				"xcode.lang.comment.mark",
+			);
+			Type = "xcode.syntax.comment";
+		};
+	},
+	{
+		Identifier = "xcode.lang.comment.mark";
+		Syntax = {
+			StartChars = "MTF!?";
+			Match = (
+				"^MARK:[ \t]+(.*)$",
+				"^(TODO:[ \t]+.*)$",
+				"^(FIXME:[ \t]+.*)$",
+				"^(!!!:.*)$",
+				"^(\\?\\?\\?:.*)$",
+			);
+			CaptureTypes = (
+				"xcode.syntax.mark",
+			);
+			Type = "xcode.syntax.comment";
+		};
+	},
+	{
+		Identifier = "xcode.lang.number";
+		Syntax = {
+			"SourceScannerClassName" = DVTNumberScanner;
+			StartChars = "+-0123456789.";
+			Chars = "0123456789+-.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			Match = (
+				"^[+-]?0[bB][01]+([lL])?",
+				"^[+-]?0[xX][0-9a-fA-F]+((\\.[0-9a-fA-F]*)?([pP][+-]?[0-9]+)?)?([lLfF])?",
+				"^[+-]?0[xX][0-9a-fA-F]*\\.[0-9a-fA-F]+([pP][+-]?[0-9]+)?([lLfF])?",
+				"^[+-]?[0-9]+((\\.[0-9]*)?([eE][+-]?[0-9]+)?)?([lLfF])?",
+				"^[+-]?[0-9]*\\.[0-9]+([eE][+-]?[0-9]+)?([lLfF])?",
+			);
+			Type = "xcode.syntax.number";
+		};
+	},
+	{
+		Identifier = "xcode.lang.plainColoring";
+		Description = "Xcode Plain Coloring";
+		IncludeInMenu = YES;
+		Name = "Plain Coloring";
+		Syntax = {
+			Type = "xcode.syntax.plain";
+		};
+	},
+	{
+		Identifier = "xcode.lang.simpleColoring";
+		Description = "Xcode Simple Coloring";
+		IncludeInMenu = YES;
+		Name = "Simple Coloring";
+		Syntax = {
+			IncludeRules = (
+				"xcode.lang.comment",
+				"xcode.lang.comment.singleline",
+				"xcode.lang.comment.singleline.pound",
+				"xcode.lang.string",
+				"xcode.lang.character",
+				"xcode.lang.number",
+				"xcode.lang.simpleColoring.block",
+			);
+			Type = "xcode.syntax.plain";
+		};
+	},
+	{
+		Identifier = "xcode.lang.simpleColoring.block";
+		Syntax = {
+			Start = "{";
+			End = "}";
+			Foldable = YES;
+			Recursive = YES;
+			IncludeRules = (
+				"xcode.lang.comment",
+				"xcode.lang.comment.singleline",
+				"xcode.lang.comment.singleline.pound",
+				"xcode.lang.string",
+				"xcode.lang.character",
+				"xcode.lang.number",
+			);
+		};
+	},
+)

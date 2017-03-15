@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E3FA3A871E784BFD00A7F2EA /* DFRSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */; };
+		E3FA3A8B1E784C4900A7F2EA /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; };
+		E3FA3A8C1E784C5F00A7F2EA /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; };
+		E3FA3A8D1E784C5F00A7F2EA /* DVTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FA3A8E1E784C5F00A7F2EA /* DFRSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */; };
+		E3FA3A8F1E784C5F00A7F2EA /* DFRSupportKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FA3A921E784C7D00A7F2EA /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */; };
+		E3FA3A931E784C7F00A7F2EA /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */; };
+		E3FA3A941E784C7F00A7F2EA /* DVTKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FA3A961E784DB100A7F2EA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A951E784DB100A7F2EA /* XCTest.framework */; };
+		E3FA3A971E784DB300A7F2EA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A951E784DB100A7F2EA /* XCTest.framework */; };
+		E3FA3A981E784DB300A7F2EA /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A951E784DB100A7F2EA /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FA3A9A1E784DE700A7F2EA /* DTXConnectionServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */; };
+		E3FA3A9B1E784DE900A7F2EA /* DTXConnectionServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */; };
+		E3FA3A9C1E784DE900A7F2EA /* DTXConnectionServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FA3A9E1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */; };
+		E3FA3A9F1E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */; };
+		E3FA3AA01E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FA3AA21E784E5A00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */; };
+		E3FA3AA31E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */; };
+		E3FA3AA41E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FA3AA61E784E7D00A7F2EA /* SymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */; };
+		E3FA3AA71E784E7F00A7F2EA /* SymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */; };
+		E3FA3AA81E784E7F00A7F2EA /* SymbolicationDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FA3AAA1E784EA300A7F2EA /* kperfdataDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */; };
+		E3FA3AAB1E784EA500A7F2EA /* kperfdataDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */; };
+		E3FA3AAC1E784EA500A7F2EA /* kperfdataDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FA3AAE1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */; };
+		E3FA3AAF1E784ECC00A7F2EA /* DVTInstrumentsUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */; };
+		E3FA3AB01E784ECC00A7F2EA /* DVTInstrumentsUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3FE2CC31E726CE800C6713A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE2CC21E726CE800C6713A /* main.swift */; };
+		E3FE2CC51E726CE800C6713A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3FE2CC41E726CE800C6713A /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E3FA3A901E784C5F00A7F2EA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E3FA3A9C1E784DE900A7F2EA /* DTXConnectionServices.framework in Embed Frameworks */,
+				E3FA3A8F1E784C5F00A7F2EA /* DFRSupportKit.framework in Embed Frameworks */,
+				E3FA3AA81E784E7F00A7F2EA /* SymbolicationDT.framework in Embed Frameworks */,
+				E3FA3AB01E784ECC00A7F2EA /* DVTInstrumentsUtilities.framework in Embed Frameworks */,
+				E3FA3AAC1E784EA500A7F2EA /* kperfdataDT.framework in Embed Frameworks */,
+				E3FA3A8D1E784C5F00A7F2EA /* DVTFoundation.framework in Embed Frameworks */,
+				E3FA3AA41E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Embed Frameworks */,
+				E3FA3A941E784C7F00A7F2EA /* DVTKit.framework in Embed Frameworks */,
+				E3FA3A981E784DB300A7F2EA /* XCTest.framework in Embed Frameworks */,
+				E3FA3AA01E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DFRSupportKit.framework; sourceTree = "<group>"; };
+		E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DVTFoundation.framework; sourceTree = "<group>"; };
+		E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DVTKit.framework; sourceTree = "<group>"; };
+		E3FA3A951E784DB100A7F2EA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCTest.framework; sourceTree = "<group>"; };
+		E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DTXConnectionServices.framework; sourceTree = "<group>"; };
+		E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DVTInstrumentsFoundation.framework; sourceTree = "<group>"; };
+		E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreSymbolicationDT.framework; sourceTree = "<group>"; };
+		E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SymbolicationDT.framework; sourceTree = "<group>"; };
+		E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = kperfdataDT.framework; sourceTree = "<group>"; };
+		E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DVTInstrumentsUtilities.framework; sourceTree = "<group>"; };
+		E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Bar Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3FE2CC21E726CE800C6713A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		E3FE2CC41E726CE800C6713A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E3FE2CC91E726CE800C6713A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3FE2CD21E726EA100C6713A /* Touch Bar Simulator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Touch Bar Simulator-Bridging-Header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E3FE2CBC1E726CE800C6713A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3FA3AAE1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework in Frameworks */,
+				E3FA3AAA1E784EA300A7F2EA /* kperfdataDT.framework in Frameworks */,
+				E3FA3AA61E784E7D00A7F2EA /* SymbolicationDT.framework in Frameworks */,
+				E3FA3AA21E784E5A00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */,
+				E3FA3AAB1E784EA500A7F2EA /* kperfdataDT.framework in Frameworks */,
+				E3FA3A9E1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework in Frameworks */,
+				E3FA3A9A1E784DE700A7F2EA /* DTXConnectionServices.framework in Frameworks */,
+				E3FA3AA31E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */,
+				E3FA3A961E784DB100A7F2EA /* XCTest.framework in Frameworks */,
+				E3FA3A921E784C7D00A7F2EA /* DVTKit.framework in Frameworks */,
+				E3FA3A8E1E784C5F00A7F2EA /* DFRSupportKit.framework in Frameworks */,
+				E3FA3A931E784C7F00A7F2EA /* DVTKit.framework in Frameworks */,
+				E3FA3A9B1E784DE900A7F2EA /* DTXConnectionServices.framework in Frameworks */,
+				E3FA3AAF1E784ECC00A7F2EA /* DVTInstrumentsUtilities.framework in Frameworks */,
+				E3FA3AA71E784E7F00A7F2EA /* SymbolicationDT.framework in Frameworks */,
+				E3FA3A8B1E784C4900A7F2EA /* DVTFoundation.framework in Frameworks */,
+				E3FA3A871E784BFD00A7F2EA /* DFRSupportKit.framework in Frameworks */,
+				E3FA3A8C1E784C5F00A7F2EA /* DVTFoundation.framework in Frameworks */,
+				E3FA3A971E784DB300A7F2EA /* XCTest.framework in Frameworks */,
+				E3FA3A9F1E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E3FE2CB61E726CE800C6713A = {
+			isa = PBXGroup;
+			children = (
+				E3FE2CC11E726CE800C6713A /* Touch Bar Simulator */,
+				E3FE2CC01E726CE800C6713A /* Products */,
+				E3FE2CD91E7272AD00C6713A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E3FE2CC01E726CE800C6713A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3FE2CC11E726CE800C6713A /* Touch Bar Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				E3FE2CC21E726CE800C6713A /* main.swift */,
+				E3FE2CD21E726EA100C6713A /* Touch Bar Simulator-Bridging-Header.h */,
+				E3FE2CC41E726CE800C6713A /* Assets.xcassets */,
+				E3FE2CC91E726CE800C6713A /* Info.plist */,
+			);
+			path = "Touch Bar Simulator";
+			sourceTree = "<group>";
+		};
+		E3FE2CD91E7272AD00C6713A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */,
+				E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */,
+				E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */,
+				E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */,
+				E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */,
+				E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */,
+				E3FA3A951E784DB100A7F2EA /* XCTest.framework */,
+				E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */,
+				E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */,
+				E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E3FE2CBE1E726CE800C6713A /* Touch Bar Simulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3FE2CCC1E726CE800C6713A /* Build configuration list for PBXNativeTarget "Touch Bar Simulator" */;
+			buildPhases = (
+				E3FE2CBB1E726CE800C6713A /* Sources */,
+				E3FE2CBC1E726CE800C6713A /* Frameworks */,
+				E3FE2CBD1E726CE800C6713A /* Resources */,
+				E3FA3A901E784C5F00A7F2EA /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Touch Bar Simulator";
+			productName = "Touch Bar Simulator";
+			productReference = E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E3FE2CB71E726CE800C6713A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Sindre Sorhus";
+				TargetAttributes = {
+					E3FE2CBE1E726CE800C6713A = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = YG56YK5RN5;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E3FE2CBA1E726CE800C6713A /* Build configuration list for PBXProject "Touch Bar Simulator" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E3FE2CB61E726CE800C6713A;
+			productRefGroup = E3FE2CC01E726CE800C6713A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E3FE2CBE1E726CE800C6713A /* Touch Bar Simulator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E3FE2CBD1E726CE800C6713A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3FE2CC51E726CE800C6713A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E3FE2CBB1E726CE800C6713A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3FE2CC31E726CE800C6713A /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E3FE2CCA1E726CE800C6713A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E3FE2CCB1E726CE800C6713A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		E3FE2CCD1E726CE800C6713A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = YG56YK5RN5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Touch Bar Simulator/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.Touch-Bar-Simulator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REEXPORTED_LIBRARY_PATHS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Touch Bar Simulator/Touch Bar Simulator-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E3FE2CCE1E726CE800C6713A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = YG56YK5RN5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Touch Bar Simulator/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.Touch-Bar-Simulator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REEXPORTED_LIBRARY_PATHS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Touch Bar Simulator/Touch Bar Simulator-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E3FE2CBA1E726CE800C6713A /* Build configuration list for PBXProject "Touch Bar Simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3FE2CCA1E726CE800C6713A /* Debug */,
+				E3FE2CCB1E726CE800C6713A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E3FE2CCC1E726CE800C6713A /* Build configuration list for PBXNativeTarget "Touch Bar Simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3FE2CCD1E726CE800C6713A /* Debug */,
+				E3FE2CCE1E726CE800C6713A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E3FE2CB71E726CE800C6713A /* Project object */;
+}

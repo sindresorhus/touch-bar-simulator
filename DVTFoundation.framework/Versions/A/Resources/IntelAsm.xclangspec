@@ -1,0 +1,87 @@
+// Intel Assembler language specs
+
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.asm.intel.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$_.";
+            Type = "xcode.syntax.identifier";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.asm.intel.directive";
+        Syntax = {
+            StartAtBOL = YES;
+            StartChars = ".";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+/****************************************************************************/
+// MARK: Simple Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.asm.i386";
+        Description = "Intel386 Assembler Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "Assembly (Intel)";
+        Syntax = {
+            Tokenizer = "xcode.lang.asm.intel.lexer";
+            IncludeRules = (
+                "xcode.lang.asm.intel.label"
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.asm.intel.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.comment.singleline.pound",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.asm.intel.directive",
+                "xcode.lang.asm.intel.identifier",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.asm.intel.label";
+        Syntax = {
+            StartAtBOL = YES;
+            Tokenizer = "xcode.lang.asm.intel.lexer";
+            Rules = (
+                "xcode.lang.asm.intel.label.name",
+                ":",
+            );
+            Type = "xcode.syntax.definition.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.asm.intel.label.name";
+        Syntax = {
+            StartAtBOL = YES;
+            Tokenizer = "xcode.lang.asm.intel.lexer";
+            Rules = (
+                "xcode.lang.asm.intel.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+
+)

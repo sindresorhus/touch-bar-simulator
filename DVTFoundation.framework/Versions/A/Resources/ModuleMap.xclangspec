@@ -1,0 +1,90 @@
+// Module map language specs
+// http://clang.llvm.org/docs/Modules.html#module-map-language
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.module-map.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+              "config_macros",
+              "conflict",
+              "exclude",
+              "explicit",
+              "export",
+              "extern",
+              "framework",
+              "header",
+              "link",
+              "module",
+              "private",
+              "requires",
+              "textual",
+              "umbrella",
+              "use",              
+            );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+    {
+        Identifier = "xcode.lang.module-map.interestingOperators";
+        Syntax = {
+            Words = (
+                ".",
+             );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Simple Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.module-map";
+        Description = "LLVM Module Map Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "LLVM Module Map";
+        Syntax = {
+            Tokenizer = "xcode.lang.module-map.lexer";
+            IncludeRules = (        // processed in order
+                "xcode.lang.module-map.block",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+        
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.module-map.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.module-map.identifier",
+                "xcode.lang.module-map.interestingOperators",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.module-map.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.module-map.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+        };
+    },
+ 
+)

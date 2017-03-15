@@ -1,0 +1,649 @@
+// OpenCL
+(
+
+/****************************************************************************/
+// MARK: OpenCL Preprocessor
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.opencl.preprocessor";
+        Syntax = {
+            Start = "#";
+            EscapeChar = "\\";
+            End = "\n";
+            
+            // only recognize the '#' if it's the first non-whitespace on a line
+            StartAtBOL = YES;
+            
+            // multi-line comments extend the preprocessor statement across lines too
+            Tokenizer = "xcode.lang.opencl.preprocessor.lexer";
+            IncludeRules = (
+                "xcode.lang.opencl.preprocessor.mark",
+                "xcode.lang.opencl.preprocessor.include",
+                "xcode.lang.opencl.preprocessor.systeminclude",
+                "xcode.lang.opencl.preprocessor.import",
+                "xcode.lang.opencl.preprocessor.systemimport",
+                "xcode.lang.opencl.preprocessor.define",
+                "xcode.lang.opencl.preprocessor.warning",
+                "xcode.lang.opencl.preprocessor.error",
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.opencl.preprocessor.identifier",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.systemIncludeString";
+        Syntax = {
+            Start = "<";
+            End = ">";
+            Type = "xcode.syntax.string";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words =  (
+                "define",
+                "elif",
+                "else",
+                "endif",
+                "error",
+                "if",
+                "ifdef",
+                "ifndef",
+                "import",
+                "include",
+                "line",
+                "pragma",
+                "undef",
+                "warning",
+            );
+            Type = "xcode.syntax.preprocessor.keyword";
+            AltType = "xcode.syntax.preprocessor.identifier";
+        };
+    },
+ 
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.mark";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.preprocessor.lexer";
+            Rules = (
+                "pragma",
+                "xcode.lang.opencl.preprocessor.mark.therest",
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.mark.therest";
+        Syntax = {
+            Match = (
+                "^[ \t]*mark[ \t]*\(.*\)$"
+            );
+            CaptureTypes = (
+                "xcode.syntax.mark"
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.define";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.preprocessor.lexer";
+            Rules = (
+                "define",
+                "xcode.lang.opencl.preprocessor.define.name",
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.define.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.preprocessor.lexer";
+            Rules = (
+                "xcode.lang.opencl.preprocessor.identifier",
+            );
+            Type = "xcode.syntax.definition.macro";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.warning";
+        Syntax = {
+            Start = "warning";
+            EscapeChar = "\\";
+            Until = "\n";
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.error";
+        Syntax = {
+            Start = "error";
+            EscapeChar = "\\";
+            Until = "\n";
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.include.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.opencl.preprocessor.systemIncludeString",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.opencl.preprocessor.identifier",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.include";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.preprocessor.include.lexer";
+            Rules = (
+                "include",
+                "xcode.lang.string",
+            );
+            Type = "xcode.syntax.preprocessor.include";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.systeminclude";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.preprocessor.include.lexer";
+            Rules = (
+                "include",
+                "xcode.lang.opencl.preprocessor.systemIncludeString",
+            );
+            Type = "xcode.syntax.preprocessor.include";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.import";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.preprocessor.include.lexer";
+            Rules = (
+                "import",
+                "xcode.lang.string",
+            );
+            Type = "xcode.syntax.preprocessor.include";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.preprocessor.systemimport";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.preprocessor.include.lexer";
+            Rules = (
+                "import",
+                "xcode.lang.opencl.preprocessor.systemIncludeString",
+            );
+            Type = "xcode.syntax.preprocessor.include";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: OpenCL keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.opencl.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "__alignof__",
+                "__asm__",
+                "__attribute__",
+                "__complex__",
+                "__constant",
+                "__extension__",
+                "__global",
+                "__imag__",
+                "__kernel",
+                "__label__",
+                "__local",
+                "__private",
+                "__read_only",
+                "__real__",
+                "__restrict",
+                "__restrict__",
+                "__typeof__",
+                "__write_only",
+                "_Bool",
+                "_Complex",
+                "_Imaginary",
+                "__block",
+                "asm",
+                "auto",
+                "bool",
+                "break",
+                "case",
+                "char",
+                "char2",
+                "char3",
+                "char4",
+                "char8",
+                "char16",
+                "const",
+                "constant",
+                "continue",
+                "default",
+                "do",
+                "double",
+                "else",
+                "enum",
+                "event_t",
+                "extern",
+                "float",
+                "float2",
+                "float3",
+                "float4",
+                "float8",
+                "float16",
+                "for",
+                "global",
+                "goto",
+                "half",
+                "if",
+                "image2d_t",
+                "image3d_t",
+                "inline",
+                "int",
+                "int2",
+                "int3",
+                "int4",
+                "int8",
+                "int16",
+                "intptr_t",
+                "kernel",
+                "local",
+                "long",
+                "long2",
+                "long3",
+                "long4",
+                "long8",
+                "long16",
+                "pascal",
+                "private",
+                "ptrdiff_t",
+                "read_only",
+                "register",
+                "restrict",
+                "return",
+                "sampler_t",
+                "short",
+                "short2",
+                "short3",
+                "short4",
+                "short8",
+                "short16",
+                "signed",
+                "size_t",
+                "sizeof",
+                "static",
+                "struct",
+                "switch",
+                "typedef",
+                "typeof",
+                "uchar",
+                "uchar2",
+                "uchar3",
+                "uchar4",
+                "uchar8",
+                "uchar16",
+                "uint",
+                "uint2",
+                "uint3",
+                "uint4",
+                "uint8",
+                "uint16",
+                "uintptr_t",
+                "ulong",
+                "ulong2",
+                "ulong3",
+                "ulong4",
+                "ulong8",
+                "ulong16",
+                "union",
+                "unsigned",
+                "ushort",
+                "ushort2",
+                "ushort3",
+                "ushort4",
+                "ushort8",
+                "ushort16",
+                "void",
+                "volatile",
+                "while",
+                "write_only",
+                "FALSE",
+                "NULL",
+                "TRUE",
+             );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.interestingOperators";
+        Syntax = {
+            Words = (
+                "...",
+                ".",
+                "->",
+             );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: OpenCL Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.opencl";
+        Description = "OpenCL Coloring";
+        IncludeInMenu = YES;
+        BasedOn = "xcode.lang.c";  // for text macros
+        UsesCLikeIndentation = YES;
+        Name = "OpenCL";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            IncludeRules = (
+                "xcode.lang.opencl.function.declaration",
+                "xcode.lang.opencl.function",
+                "xcode.lang.opencl.typedef",
+                "xcode.lang.opencl.block",
+                "xcode.lang.opencl.bracketexpr",
+                "xcode.lang.opencl.parenexpr",
+                "xcode.lang.opencl.initializer",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.opencl.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.opencl.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.opencl.attribute",
+                "xcode.lang.opencl.identifier",
+                "xcode.lang.number",
+                "xcode.lang.opencl.interestingOperators",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.opencl.attribute";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer.attribute";
+            Rules = (
+                "__attribute__",
+                "xcode.lang.opencl.parenexpr.attribute",
+            );
+            Type = "xcode.syntax.opencl.attribute";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.lexer.attribute";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.opencl.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.opencl.identifier",
+                "xcode.lang.number",
+                "xcode.lang.opencl.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.parenexpr.attribute";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer.attribute";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+        };
+    },
+    
+/****************************************************************************/
+// MARK: Functions
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.opencl.function.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            Rules = (
+                "xcode.lang.opencl.function.declarator",
+                "xcode.lang.opencl.identifier?",
+                ";"
+            );
+            Type = "xcode.syntax.declaration.c.function";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            Rules = (
+                "xcode.lang.opencl.function.declarator",
+                "xcode.lang.opencl.block",
+            );
+            Type = "xcode.syntax.definition.c.function";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.function.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            Rules = (
+                "xcode.lang.opencl.function.name",
+                "xcode.lang.opencl.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.function.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            Rules = (
+                "xcode.lang.opencl.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    
+/****************************************************************************/
+// MARK: Typedefs
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.opencl.lexer.typedef";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.opencl.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.opencl.attribute",
+                "xcode.lang.opencl.typedef.end",
+                "xcode.lang.opencl.identifier",
+                "xcode.lang.number",
+                "xcode.lang.opencl.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.lexer.typedef.name";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.opencl.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.opencl.attribute",
+                "xcode.lang.opencl.typedef.name",
+                "xcode.lang.opencl.identifier",
+                "xcode.lang.number",
+                "xcode.lang.opencl.interestingOperators",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.typedef";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer.typedef";
+            Start = "typedef";
+            End = "xcode.lang.opencl.typedef.end";
+            AltEnd = ";";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.opencl.typedef.function",
+                "xcode.lang.opencl.block",
+                "xcode.lang.opencl.bracketexpr",
+                "xcode.lang.opencl.parenexpr",
+            );
+            Type = "xcode.syntax.typedef";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.typedef.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            Rules = (
+                "xcode.lang.opencl.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.typedef.end";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer.typedef.name";
+            Rules = (
+                "xcode.lang.opencl.typedef.name",
+                ";"
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    {
+        Identifier = "xcode.lang.opencl.typedef.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer.typedef.name";
+            Rules = (
+                "(",
+                "*",
+                "xcode.lang.opencl.typedef.name",
+                ")",
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+    
+/****************************************************************************/
+// MARK: Blocks and such
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.opencl.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.opencl.bracketexpr",
+                "xcode.lang.opencl.parenexpr",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.opencl.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.opencl.block",
+                "xcode.lang.opencl.bracketexpr",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.opencl.bracketexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            Start = "[";
+            End = "]";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.opencl.parenexpr",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.opencl.initializer";
+        Syntax = {
+            Tokenizer = "xcode.lang.opencl.lexer";
+            Start = "=";
+            End = ";";
+            Recursive = NO;
+            IncludeRules = (
+                "xcode.lang.opencl.block",
+                "xcode.lang.opencl.parenexpr",
+                "xcode.lang.opencl.bracketexpr",
+            );
+        };
+    },
+)
+

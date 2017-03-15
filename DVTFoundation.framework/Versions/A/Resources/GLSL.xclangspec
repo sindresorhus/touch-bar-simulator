@@ -1,0 +1,651 @@
+// GLSL
+(
+
+    /****************************************************************************/
+    // MARK: GLSL Preprocessor
+    /****************************************************************************/
+    
+    {
+        Identifier = "xcode.lang.glsl.preprocessor";
+        Syntax = {
+            Start = "#";
+            EscapeChar = "\\";
+            End = "\n";
+            
+            // only recognize the '#' if it's the first non-whitespace on a line
+            StartAtBOL = YES;
+            
+            // multi-line comments extend the preprocessor statement across lines too
+            Tokenizer = "xcode.lang.glsl.preprocessor.lexer";
+            IncludeRules = (
+                "xcode.lang.glsl.preprocessor.mark",
+                "xcode.lang.glsl.preprocessor.define",
+                "xcode.lang.glsl.preprocessor.error",
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.glsl.preprocessor.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.glsl.preprocessor.identifier",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.glsl.preprocessor.systemIncludeString";
+        Syntax = {
+            Start = "<";
+            End = ">";
+            Type = "xcode.syntax.string";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.glsl.preprocessor.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words =  (
+                "define",
+                "elif",
+                "else",
+                "endif",
+                "error",
+                "extension",
+                "if",
+                "ifdef",
+                "ifndef",
+                "line",
+                "pragma",
+                "undef",
+                "version",
+            );
+            Type = "xcode.syntax.preprocessor.keyword";
+            AltType = "xcode.syntax.preprocessor.identifier";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.glsl.preprocessor.mark";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.preprocessor.lexer";
+            Rules = (
+                "pragma",
+                "xcode.lang.glsl.preprocessor.mark.therest",
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.glsl.preprocessor.mark.therest";
+        Syntax = {
+            Match = (
+                "^[ \t]*mark[ \t]*\(.*\)$"
+            );
+            CaptureTypes = (
+                "xcode.syntax.mark"
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.glsl.preprocessor.define";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.preprocessor.lexer";
+            Rules = (
+                "define",
+                "xcode.lang.glsl.preprocessor.define.name",
+            );
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    {
+        Identifier = "xcode.lang.glsl.preprocessor.define.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.preprocessor.lexer";
+            Rules = (
+                "xcode.lang.glsl.preprocessor.identifier",
+            );
+            Type = "xcode.syntax.definition.macro";
+        };
+    },
+    {
+        Identifier = "xcode.lang.glsl.preprocessor.error";
+        Syntax = {
+            Start = "error";
+            EscapeChar = "\\";
+            Until = "\n";
+            Type = "xcode.syntax.preprocessor";
+        };
+    },
+    
+    
+/****************************************************************************/
+// MARK: GLSL keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.glsl.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_~";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                // keywords
+                "attribute",
+                "bool",
+                "break",
+                "bvec2",
+                "bvec3",
+                "bvec4",
+                "case",
+                "centroid",
+                "const",
+                "continue",
+                "default",
+                "discard",
+                "dmat2",
+                "dmat2x2",
+                "dmat2x3",
+                "dmat2x4",
+                "dmat3",
+                "dmat3x2",
+                "dmat3x3",
+                "dmat3x4",
+                "dmat4",
+                "dmat4x2",
+                "dmat4x3",
+                "dmat4x4",
+                "dvec2",
+                "dvec3",
+                "dvec4",
+                "do",
+                "double",
+                "else",
+                "false",
+                "flat",
+                "float",
+                "for",
+                "highp",
+                "if",
+                "in",
+                "inout",
+                "int",
+                "invariant",
+                "isampler1D",
+                "isampler1DArray",
+                "isampler2D",
+                "isampler2DArray",
+                "isampler2DMS",
+                "isampler2DMSArray",
+                "isampler2DRect",
+                "isampler3D",
+                "isamplerBuffer",
+                "isamplerCube",
+                "isamplerCubeArray",
+                "ivec2",
+                "ivec3",
+                "ivec4",
+                "layout",
+                "lowp",
+                "mat2",
+                "mat2x2",
+                "mat2x3",
+                "mat2x4",
+                "mat3",
+                "mat3x2",
+                "mat3x3",
+                "mat3x4",
+                "mat4",
+                "mat4x2",
+                "mat4x3",
+                "mat4x4",
+                "mediump",
+                "noperspective",
+                "out",
+                "patch",
+                "precision",
+                "return",
+                "sample",
+                "sampler1D",
+                "sampler1DArray",
+                "sampler1DArrayShadow",
+                "sampler1DShadow",
+                "sampler2D",
+                "sampler2DArray",
+                "sampler2DArrayShadow",
+                "sampler2DMS",
+                "sampler2DMSArray",
+                "sampler2DRect",
+                "sampler2DRectShadow",
+                "sampler2DShadow",
+                "sampler3D",
+                "samplerBuffer",
+                "samplerCube",
+                "samplerCubeArray",
+                "samplerCubeArrayShadow",
+                "samplerCubeShadow",
+                "smooth",
+                "struct",
+                "subroutine",
+                "switch",
+                "true",
+                "uint",
+                "uniform",
+                "usampler1D",
+                "usampler1DArray",
+                "usampler2D",
+                "usampler2DArray",
+                "usampler2DMS",
+                "usampler2DMSArray",
+                "usampler2DRect",
+                "usampler3D",
+                "usamplerBuffer",
+                "usamplerCube",
+                "usamplerCubeArray",
+                "uvec2",
+                "uvec3",
+                "uvec4",
+                "varying",
+                "vec2",
+                "vec3",
+                "vec4",
+                "void",
+                "while",
+                );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.glsl.interestingOperators";
+        Syntax = {
+            Words = (
+                ".",
+             );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+/****************************************************************************/
+// MARK: GLSL Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.glsl";
+        Description = "GLSL Coloring";
+        BasedOn = "xcode.lang.c";       // for text macros
+        IncludeInMenu = YES;
+        UsesCLikeIndentation = YES;
+        Name = "GLSL";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.lexer";
+            IncludeRules = (
+                "xcode.lang.glsl.bracketexpr",
+                "xcode.lang.glsl.parenexpr",
+                "xcode.lang.glsl.function.declaration",
+                "xcode.lang.glsl.function.definition",
+                "xcode.lang.glsl.block",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.glsl.system.variable";
+        Syntax = {
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+            "gl_VertexID",
+            "gl_InstanceID",
+            "gl_Position",
+            "gl_PointSize",
+            "gl_ClipDistance",
+            "gl_PrimitiveIDIn",
+            "gl_InvocationID",
+            "gl_PrimitiveID",
+            "gl_Layer",
+            "gl_ViewportIndex",
+            "gl_PatchVerticesIn",
+            "gl_TessLevelOuter",
+            "gl_TessLevelInner",
+            "gl_TessCoord",
+            "gl_FragCoord",
+            "gl_FrontFacing",
+            "gl_PointCoord",
+            "gl_SampleID",
+            "gl_SamplePosition",
+            "gl_FragColor",
+            "gl_FragData",
+            "gl_FragDepth",
+            "gl_SampleMask",
+            "gl_out",
+            "gl_in"
+            );
+            Type = "xcode.syntax.identifier.variable.system";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.glsl.system.constant";
+        Syntax = {
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+            "gl_MaxVertexAttribs",
+            "gl_MaxVertexUniformComponents",
+            "gl_MaxVaryingFloats",
+            "gl_MaxVaryingComponents",
+            "gl_MaxVertexOutputComponents",
+            "gl_MaxGeometryInputComponents",
+            "gl_MaxGeometryOutputComponents",
+            "gl_MaxFragmentInputComponents",
+            "gl_MaxVertexTextureImageUnits",
+            "gl_MaxCombinedTextureImageUnits",
+            "gl_MaxTextureImageUnits",
+            "gl_MaxFragmentUniformComponents",
+            "gl_MaxDrawBuffers",
+            "gl_MaxClipDistances",
+            "gl_MaxGeometryTextureImageUnits",
+            "gl_MaxGeometryOutputVertices",
+            "gl_MaxGeometryTotalOutputComponents",
+            "gl_MaxGeometryUniformComponents",
+            "gl_MaxGeometryVaryingComponents",
+            "gl_MaxTessControlInputComponents",
+            "gl_MaxTessControlOutputComponents",
+            "gl_MaxTessControlTextureImageUnits",
+            "gl_MaxTessControlUniformComponents",
+            "gl_MaxTessControlTotalOutputComponents",
+            "gl_MaxTessEvaluationInputComponents",
+            "gl_MaxTessEvaluationOutputComponents",
+            "gl_MaxTessEvaluationTextureImageUnits",
+            "gl_MaxTessEvaluationUniformComponents",
+            "gl_MaxTessPatchComponents",
+            "gl_MaxPatchVertices",
+            "gl_MaxTessGenLevel",
+            "gl_MaxViewports",
+            "gl_MaxVertexUniformVectors",
+            "gl_MaxFragmentUniformVectors",
+            "gl_MaxVaryingVectors",
+            "gl_MaxVertexAttribs",
+            );
+            Type = "xcode.syntax.identifier.constant.system";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.glsl.system.function";
+        Syntax = {
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+            "radians",
+            "degrees",
+            "sin",
+            "cos",
+            "tan",
+            "asin",
+            "acos",
+            "atan",
+            "sinh",
+            "cosh",
+            "tanh",
+            "asinh",
+            "acosh",
+            "atanh",
+            "pow",
+            "exp",
+            "log",
+            "exp2",
+            "log2",
+            "sqrt",
+            "inversesqrt",
+            "abs",
+            "sign",
+            "floor",
+            "trunc",
+            "round",
+            "roundEven",
+            "ceil",
+            "fract",
+            "mod",
+            "modf",
+            "min",
+            "max",
+            "clamp",
+            "mix",
+            "step",
+            "smoothstep",
+            "isnan",
+            "isinf",
+            "floatBitsToInt",
+            "floatBitsToUint",
+            "intBitsToFloat",
+            "uintBitsToFloat",
+            "fma",
+            "frexp",
+            "ldexp",
+            "packUnorm2x16",
+            "packUnorm4x8",
+            "packSnorm4x8",
+            "unpackUnorm2x16",
+            "unpackUnorm4x8",
+            "unpackSnorm4x8",
+            "packDouble2x32",
+            "unpackDouble2x32",
+            "length",
+            "distance",
+            "dot",
+            "cross",
+            "normalize",
+            "faceforward",
+            "reflect",
+            "refract",
+            "matrixCompMult",
+            "outerProduct",
+            "transpose",
+            "determinant",
+            "inverse",
+            "lessThan",
+            "lessThanEqual",
+            "greaterThan",
+            "greaterThanEqual",
+            "equal",
+            "notEqual",
+            "any",
+            "all",
+            "not",
+            "uaddCarry",
+            "usubBorrow",
+            "umulExtended",
+            "imulExtended",
+            "bitfieldExtract",
+            "bitfieldInsert",
+            "bitfieldReverse",
+            "bitCount",
+            "findLSB",
+            "findMSB",
+            "textureSize",
+            "textureQueryLod",
+            "texture",
+            "textureProj",
+            "textureLod",
+            "textureOffset",
+            "texelFetch",
+            "texelFetchOffset",
+            "textureProjOffset",
+            "textureLodOffset",
+            "textureProjLod",
+            "textureProjLodOffset",
+            "textureGrad",
+            "textureGradOffset",
+            "textureProjGrad",
+            "textureProjGradOffset",
+            "textureGather",
+            "textureGatherOffset",
+            "textureGatherOffsets",
+            "texture1D",
+            "texture1DProj",
+            "texture1DLod",
+            "texture1DProjLod",
+            "texture2D",
+            "texture2DProj",
+            "texture2DLod",
+            "texture2DProjLod",
+            "texture3D",
+            "texture3DProj",
+            "texture3DLod",
+            "texture3DProjLod",
+            "textureCube",
+            "textureCubeLod",
+            "shadow1D",
+            "shadow2D",
+            "shadow1DProj",
+            "shadow2DProj",
+            "shadow1DLod",
+            "shadow2DLod",
+            "shadow1DProjLod",
+            "shadow2DProjLod",
+            "dFdx",
+            "dFdy",
+            "fwidth",
+            "interpolateAtCentroid",
+            "interpolateAtSample",
+            "interpolateAtOffset",
+            "noise1",
+            "noise2",
+            "noise3",
+            "noise4",
+            "EmitStreamVertex",
+            "EndStreamPrimitive",
+            "EmitVertex",
+            "EndPrimitive",
+            "barrier",
+            );
+            Type = "xcode.syntax.identifier.function.system";
+        };
+    },
+
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.glsl.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.glsl.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.glsl.system.variable",
+                "xcode.lang.glsl.system.constant",
+                "xcode.lang.glsl.system.function",
+                "xcode.lang.glsl.identifier",
+                "xcode.lang.number",
+                "xcode.lang.glsl.interestingOperators",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.glsl.function.declaration";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.lexer";
+            Rules = (
+                "xcode.lang.glsl.function.declarator",
+                ";",
+            );
+            Type = "xcode.syntax.declaration.c.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.glsl.function.definition";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.lexer";
+            Rules = (
+                "xcode.lang.glsl.function.declarator",
+                "xcode.lang.glsl.block",
+            );
+            Type = "xcode.syntax.definition.c.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.glsl.function.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.lexer";
+            Rules = (
+                "xcode.lang.glsl.function.name",
+                "xcode.lang.glsl.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.glsl.function.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.lexer";
+            Rules = (
+                "xcode.lang.glsl.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    
+
+/****************************************************************************/
+// MARK: GLSL Blocks
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.glsl.block";
+        BasedOn = "xcode.lang.c.block";     // for text macros
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.glsl.bracketexpr",
+                "xcode.lang.glsl.parenexpr",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.glsl.parenexpr";
+        BasedOn = "xcode.lang.c.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.glsl.bracketexpr",
+                "xcode.lang.glsl.block",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.glsl.bracketexpr";
+        BasedOn = "xcode.lang.c.bracketexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.glsl.lexer";
+            Start = "[";
+            End = "]";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.glsl.parenexpr",
+            );
+        };
+    },
+)
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DVTDiffContextAutoupdatingDelay</key>
+	<integer>1</integer>
+	<key>DVTDiffContextIgnoresCase</key>
+	<false/>
+	<key>DVTDiffContextIgnoresLeadingSpaces</key>
+	<false/>
+	<key>DVTDiffContextIgnoresLineEnds</key>
+	<false/>
+	<key>DVTDiffContextIgnoresSpacesInRuns</key>
+	<false/>
+	<key>DVTDiffContextIgnoresTrailingSpaces</key>
+	<false/>
+	<key>DVTDiffContextMergeDirection</key>
+	<integer>1</integer>
+	<key>DVTDiffContextNumberOfContextTokens</key>
+	<integer>3</integer>
+</dict>
+</plist>

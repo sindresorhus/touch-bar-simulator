@@ -1,0 +1,89 @@
+// C Shell Script language specs
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.csh.keyword";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "alias",
+                "break",
+                "continue",
+                "foreach",
+                "umask",
+                "breaksw",
+                "case",
+                "default",
+                "else",
+                "end",
+                "endif",
+                "endsw",
+                "eval",
+                "exec",
+                "exit",
+                "if",
+                "onintr",
+                "printenv",
+                "set",
+                "setenv",
+                "shift",
+                "source",
+                "switch",
+                "then",
+                "umask",
+                "unlimit",
+                "unset",
+                "unsetenv",
+                "while",
+            );
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Simple Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.csh";
+        Description = "C Shell Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "C Shell";
+        Syntax = {
+            IncludeRules = (        // processed in order
+                "xcode.lang.comment.singleline.pound",
+                "xcode.lang.string",
+                "xcode.lang.string.singlequote",
+                "xcode.lang.string.backquote",
+                "xcode.lang.number",
+                "xcode.lang.csh.keyword",
+                "xcode.lang.csh.block"
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.csh.block";
+        Syntax = {
+            // Handle nested blocks
+            Start = "{";
+            End = "}";
+            Recursive = YES;
+            IncludeRules = (        // processed in order
+                "xcode.lang.comment.singleline.pound",
+                "xcode.lang.string",
+                "xcode.lang.string.singlequote",
+                "xcode.lang.string.backquote",
+                "xcode.lang.number",
+                "xcode.lang.csh.keyword",
+            );
+        };
+    },
+)

@@ -1,0 +1,635 @@
+(
+    {
+        Identifier = "xcode.lang.applescript";
+        Description = "AppleScript Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "AppleScript";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            IncludeRules = (
+                "xcode.lang.applescript.script",
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.on",
+                "xcode.lang.applescript.if",
+                "xcode.lang.applescript.repeat",
+                "xcode.lang.applescript.try",
+                "xcode.lang.applescript.considering",
+                "xcode.lang.applescript.ignoring",
+                "xcode.lang.applescript.usingtermsfrom",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.lexer";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer.internal";
+            IncludeRules = (
+                "xcode.lang.applescript.comment",
+                "xcode.lang.applescript.comment.singleline",
+                "xcode.lang.applescript.comment.singleline.pound",
+                "xcode.lang.string",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.applescript.script.declarator",
+                "xcode.lang.applescript.on.declarator",
+                "xcode.lang.applescript.tell.declarator",
+                "xcode.lang.applescript.if.declarator",
+                "xcode.lang.applescript.end",
+                "xcode.lang.applescript.identifier",
+                "xcode.lang.number",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.lexer.internal";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer.internal.if";
+            IncludeRules = (
+                "xcode.lang.applescript.comment",
+                "xcode.lang.applescript.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.applescript.then.standalone",
+                "xcode.lang.applescript.identifier",
+                "xcode.lang.number",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.lexer.internal.if";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.applescript.comment",
+                "xcode.lang.applescript.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.applescript.identifier",
+                "xcode.lang.number",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.script";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Start = "xcode.lang.applescript.script.declarator";
+            End = "xcode.lang.applescript.end";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.on",
+                "xcode.lang.applescript.if",
+                "xcode.lang.applescript.repeat",
+                "xcode.lang.applescript.tell",
+                "xcode.lang.applescript.try",
+                "xcode.lang.applescript.considering",
+                "xcode.lang.applescript.ignoring",
+                "xcode.lang.applescript.usingtermsfrom",
+            );
+            Type = "xcode.syntax.definition.class";
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.script.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer.internal";
+            Rules = (
+                "script",
+                "xcode.lang.applescript.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.on";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Start = "xcode.lang.applescript.on.declarator";
+            End = "xcode.lang.applescript.end";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.if",
+                "xcode.lang.applescript.repeat",
+                "xcode.lang.applescript.tell",
+                "xcode.lang.applescript.try",
+                "xcode.lang.applescript.considering",
+                "xcode.lang.applescript.ignoring",
+                "xcode.lang.applescript.usingtermsfrom",
+            );
+            Type = "xcode.syntax.definition.method";
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.on.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer.internal";
+            StartAtBOL = YES;
+            Start = "on";
+            Until = "\n";
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.applescript.if";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Start = "xcode.lang.applescript.if.declarator";
+            End = "xcode.lang.applescript.end";
+            StartAtBOL = YES;
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.repeat",
+                "xcode.lang.applescript.tell",
+                "xcode.lang.applescript.try",
+                "xcode.lang.applescript.considering",
+                "xcode.lang.applescript.ignoring",
+                "xcode.lang.applescript.usingtermsfrom",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.if.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer.internal";
+            Start = "if";
+            Until = "xcode.lang.applescript.then.standalone";
+            AltUntil = "\n";
+            StartAtBOL = YES;
+            AltToken = "xcode.lang.applescript.if.uninteresting";
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.then.standalone";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer.internal.if";
+            Rules = (
+                "then",
+                "\n",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.end";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer.internal.if";
+            StartAtBOL = YES;
+            Rules = (
+                "end",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.applescript.tell";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Start = "xcode.lang.applescript.tell.declarator";
+            End = "xcode.lang.applescript.end";
+            StartAtBOL = YES;
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.if",
+                "xcode.lang.applescript.repeat",
+                "xcode.lang.applescript.try",
+                "xcode.lang.applescript.considering",
+                "xcode.lang.applescript.ignoring",
+                "xcode.lang.applescript.usingtermsfrom",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.tell.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer.internal";
+            Start = "tell";
+            Until = "\n";
+            AltUntil = "to";
+            StartAtBOL = YES;
+            AltToken = "xcode.lang.applescript.tell.uninteresting";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.applescript.repeat";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Start = "repeat";
+            End = "xcode.lang.applescript.end";
+            StartAtBOL = YES;
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.if",
+                "xcode.lang.applescript.tell",
+                "xcode.lang.applescript.try",
+                "xcode.lang.applescript.considering",
+                "xcode.lang.applescript.ignoring",
+                "xcode.lang.applescript.usingtermsfrom",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.applescript.try";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Start = "try";
+            End = "xcode.lang.applescript.end";
+            StartAtBOL = YES;
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.repeat",
+                "xcode.lang.applescript.tell",
+                "xcode.lang.applescript.if",
+                "xcode.lang.applescript.considering",
+                "xcode.lang.applescript.ignoring",
+                "xcode.lang.applescript.usingtermsfrom",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.applescript.ignoring";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Start = "ignoring";
+            End = "xcode.lang.applescript.end";
+            StartAtBOL = YES;
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.repeat",
+                "xcode.lang.applescript.if",
+                "xcode.lang.applescript.tell",
+                "xcode.lang.applescript.try",
+                "xcode.lang.applescript.considering",
+                "xcode.lang.applescript.usingtermsfrom",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.applescript.considering";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Start = "considering";
+            End = "xcode.lang.applescript.end";
+            StartAtBOL = YES;
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.repeat",
+                "xcode.lang.applescript.if",
+                "xcode.lang.applescript.tell",
+                "xcode.lang.applescript.try",
+                "xcode.lang.applescript.ignoring",
+                "xcode.lang.applescript.usingtermsfrom",
+            );
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.applescript.usingtermsfrom";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Start = "using";
+            End = "xcode.lang.applescript.end";
+            StartAtBOL = YES;
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.applescript.property",
+                "xcode.lang.applescript.repeat",
+                "xcode.lang.applescript.if",
+                "xcode.lang.applescript.tell",
+                "xcode.lang.applescript.try",
+                "xcode.lang.applescript.considering",
+                "xcode.lang.applescript.ignoring",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.applescript.property";
+        Syntax = {
+            Tokenizer = "xcode.lang.applescript.lexer";
+            Rules = (
+                "property",
+                "xcode.lang.applescript.identifier",
+            );
+            Type = "xcode.syntax.definition.macro";
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "about",
+                "above",
+                "activate",
+                "after",
+                "against",
+                "alias",
+                "all",
+                "and",
+                "anything",
+                "apart",
+                "application",
+                "april",
+                "around",
+                "as",
+                "aside",
+                "ask",
+                "at",
+                "august",
+                "back",
+                "before",
+                "begin",
+                "beginning",
+                "begins",
+                "behind",
+                "below",
+                "beneath",
+                "beside",
+                "between",
+                "bold",
+                "boolean",
+                "but",
+                "by",
+                "caps",
+                "case",
+                "celsius",
+                "center",
+                "centimeters",
+                "centimetres",
+                "class",
+                "close",
+                "color",
+                "come",
+                "comes",
+                "condensed",
+                "considering",
+                "constant",
+                "contain",
+                "contained",
+                "contains",
+                "continue",
+                "copy",
+                "count",
+                "cubic",
+                "data",
+                "date",
+                "days",
+                "december",
+                "degrees",
+                "delete",
+                "delimiters",
+                "diacriticals",
+                "div",
+                "does",
+                "doesn't",
+                "duplicate",
+                "eighth",
+                "else",
+                "end",
+                "ends",
+                "equal",
+                "equals",
+                "error",
+                "every",
+                "exists",
+                "exit",
+                "expanded",
+                "fahrenheit",
+                "false",
+                "february",
+                "feet",
+                "fifth",
+                "file",
+                "first",
+                "for",
+                "fourth",
+                "friday",
+                "from",
+                "front",
+                "full",
+                "gallons",
+                "get",
+                "given",
+                "global",
+                "grams",
+                "greater",
+                "hidden",
+                "hours",
+                "hyphens",
+                "id",
+                "if",
+                "ignoring",
+                "in",
+                "inches",
+                "index",
+                "instead",
+                "integer",
+                "into",
+                "is",
+                "isn't",
+                "it",
+                "item",
+                "its",
+                "italic",
+                "january",
+                "july",
+                "june",
+                "kelvin",
+                "kilograms",
+                "kilometers",
+                "kilometres",
+                "last",
+                "launch",
+                "left",
+                "less",
+                "list",
+                "liters",
+                "litres",
+                "local",
+                "log",
+                "lowercase",
+                "make",
+                "march",
+                "may",
+                "me",
+                "meters",
+                "metres",
+                "middle",
+                "miles",
+                "minutes",
+                "missing",
+                "mod",
+                "monday",
+                "month",
+                "move",
+                "my",
+                "name",
+                "named",
+                "nd",
+                "ninth",
+                "no",
+                "not",
+                "november",
+                "null",
+                "number",
+                "numeric",
+                "october",
+                "of",
+                "on",
+                "onto",
+                "open",
+                "or",
+                "ounces",
+                "out",
+                "outline",
+                "over",
+                "parent",
+                "partial",
+                "pi",
+                "plain",
+                "posix",
+                "pounds",
+                "print",
+                "prop",
+                "properties",
+                "property",
+                "punctuation",
+                "put",
+                "quarts",
+                "quit",
+                "rd",
+                "real",
+                "record",
+                "ref",
+                "reference",
+                "reopen",
+                "repeat",
+                "responses",
+                "result",
+                "return",
+                "returning",
+                "rgb",
+                "right",
+                "run",
+                "saturday",
+                "save",
+                "script",
+                "second",
+                "september",
+                "set",
+                "seventh",
+                "shadow",
+                "since",
+                "sixth",
+                "size",
+                "small",
+                "some",
+                "space",
+                "square",
+                "st",
+                "start",
+                "starts",
+                "stop",
+                "strikethrough",
+                "strings",
+                "subscript",
+                "sunday",
+                "superscript",
+                "tab",
+                "tell",
+                "tenth",
+                "terms",
+                "text",
+                "th",
+                "than",
+                "that",
+                "the",
+                "then",
+                "third",
+                "through",
+                "thru",
+                "thu",
+                "thursday",
+                "timeout",
+                "times",
+                "to",
+                "transaction",
+                "true",
+                "try",
+                "tuesday",
+                "underline",
+                "until",
+                "using",
+                "version",
+                "wednesday",
+                "weekday",
+                "weeks",
+                "where",
+                "while",
+                "white",
+                "whose",
+                "with",
+                "without",
+                "yards",
+                "yes",
+             );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.comment";
+        Syntax = {
+            Start = "(*";
+            End = "*)";
+            ParseEndBeforeIncludedRules = YES;
+            Foldable = YES;
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.comment.singleline";
+        BasedOn = "xcode.lang.comment"; // for text macros
+        Syntax = {
+            Start = "--";
+            EscapeChar = "¬";
+            Until = "\n";
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    {
+        Identifier = "xcode.lang.applescript.comment.singleline.pound";
+        BasedOn = "xcode.lang.comment"; // for text macros
+        Syntax = {
+            Start = "#";
+            EscapeChar = "¬";
+            Until = "\n";
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+)
