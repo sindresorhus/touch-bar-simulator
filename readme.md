@@ -1,6 +1,6 @@
 # Touch Bar Simulator
 
-> Launch the Touch Bar simulator from anywhere without Xcode
+> Launch the Touch Bar simulator from anywhere without needing to have Xcode installed
 
 Whereas Apple requires you to launch it from inside Xcode.
 
@@ -43,7 +43,7 @@ Apple would never allow it as it uses private APIs.
 
 ### How does this work?
 
-I [class-dumped](https://github.com/nygard/class-dump) a private Xcode framework and used that to expose a private class to get a reference to the Touch Bar window controller. I then launch that window and add a screenshot button to it. I've bundled the required private frameworks to make it work without Xcode. That's why the binary is so big.
+In short, it exposes the Touch Bar simulator from inside Xcode as a standalone app with added features. I [class-dumped](https://github.com/nygard/class-dump) a private Xcode framework and used that to expose a private class to get a reference to the Touch Bar window controller. I then launch that window and add a screenshot button to it. I've bundled the required private frameworks to make it work without Xcode. That's why the binary is so big.
 
 
 ## License
