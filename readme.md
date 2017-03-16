@@ -1,4 +1,4 @@
-# Touch Bar Simulator
+# Touch Bar Simulator [<img src="Stuff/Icon-readme.png" width="160" align="right">](https://github.com/sindresorhus/touch-bar-simulator/releases/latest)
 
 > Launch the Touch Bar simulator from anywhere without needing to have Xcode installed
 
