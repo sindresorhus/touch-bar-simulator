@@ -2,9 +2,9 @@
 
 > Launch the Touch Bar simulator from anywhere without needing to have Xcode installed
 
-Whereas Apple requires you to launch it from inside Xcode.
+Whereas Apple requires you to launch it from inside Xcode. This app also comes with a handy screenshot button.
 
-This app also comes with a handy screenshot button.
+**[Discuss it on Product Hunt](https://www.producthunt.com/posts/touch-bar-simulator)**
 
 <img src="screenshot.png" width="1129">
 
