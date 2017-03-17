@@ -14,6 +14,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		controller.window?.delegate = self
 		addScreenshotButton()
+		addTransparencySlider()
 	}
 
 	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -41,6 +42,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 		keyDown?.flags = [.maskShift, .maskCommand]
 		keyDown?.post(tap: loc)
 		keyUp?.post(tap: loc)
+	}
+
+	func addTransparencySlider() {
+		let toolbarView = controller.window!.standardWindowButton(.closeButton)!.superview!
+		let slider = ToolbarSlider(frame: CGRect(x: toolbarView.frame.width - 100, y: 4, width: 75, height: 11))
+		slider.action = #selector(transparency(sender:))
+		toolbarView.addSubview(slider)
+        
+		slider.minValue = 0.5
+		slider.doubleValue = 0.75
+		controller.window!.alphaValue = CGFloat(slider.doubleValue)
+	}
+
+	func transparency(sender : NSSlider) {
+		controller.window!.alphaValue = CGFloat(sender.doubleValue)
 	}
 }
 

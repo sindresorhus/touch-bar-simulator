@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF2A32D61E7BD0AC00616890 /* ToolbarSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2A32D51E7BD0AC00616890 /* ToolbarSlider.swift */; };
 		E3FA3A871E784BFD00A7F2EA /* DFRSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */; };
 		E3FA3A8B1E784C4900A7F2EA /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; };
 		E3FA3A8C1E784C5F00A7F2EA /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; };
@@ -65,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AF2A32D51E7BD0AC00616890 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarSlider.swift; sourceTree = "<group>"; };
 		E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DFRSupportKit.framework; sourceTree = "<group>"; };
 		E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DVTFoundation.framework; sourceTree = "<group>"; };
 		E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DVTKit.framework; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				E3FE2CD21E726EA100C6713A /* Touch Bar Simulator-Bridging-Header.h */,
 				E3FE2CC41E726CE800C6713A /* Assets.xcassets */,
 				E3FE2CC91E726CE800C6713A /* Info.plist */,
+				AF2A32D51E7BD0AC00616890 /* ToolbarSlider.swift */,
 			);
 			path = "Touch Bar Simulator";
 			sourceTree = "<group>";
@@ -191,7 +194,6 @@
 				TargetAttributes = {
 					E3FE2CBE1E726CE800C6713A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = YG56YK5RN5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -231,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF2A32D61E7BD0AC00616890 /* ToolbarSlider.swift in Sources */,
 				E3FE2CC31E726CE800C6713A /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,9 +336,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = YG56YK5RN5;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -357,9 +360,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = YG56YK5RN5;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
