@@ -10,20 +10,25 @@ import Cocoa
 
 class ToolbarSliderCell: NSSliderCell {
 	override func drawKnob(_ knobRect: NSRect) {
-		var frame = knobRect.insetBy(dx: 0, dy: 5)
-		frame.origin = CGPoint(x: 0, y: 0)
-		let image = NSImage(size: frame.size)
-		image.lockFocus()
-		NSColor.white.set()
-		let path = NSBezierPath(roundedRect: frame, xRadius: 3, yRadius: 3)
-		NSColor.lightGray.set()
-		path.fill()
-		NSColor.black.set()
-		path.lineWidth = 2
-		path.stroke()
-		image.unlockFocus()
+		struct Knob {
+			static var image = NSImage()
+		}
+		if Knob.image.size == CGSize.zero {
+			var frame = knobRect.insetBy(dx: 0, dy: 5)
+			frame.origin = CGPoint(x: 0, y: 0)
+			Knob.image.size = frame.size
+			Knob.image.lockFocus()
+			NSColor.white.set()
+			let path = NSBezierPath(roundedRect: frame, xRadius: 3, yRadius: 3)
+			NSColor.lightGray.set()
+			path.fill()
+			NSColor.black.set()
+			path.lineWidth = 2
+			path.stroke()
+			Knob.image.unlockFocus()
+		}
 		
-		image.draw(in: knobRect.insetBy(dx: 0, dy: 7))
+		Knob.image.draw(in: knobRect.insetBy(dx: 0, dy: 7))
 	}
 }
 
