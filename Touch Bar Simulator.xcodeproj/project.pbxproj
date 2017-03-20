@@ -341,6 +341,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Applications/Xcode.app/Contents/SharedFrameworks,
+					/Applications/Xcode.app/Contents/Frameworks,
+					/Applications/Xcode.app/Contents/PlugIns,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks,
 				);
 				INFOPLIST_FILE = "Touch Bar Simulator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -363,6 +367,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Applications/Xcode.app/Contents/SharedFrameworks,
+					/Applications/Xcode.app/Contents/Frameworks,
+					/Applications/Xcode.app/Contents/PlugIns,
+					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks,
 				);
 				INFOPLIST_FILE = "Touch Bar Simulator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
