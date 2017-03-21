@@ -10,9 +10,11 @@ import Cocoa
 
 final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	let controller = IDETouchBarSimulatorHostWindowController.simulatorHostWindowController()!
+	var toolbarView: NSView!
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		controller.window?.delegate = self
+		toolbarView = controller.window!.standardWindowButton(.closeButton)!.superview!
 		addScreenshotButton()
 		addTransparencySlider()
 	}
@@ -22,7 +24,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	}
 
 	func addScreenshotButton() {
-		let toolbarView = controller.window!.standardWindowButton(.closeButton)!.superview!
 		let button = NSButton()
 		button.image = #imageLiteral(resourceName: "ScreenshotButton")
 		button.imageScaling = .scaleProportionallyDown
@@ -43,15 +44,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 		keyDown?.post(tap: loc)
 		keyUp?.post(tap: loc)
 	}
-	
+
 	func addTransparencySlider() {
-		let toolbarView = controller.window!.standardWindowButton(.closeButton)!.superview!
 		let slider = ToolbarSlider()
 		slider.frame = CGRect(x: toolbarView.frame.width - 150, y: 4, width: 120, height: 11)
-		slider.action = #selector(settTransparency)
+		slider.action = #selector(setTransparency)
 		toolbarView.addSubview(slider)
-		
-		var transparency = UserDefaults.standard.double(forKey: "TransparencySlider")
+
+		var transparency = UserDefaults.standard.double(forKey: "windowTransparency")
 		if transparency == 0 {
 			transparency = 0.75
 		}
@@ -59,10 +59,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 		slider.doubleValue = transparency
 		controller.window!.alphaValue = CGFloat(slider.doubleValue)
 	}
-	
-	func settTransparency(sender : NSSlider) {
+
+	func setTransparency(sender: NSSlider) {
 		controller.window!.alphaValue = CGFloat(sender.doubleValue)
-		UserDefaults.standard.set(sender.doubleValue, forKey: "TransparencySlider")
+		UserDefaults.standard.set(sender.doubleValue, forKey: "windowTransparency")
 	}
 }
 

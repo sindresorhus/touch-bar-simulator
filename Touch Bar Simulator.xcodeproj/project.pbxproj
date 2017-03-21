@@ -136,10 +136,10 @@
 			isa = PBXGroup;
 			children = (
 				E3FE2CC21E726CE800C6713A /* main.swift */,
+				AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */,
 				E3FE2CD21E726EA100C6713A /* Touch Bar Simulator-Bridging-Header.h */,
 				E3FE2CC41E726CE800C6713A /* Assets.xcassets */,
 				E3FE2CC91E726CE800C6713A /* Info.plist */,
-				AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */,
 			);
 			path = "Touch Bar Simulator";
 			sourceTree = "<group>";
