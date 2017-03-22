@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */; };
 		E3FA3A871E784BFD00A7F2EA /* DFRSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */; };
 		E3FA3A8B1E784C4900A7F2EA /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; };
 		E3FA3A8C1E784C5F00A7F2EA /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; };
@@ -65,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarSlider.swift; sourceTree = "<group>"; };
 		E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRSupportKit.framework; path = /Applications/Xcode.app/Contents/Frameworks/DFRSupportKit.framework; sourceTree = "<absolute>"; };
 		E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<absolute>"; };
 		E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<absolute>"; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				E3FE2CC21E726CE800C6713A /* main.swift */,
+				AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */,
 				E3FE2CD21E726EA100C6713A /* Touch Bar Simulator-Bridging-Header.h */,
 				E3FE2CC41E726CE800C6713A /* Assets.xcassets */,
 				E3FE2CC91E726CE800C6713A /* Info.plist */,
@@ -231,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */,
 				E3FE2CC31E726CE800C6713A /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
