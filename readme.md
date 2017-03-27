@@ -1,10 +1,8 @@
 # Touch Bar Simulator [<img src="Stuff/Icon-readme.png" width="160" align="right">](https://github.com/sindresorhus/touch-bar-simulator/releases/latest)
 
-> Launch the Touch Bar simulator from anywhere without needing to have Xcode installed
+> The Touch Bar simulator as a standalone app with additional features
 
-Whereas Apple requires you to launch it from inside Xcode.
-
-This app also comes with a handy transparency slider and screenshot button.
+Launch the Touch Bar simulator from anywhere without needing to have Xcode installed, whereas Apple requires you to launch it from inside Xcode. It also comes with a handy transparency slider and screenshot button.
 
 **[Discuss it on Product Hunt](https://www.producthunt.com/posts/touch-bar-simulator)**
 
@@ -15,7 +13,7 @@ This app also comes with a handy transparency slider and screenshot button.
 
 ## Download
 
-[Download](https://github.com/sindresorhus/touch-bar-simulator/releases/latest) the latest release, unzip it, and move it to `/Applications`.
+[Download the latest release.](https://github.com/sindresorhus/touch-bar-simulator/releases/latest)
 
 *Requires macOS 10.12.2 or later.*
 
