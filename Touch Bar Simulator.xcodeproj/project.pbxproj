@@ -10,35 +10,27 @@
 		AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */; };
 		E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; };
 		E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3A871E784BFD00A7F2EA /* DFRSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */; };
+		E34F2FFB1E89A77400217535 /* DVTDeviceFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34F2FFA1E89A77400217535 /* DVTDeviceFoundation.framework */; };
+		E34F2FFC1E89A77400217535 /* DVTDeviceFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E34F2FFA1E89A77400217535 /* DVTDeviceFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E34F31CD1E89AD7300217535 /* DFRSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34F31CC1E89AD7300217535 /* DFRSupportKit.framework */; };
+		E34F31CE1E89AD7300217535 /* DFRSupportKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E34F31CC1E89AD7300217535 /* DFRSupportKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FA3A8B1E784C4900A7F2EA /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; };
-		E3FA3A8C1E784C5F00A7F2EA /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; };
 		E3FA3A8D1E784C5F00A7F2EA /* DVTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3A8E1E784C5F00A7F2EA /* DFRSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */; };
-		E3FA3A8F1E784C5F00A7F2EA /* DFRSupportKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FA3A921E784C7D00A7F2EA /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */; };
-		E3FA3A931E784C7F00A7F2EA /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */; };
 		E3FA3A941E784C7F00A7F2EA /* DVTKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FA3A961E784DB100A7F2EA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A951E784DB100A7F2EA /* XCTest.framework */; };
-		E3FA3A971E784DB300A7F2EA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A951E784DB100A7F2EA /* XCTest.framework */; };
 		E3FA3A981E784DB300A7F2EA /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A951E784DB100A7F2EA /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FA3A9A1E784DE700A7F2EA /* DTXConnectionServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */; };
-		E3FA3A9B1E784DE900A7F2EA /* DTXConnectionServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */; };
 		E3FA3A9C1E784DE900A7F2EA /* DTXConnectionServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FA3A9E1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */; };
-		E3FA3A9F1E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */; };
 		E3FA3AA01E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FA3AA21E784E5A00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */; };
-		E3FA3AA31E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */; };
 		E3FA3AA41E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FA3AA61E784E7D00A7F2EA /* SymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */; };
-		E3FA3AA71E784E7F00A7F2EA /* SymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */; };
 		E3FA3AA81E784E7F00A7F2EA /* SymbolicationDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FA3AAA1E784EA300A7F2EA /* kperfdataDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */; };
-		E3FA3AAB1E784EA500A7F2EA /* kperfdataDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */; };
 		E3FA3AAC1E784EA500A7F2EA /* kperfdataDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FA3AAE1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */; };
-		E3FA3AAF1E784ECC00A7F2EA /* DVTInstrumentsUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */; };
 		E3FA3AB01E784ECC00A7F2EA /* DVTInstrumentsUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3FE2CC31E726CE800C6713A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE2CC21E726CE800C6713A /* main.swift */; };
 		E3FE2CC51E726CE800C6713A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3FE2CC41E726CE800C6713A /* Assets.xcassets */; };
@@ -53,7 +45,6 @@
 			files = (
 				E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */,
 				E3FA3A9C1E784DE900A7F2EA /* DTXConnectionServices.framework in Embed Frameworks */,
-				E3FA3A8F1E784C5F00A7F2EA /* DFRSupportKit.framework in Embed Frameworks */,
 				E3FA3AA81E784E7F00A7F2EA /* SymbolicationDT.framework in Embed Frameworks */,
 				E3FA3AB01E784ECC00A7F2EA /* DVTInstrumentsUtilities.framework in Embed Frameworks */,
 				E3FA3AAC1E784EA500A7F2EA /* kperfdataDT.framework in Embed Frameworks */,
@@ -61,6 +52,8 @@
 				E3FA3AA41E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Embed Frameworks */,
 				E3FA3A941E784C7F00A7F2EA /* DVTKit.framework in Embed Frameworks */,
 				E3FA3A981E784DB300A7F2EA /* XCTest.framework in Embed Frameworks */,
+				E34F2FFC1E89A77400217535 /* DVTDeviceFoundation.framework in Embed Frameworks */,
+				E34F31CE1E89AD7300217535 /* DFRSupportKit.framework in Embed Frameworks */,
 				E3FA3AA01E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -71,7 +64,8 @@
 /* Begin PBXFileReference section */
 		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarSlider.swift; sourceTree = "<group>"; };
 		E30988DE1E88DD060078CA9E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
-		E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRSupportKit.framework; path = /Applications/Xcode.app/Contents/Frameworks/DFRSupportKit.framework; sourceTree = "<absolute>"; };
+		E34F2FFA1E89A77400217535 /* DVTDeviceFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTDeviceFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTDeviceFoundation.framework; sourceTree = "<absolute>"; };
+		E34F31CC1E89AD7300217535 /* DFRSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DFRSupportKit.framework; sourceTree = "<group>"; };
 		E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<absolute>"; };
 		E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<absolute>"; };
 		E3FA3A951E784DB100A7F2EA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -97,23 +91,14 @@
 				E3FA3AAA1E784EA300A7F2EA /* kperfdataDT.framework in Frameworks */,
 				E3FA3AA61E784E7D00A7F2EA /* SymbolicationDT.framework in Frameworks */,
 				E3FA3AA21E784E5A00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */,
-				E3FA3AAB1E784EA500A7F2EA /* kperfdataDT.framework in Frameworks */,
 				E3FA3A9E1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework in Frameworks */,
 				E3FA3A9A1E784DE700A7F2EA /* DTXConnectionServices.framework in Frameworks */,
-				E3FA3AA31E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */,
+				E34F2FFB1E89A77400217535 /* DVTDeviceFoundation.framework in Frameworks */,
 				E3FA3A961E784DB100A7F2EA /* XCTest.framework in Frameworks */,
 				E3FA3A921E784C7D00A7F2EA /* DVTKit.framework in Frameworks */,
 				E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */,
-				E3FA3A8E1E784C5F00A7F2EA /* DFRSupportKit.framework in Frameworks */,
-				E3FA3A931E784C7F00A7F2EA /* DVTKit.framework in Frameworks */,
-				E3FA3A9B1E784DE900A7F2EA /* DTXConnectionServices.framework in Frameworks */,
-				E3FA3AAF1E784ECC00A7F2EA /* DVTInstrumentsUtilities.framework in Frameworks */,
-				E3FA3AA71E784E7F00A7F2EA /* SymbolicationDT.framework in Frameworks */,
+				E34F31CD1E89AD7300217535 /* DFRSupportKit.framework in Frameworks */,
 				E3FA3A8B1E784C4900A7F2EA /* DVTFoundation.framework in Frameworks */,
-				E3FA3A871E784BFD00A7F2EA /* DFRSupportKit.framework in Frameworks */,
-				E3FA3A8C1E784C5F00A7F2EA /* DVTFoundation.framework in Frameworks */,
-				E3FA3A971E784DB300A7F2EA /* XCTest.framework in Frameworks */,
-				E3FA3A9F1E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				E30988DE1E88DD060078CA9E /* Sparkle.framework */,
+				E34F31CC1E89AD7300217535 /* DFRSupportKit.framework */,
+				E34F2FFA1E89A77400217535 /* DVTDeviceFoundation.framework */,
 				E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */,
 				E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */,
 				E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */,
@@ -162,7 +149,6 @@
 				E3FA3A951E784DB100A7F2EA /* XCTest.framework */,
 				E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */,
 				E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */,
-				E3FA3A851E7847E900A7F2EA /* DFRSupportKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -195,7 +181,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Sindre Sorhus";
 				TargetAttributes = {
 					E3FE2CBE1E726CE800C6713A = {
