@@ -49,6 +49,13 @@ Apple would never allow it as it uses private APIs.
 In short, it exposes the Touch Bar simulator from inside Xcode as a standalone app with added features. I [class-dumped](https://github.com/nygard/class-dump) a private Xcode framework and used that to expose a private class to get a reference to the Touch Bar window controller. I then launch that window and add a screenshot button to it. I've bundled the required private frameworks to make it work without Xcode. That's why the binary is so big.
 
 
+## Build
+
+```
+./build
+```
+
+
 ## License
 
 MIT © [Sindre Sorhus](https://sindresorhus.com)
