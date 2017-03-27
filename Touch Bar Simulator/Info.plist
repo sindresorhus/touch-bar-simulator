@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>1.0.0</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
@@ -28,6 +28,10 @@
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>MIT License © Sindre Sorhus</string>
+	<key>SUFeedURL</key>
+	<string>https://sindresorhus.com/touch-bar-simulator/appcast.xml</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

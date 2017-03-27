@@ -7,12 +7,15 @@
 //
 
 import Cocoa
+import Sparkle
 
 final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	let controller = IDETouchBarSimulatorHostWindowController.simulatorHostWindowController()!
 	var toolbarView: NSView!
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
+		_ = SUUpdater()
+
 		controller.window?.delegate = self
 		toolbarView = controller.window!.standardWindowButton(.closeButton)!.superview!
 		addScreenshotButton()
