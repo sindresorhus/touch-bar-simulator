@@ -15,6 +15,14 @@ Launch the Touch Bar simulator from anywhere without needing to have Xcode insta
 
 [Download the latest release.](https://github.com/sindresorhus/touch-bar-simulator/releases/latest)
 
+You can also use [Homebrew Cask](https://caskroom.github.io/) to download the app by running these commands:
+
+```bash
+brew update
+brew cask install touch-bar-simulator
+```
+
+
 *Requires macOS 10.12.2 or later.*
 
 
