@@ -20,6 +20,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 		toolbarView = controller.window!.standardWindowButton(.closeButton)!.superview!
 		addScreenshotButton()
 		addTransparencySlider()
+		NSApp.servicesProvider = self
 	}
 
 	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
