@@ -68,6 +68,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 		controller.window!.alphaValue = CGFloat(sender.doubleValue)
 		UserDefaults.standard.set(sender.doubleValue, forKey: "windowTransparency")
 	}
+    
+	@objc func toggleView(_ pboard: NSPasteboard, userData: String, error: NSErrorPointer) {
+		let a = controller.window!.isVisible
+		controller.window!.setIsVisible(!a)
+	}
 }
 
 let app = NSApplication.shared()
