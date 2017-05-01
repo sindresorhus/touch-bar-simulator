@@ -38,10 +38,10 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Show Touch Bar</string>
+				<string>Toggle Touch Bar</string>
 			</dict>
 			<key>NSMessage</key>
-			<string></string>
+			<string>toggleView</string>
 			<key>NSPortName</key>
 			<string>Touch Bar Simulator</string>
 		</dict>
