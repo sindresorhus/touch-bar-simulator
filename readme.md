@@ -11,9 +11,18 @@ Launch the Touch Bar simulator from anywhere without needing to have Xcode insta
 *Check out my other macOS app → [Battery Indicator](https://itunes.apple.com/no/app/battery-indicator/id1206020918?mt=12)*
 
 
-## Download
+## Getting started
 
-[Download the latest release.](https://github.com/sindresorhus/touch-bar-simulator/releases/latest)
+#### [Download the latest release](https://github.com/sindresorhus/touch-bar-simulator/releases/latest)
+
+---
+
+Or install it with [Homebrew-Cask](https://caskroom.github.io):
+
+```
+$ brew update && brew cask install touch-bar-simulator
+```
+
 
 *Requires macOS 10.12.2 or later.*
 
