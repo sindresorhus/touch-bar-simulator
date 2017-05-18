@@ -14,13 +14,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	var toolbarView: NSView!
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
+		NSApp.servicesProvider = self
+		
 		_ = SUUpdater()
 
 		controller.window?.delegate = self
 		toolbarView = controller.window!.standardWindowButton(.closeButton)!.superview!
 		addScreenshotButton()
 		addTransparencySlider()
-		NSApp.servicesProvider = self
 	}
 
 	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
