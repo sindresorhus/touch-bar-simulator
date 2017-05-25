@@ -14,6 +14,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	var toolbarView: NSView!
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
+		NSApp.servicesProvider = self
+		
 		_ = SUUpdater()
 
 		controller.window?.delegate = self
@@ -66,6 +68,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	func setTransparency(sender: NSSlider) {
 		controller.window!.alphaValue = CGFloat(sender.doubleValue)
 		UserDefaults.standard.set(sender.doubleValue, forKey: "windowTransparency")
+	}
+    
+	@objc func toggleView(_ pboard: NSPasteboard, userData: String, error: NSErrorPointer) {
+		let a = controller.window!.isVisible
+		controller.window!.setIsVisible(!a)
 	}
 }
 

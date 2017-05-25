@@ -30,6 +30,22 @@
 	<string>MIT License © Sindre Sorhus</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSKeyEquivalent</key>
+			<dict/>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Toggle Touch Bar</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>toggleView</string>
+			<key>NSPortName</key>
+			<string>Touch Bar Simulator</string>
+		</dict>
+	</array>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedURL</key>
