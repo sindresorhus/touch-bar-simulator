@@ -1,44 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 	<head>
-		<meta charset="UTF-8">
-		<meta name="description" content="The macOS Touch Bar Simulator as a standalone app">
+		<meta charset="utf-8">
+		<meta name="description" content="The macOS Touch Bar as a standalone app">
 		<meta name="author" content="Sindre Sorhus">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta property="og:url" content="https://github.com/sindresorhus/touch-bar-simulator">
+		<meta property="og:url" content="https://sindresorhus.com/touch-bar-simulator/">
 		<meta property="og:title" content="Touch Bar Simulator">
-		<meta property="og:description" content="The macOS Touch Bar Simulator as a standalone app">
-		<meta property="og:image" content="https://sindresorhus.com/media/touch-bar-simulator.png">
+		<meta property="og:description" content="The macOS Touch Bar as a standalone app">
+		<meta property="og:image" content="https://sindresorhus.com/touch-bar-simulator/assets/images/screenshot2.png">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:creator" content="@sindresorhus">
 		<meta name="twitter:title" content="Touch Bar Simulator">
-		<meta name="twitter:description" content="The macOS Touch Bar Simulator as a standalone app">
-		<meta name="twitter:image" content="https://sindresorhus.com/media/touch-bar-simulator.png">
+		<meta name="twitter:description" content="The macOS Touch Bar as a standalone app">
+		<meta name="twitter:image" content="https://sindresorhus.com/touch-bar-simulator/assets/images/screenshot2.png">
 		<title>Touch Bar Simulator</title>
-		<link rel="shortcut icon" href="favicon.png">
-		<link rel="stylesheet prefetch" href='https://unpkg.com/griddd@1.0.2/dist/griddd.min.css'>
+		<link rel="icon" href="assets/images/favicon.png">
+		<link rel="stylesheet" href="https://unpkg.com/griddd@1.0.2/dist/griddd.min.css">
 		<link rel="stylesheet" href="assets/css/style.css">
-		<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script defer src="assets/js/index.js"></script>
+		<!-- Google Analytics -->
+		<script>
+			window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+			ga('create', 'UA-25562592-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		<script async src="https://www.google-analytics.com/analytics.js"></script>
+		<!-- / Google Analytics -->
 	</head>
-
 	<body>
 		<div class="container">
 			<div class="columns">
 				<div class="is-6 center text-center">
-					<img src="assets/images/logo.png" width="150"/>
+					<img src="assets/images/logo.png" width="150">
 					<h1>Touch Bar Simulator</h1>
-					<h3>The macOS Touch Bar Simulator as a standalone app</h3>
-						<a class="button" href="https://github.com/sindresorhus/touch-bar-simulator">Source Code</a>
-						<a class="button" id="touchBar">Download</a>
-					<pre><code>brew update && brew cask install touch-bar-simulator</code></pre>
+					<h3>The macOS Touch Bar as a standalone app</h3>
+					<a class="button" href="https://github.com/sindresorhus/touch-bar-simulator">Source Code</a>
+					<a class="button" id="download-button" href="https://github.com/sindresorhus/touch-bar-simulator/releases/latest">Download</a>
 				</div>
 				<div class="is-6 center">
-					<img src="assets/images/screengrab.jpeg" class="screenshot" width="100%"/>
+					<img src="assets/images/screenshot.jpg" class="screenshot" width="100%">
 				</div>
 			</div>
 		</div>
 	</body>
-
 </html>

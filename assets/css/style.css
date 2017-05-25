@@ -1,89 +1,75 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400');
 
 html,
-body
-{
-    font-family: 'Ubuntu', sans-serif;
+body {
+	font-family: 'Ubuntu', sans-serif;
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+}
 
-    min-height: 100vh;
+h1 {
+	font-weight: 400;
+}
 
-    -webkit-font-smoothing: antialiased;
+h3 {
+	font-weight: 300;
 }
-h1
-{
-    font-weight: 400;
-}
-h3
-{
-    font-weight: 300;
-}
+
 html,
 body,
 .container,
-.columns
-{
-    min-height: 100vh;
+.columns {
+	min-height: 100vh;
 }
-.center
-{
-    text-align: inherit;
 
-    align-self: center;
+.center {
+	text-align: inherit;
+	align-self: center;
 }
+
 button,
-.button
-{
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.25;
-
-    display: inline-block;
-
-    margin-right: 10px;
-    padding: .5rem 1rem;
-
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    -webkit-transition: all .2s ease-in-out;
-         -o-transition: all .2s ease-in-out;
-            transition: all .2s ease-in-out;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    text-decoration: none;
-
-    color: #fff;
-    border: 1px solid transparent;
-    border-color: #0084ff;
-    border-radius: .25rem;
-    background-color: #0084ff;
+.button {
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.25;
+	display: inline-block;
+	margin-right: 10px;
+	padding: .5rem 1rem;
+	user-select: none;
+	transition: all .2s ease-in-out;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	text-decoration: none;
+	color: #fff;
+	border: 1px solid transparent;
+	border-color: #0084ff;
+	border-radius: .25rem;
+	background-color: #0084ff;
 }
+
 button:hover,
-.button:hover
-{
-    cursor: pointer;
+.button:hover {
+	cursor: pointer;
+	border-color: #0466c1;
+	background-color: #0466c1;
+}
 
-    border-color: #0466c1;
-    background-color: #0466c1;
+.text-center {
+	text-align: center;
 }
-.text-center
-{
-    text-align: center;
-}
-pre
-{
-    margin-top: 2rem;
-}
-code
-{
-    padding: 10px;
 
-    border-radius: 4px;
-    background: whitesmoke;
+pre {
+	margin-top: 2rem;
 }
+
+code {
+	padding: 10px;
+	border-radius: 4px;
+	background: whitesmoke;
+}
+
 .is-6 {
-  margin: 0px;
-  padding-left: 0px;
+	margin: 0px;
+	padding-left: 0px;
 }
