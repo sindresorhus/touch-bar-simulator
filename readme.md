@@ -6,7 +6,7 @@ Launch the Touch Bar simulator from anywhere without needing to have Xcode insta
 
 You can add a shortcut in `System Preferences` → `Keyboard` → `Shortcuts` → `Services` → `Toggle Touch Bar`.
 
-**[Discuss it on Product Hunt](https://www.producthunt.com/posts/touch-bar-simulator)**
+**[Website](https://sindresorhus.com/touch-bar-simulator/)** &nbsp;&nbsp; **[Discuss it on Product Hunt](https://www.producthunt.com/posts/touch-bar-simulator)**
 
 <img src="screenshot.png" width="1129">
 
@@ -15,7 +15,7 @@ You can add a shortcut in `System Preferences` → `Keyboard` → `Shortcuts` �
 
 ## Getting started
 
-#### [Download the latest release](https://github.com/sindresorhus/touch-bar-simulator/releases/latest)
+#### [Download the latest release](https://sindresorhus.com/touch-bar-simulator)
 
 ---
 
