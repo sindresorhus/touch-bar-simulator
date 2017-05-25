@@ -2,7 +2,9 @@
 
 > Use the Touch Bar on any Mac
 
-Launch the Touch Bar simulator from anywhere without needing to have Xcode installed, whereas Apple requires you to launch it from inside Xcode. It also comes with a handy transparency slider, a screenshot button and a service to toggle the Touch Bar in Services menu or with a keystroke. You can add it in System Preferences -> Keyboard -> Shortcuts -> Services -> Toggle Touch Bar.
+Launch the Touch Bar simulator from anywhere without needing to have Xcode installed, whereas Apple requires you to launch it from inside Xcode. It also comes with a handy transparency slider, a screenshot button, and a service to toggle the Touch Bar in the Services menu or with a keyboard shortcut.
+
+You can add a shortcut in `System Preferences` → `Keyboard` → `Shortcuts` → `Services` → `Toggle Touch Bar`.
 
 **[Discuss it on Product Hunt](https://www.producthunt.com/posts/touch-bar-simulator)**
 
@@ -44,6 +46,7 @@ You can capture a screenshot of the Touch Bar by either:
 - Signed binary
 - Transparency slider
 - Screenshot button
+- Doesn't steal focus when launched
 - Doesn't take up space in the Dock or app switcher
 
 ### Why is this not on the App Store?
