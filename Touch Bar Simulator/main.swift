@@ -15,7 +15,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		NSApp.servicesProvider = self
-		
+
 		_ = SUUpdater()
 
 		controller.window?.delegate = self
@@ -69,10 +69,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 		controller.window!.alphaValue = CGFloat(sender.doubleValue)
 		UserDefaults.standard.set(sender.doubleValue, forKey: "windowTransparency")
 	}
-    
-	@objc func toggleView(_ pboard: NSPasteboard, userData: String, error: NSErrorPointer) {
-		let a = controller.window!.isVisible
-		controller.window!.setIsVisible(!a)
+
+	@objc
+	func toggleView(_ pboard: NSPasteboard, userData: String, error: NSErrorPointer) {
+		controller.window!.setIsVisible(!controller.window!.isVisible)
 	}
 }
 

@@ -10,7 +10,7 @@ import Cocoa
 
 private final class ToolbarSliderCell: NSSliderCell {
 	private static let knob: NSImage = {
-		let frame = NSRect(x: 0, y: 0, width: 32, height: 32)
+		let frame = CGRect(x: 0, y: 0, width: 32, height: 32)
 
 		let image = NSImage(size: frame.size)
 		image.lockFocus()
@@ -29,7 +29,7 @@ private final class ToolbarSliderCell: NSSliderCell {
 		return image
 	}()
 
-	override func drawKnob(_ knobRect: NSRect) {
+	override func drawKnob(_ knobRect: CGRect) {
 		ToolbarSliderCell.knob.draw(in: knobRect.insetBy(dx: 0, dy: 6.5))
 	}
 }
@@ -41,7 +41,7 @@ final class ToolbarSlider: NSSlider {
 	}
 
 	convenience init() {
-		self.init(frame: CGRect.zero)
+		self.init(frame: .zero)
 	}
 
 	required init?(coder: NSCoder) {
