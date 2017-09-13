@@ -53,11 +53,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 		return slider
 	}
 
+	@objc
 	func captureScreenshot() {
 		let KEY_6: CGKeyCode = 0x58
 		pressKey(keyCode: KEY_6, flags: [.maskShift, .maskCommand])
 	}
 
+	@objc
 	func setTransparency(sender: ToolbarSlider) {
 		window.alphaValue = CGFloat(sender.doubleValue)
 		defaults.set(sender.doubleValue, forKey: "windowTransparency")
@@ -69,7 +71,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	}
 }
 
-let app = NSApplication.shared()
+let app = NSApplication.shared
 let delegate = AppDelegate()
 app.delegate = delegate
 app.run()
