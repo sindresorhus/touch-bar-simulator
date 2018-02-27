@@ -63,11 +63,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarSlider.swift; sourceTree = "<group>"; };
+		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarSlider.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E30988DE1E88DD060078CA9E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E34F2FFA1E89A77400217535 /* DVTDeviceFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTDeviceFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTDeviceFoundation.framework; sourceTree = "<absolute>"; };
 		E34F31CC1E89AD7300217535 /* DFRSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DFRSupportKit.framework; sourceTree = "<group>"; };
-		E35831A31F4D7EE0003BE371 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+		E35831A31F4D7EE0003BE371 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = util.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<absolute>"; };
 		E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<absolute>"; };
 		E3FA3A951E784DB100A7F2EA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -78,10 +78,10 @@
 		E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = kperfdataDT.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/kperfdataDT.framework; sourceTree = "<absolute>"; };
 		E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTInstrumentsUtilities.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTInstrumentsUtilities.framework; sourceTree = "<absolute>"; };
 		E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Bar Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3FE2CC21E726CE800C6713A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		E3FE2CC21E726CE800C6713A /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = main.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3FE2CC41E726CE800C6713A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3FE2CC91E726CE800C6713A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3FE2CD21E726EA100C6713A /* Touch Bar Simulator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Touch Bar Simulator-Bridging-Header.h"; sourceTree = "<group>"; };
+		E3FE2CD21E726EA100C6713A /* Touch Bar Simulator-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "Touch Bar Simulator-Bridging-Header.h"; sourceTree = "<group>"; usesTabs = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +115,7 @@
 				E3FE2CD91E7272AD00C6713A /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		E3FE2CC01E726CE800C6713A /* Products */ = {
 			isa = PBXGroup;
@@ -128,8 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				E3FE2CC21E726CE800C6713A /* main.swift */,
-				E35831A31F4D7EE0003BE371 /* util.swift */,
 				AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */,
+				E35831A31F4D7EE0003BE371 /* util.swift */,
 				E3FE2CD21E726EA100C6713A /* Touch Bar Simulator-Bridging-Header.h */,
 				E3FE2CC41E726CE800C6713A /* Assets.xcassets */,
 				E3FE2CC91E726CE800C6713A /* Info.plist */,
