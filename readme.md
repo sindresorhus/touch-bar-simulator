@@ -10,7 +10,7 @@ You can add a shortcut in `System Preferences` → `Keyboard` → `Shortcuts` �
 
 <img src="screenshot.png" width="1129">
 
-*Check out my other macOS app → [Battery Indicator](https://itunes.apple.com/no/app/battery-indicator/id1206020918?mt=12)*
+*Check out my other [macOS apps](https://sindresorhus.com/#apps)*
 
 <a href="https://www.patreon.com/sindresorhus">
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
@@ -30,7 +30,7 @@ $ brew update && brew cask install touch-bar-simulator
 ```
 
 
-*Requires macOS 10.12.2 or later.*
+*Requires macOS 10.13 or later.*
 
 
 ## Screenshot

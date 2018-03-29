@@ -71,7 +71,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	}
 }
 
-let app = NSApplication.shared
-let delegate = AppDelegate()
+private let app = NSApplication.shared
+private let delegate = AppDelegate()
 app.delegate = delegate
 app.run()
