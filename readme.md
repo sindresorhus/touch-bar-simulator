@@ -12,6 +12,10 @@ You can add a shortcut in `System Preferences` → `Keyboard` → `Shortcuts` �
 
 *Check out my other macOS app → [Battery Indicator](https://itunes.apple.com/no/app/battery-indicator/id1206020918?mt=12)*
 
+<a href="https://www.patreon.com/sindresorhus">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
 
 ## Getting started
 
