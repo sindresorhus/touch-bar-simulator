@@ -3,7 +3,7 @@ import Sparkle
 
 private let defaults = UserDefaults.standard
 
-final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate {
 	let controller = IDETouchBarSimulatorHostWindowController.simulatorHostWindowController()!
 	lazy var window: NSWindow = self.controller.window!
 	lazy var toolbarView: NSView = self.window.toolbarView!
@@ -17,7 +17,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		NSApp.servicesProvider = self
+
 		window.delegate = self
+		window.alphaValue = CGFloat(defaults.double(forKey: "windowTransparency"))
 
 		_ = SUUpdater()
 
@@ -25,10 +27,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 			makeScreenshotButton(),
 			makeTransparencySlider()
 		)
-	}
-
-	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-		return true
 	}
 
 	func makeScreenshotButton() -> NSButton {
@@ -43,13 +41,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	}
 
 	func makeTransparencySlider() -> ToolbarSlider {
-		let transparency = defaults.double(forKey: "windowTransparency")
 		let slider = ToolbarSlider()
 		slider.frame = CGRect(x: toolbarView.frame.width - 150, y: 4, width: 120, height: 11)
 		slider.action = #selector(setTransparency)
 		slider.minValue = 0.5
-		slider.doubleValue = transparency
-		window.alphaValue = CGFloat(transparency)
+		slider.doubleValue = defaults.double(forKey: "windowTransparency")
 		return slider
 	}
 
@@ -68,5 +64,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 	@objc
 	func toggleView(_ pboard: NSPasteboard, userData: String, error: NSErrorPointer) {
 		window.setIsVisible(!window.isVisible)
+	}
+}
+
+extension AppDelegate: NSWindowDelegate {
+	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+		return true
 	}
 }

@@ -30,7 +30,7 @@ $ brew update && brew cask install touch-bar-simulator
 ```
 
 
-*Requires macOS 10.13 or later.*
+*Requires macOS 10.14 or later.*
 
 
 ## Screenshot
