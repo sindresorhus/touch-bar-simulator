@@ -1,5 +1,0 @@
-framework module XcodeKit {
-    umbrella header "XcodeKit.h"
-    requires objc
-    export *
-}

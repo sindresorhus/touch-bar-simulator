@@ -4,8 +4,11 @@ import Sparkle
 private let defaults = UserDefaults.standard
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
-	let controller = IDETouchBarSimulatorHostWindowController.simulatorHostWindowController()!
-	lazy var window: NSWindow = self.controller.window!
+	lazy var window = with(TouchBarWindow()) {
+		$0.delegate = self
+		$0.alphaValue = CGFloat(defaults.double(forKey: "windowTransparency"))
+	}
+
 	lazy var toolbarView: NSView = self.window.toolbarView!
 
 	func applicationWillFinishLaunching(_ notification: Notification) {
@@ -18,15 +21,31 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		NSApp.servicesProvider = self
 
-		window.delegate = self
-		window.alphaValue = CGFloat(defaults.double(forKey: "windowTransparency"))
-
 		_ = SUUpdater()
+
+		let view = window.contentView!
+		view.wantsLayer = true
+		view.layer?.backgroundColor = NSColor.black.cgColor
+
+		let touchBarView = TouchBarView()
+		window.setContentSize(touchBarView.bounds.adding(padding: 5).size)
+		touchBarView.frame = touchBarView.frame.centered(in: view.bounds)
+		view.addSubview(touchBarView)
 
 		toolbarView.addSubviews(
 			makeScreenshotButton(),
 			makeTransparencySlider()
 		)
+
+		if window.frameAutosaveName.isEmpty {
+			window.center()
+			var origin = window.frame.origin
+			origin.y = 100
+			window.setFrameOrigin(origin)
+		}
+
+		window.setFrameAutosaveName("TouchBarWindowfoo4")
+		window.orderFront(nil)
 	}
 
 	func makeScreenshotButton() -> NSButton {

@@ -10,75 +10,14 @@
 		AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */; };
 		E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; };
 		E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E34F2FFB1E89A77400217535 /* DVTDeviceFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34F2FFA1E89A77400217535 /* DVTDeviceFoundation.framework */; };
-		E34F2FFC1E89A77400217535 /* DVTDeviceFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E34F2FFA1E89A77400217535 /* DVTDeviceFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E35579EB21595EDC001CB642 /* TouchBarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35579EA21595EDC001CB642 /* TouchBarWindow.swift */; };
 		E356A16321028D81000148AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E356A16221028D81000148AD /* main.swift */; };
 		E35831A41F4D7EE0003BE371 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35831A31F4D7EE0003BE371 /* util.swift */; };
-		E3CA0E34214B8E7400505E96 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E33214B8E7400505E96 /* IDEKit.framework */; };
-		E3CA0E37214B8EAD00505E96 /* DVTInstrumentsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E36214B8EAD00505E96 /* DVTInstrumentsFoundation.framework */; };
-		E3CA0E39214B8F2100505E96 /* IDEKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E33214B8E7400505E96 /* IDEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E3B214B8F5B00505E96 /* ktraceDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E3A214B8F5B00505E96 /* ktraceDT.framework */; };
-		E3CA0E3C214B8F5B00505E96 /* ktraceDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E3A214B8F5B00505E96 /* ktraceDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E3E214B8F7000505E96 /* DVTInstrumentsUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E3D214B8F7000505E96 /* DVTInstrumentsUtilities.framework */; };
-		E3CA0E3F214B8F7000505E96 /* DVTInstrumentsUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E3D214B8F7000505E96 /* DVTInstrumentsUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E41214B8F8300505E96 /* DVTJRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E40214B8F8300505E96 /* DVTJRPC.framework */; };
-		E3CA0E42214B8F8300505E96 /* DVTJRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E40214B8F8300505E96 /* DVTJRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E44214B8F9600505E96 /* DVTDeviceControlServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E43214B8F9600505E96 /* DVTDeviceControlServices.framework */; };
-		E3CA0E45214B8F9600505E96 /* DVTDeviceControlServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E43214B8F9600505E96 /* DVTDeviceControlServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E47214B8FC000505E96 /* libclang.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E46214B8FC000505E96 /* libclang.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		E3CA0E51214B969200505E96 /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E50214B969200505E96 /* XcodeKit.framework */; };
-		E3CA0E52214B969400505E96 /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E50214B969200505E96 /* XcodeKit.framework */; };
-		E3CA0E53214B969400505E96 /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E50214B969200505E96 /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E55214B96B400505E96 /* DVTAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E54214B96B400505E96 /* DVTAnalytics.framework */; };
-		E3CA0E56214B96B400505E96 /* DVTAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E54214B96B400505E96 /* DVTAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E58214B96C800505E96 /* DVTServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E57214B96C800505E96 /* DVTServices.framework */; };
-		E3CA0E59214B96C800505E96 /* DVTServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E57214B96C800505E96 /* DVTServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E5B214B96D700505E96 /* DVTAnalyticsClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E5A214B96D700505E96 /* DVTAnalyticsClient.framework */; };
-		E3CA0E5C214B96D700505E96 /* DVTAnalyticsClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E5A214B96D700505E96 /* DVTAnalyticsClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E5E214B96E900505E96 /* IDEProducts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E5D214B96E900505E96 /* IDEProducts.framework */; };
-		E3CA0E5F214B96E900505E96 /* IDEProducts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E5D214B96E900505E96 /* IDEProducts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E61214B96FA00505E96 /* DVTPortal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E60214B96FA00505E96 /* DVTPortal.framework */; };
-		E3CA0E62214B96FA00505E96 /* DVTPortal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E60214B96FA00505E96 /* DVTPortal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E64214B970C00505E96 /* DVTDeveloperModeHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E63214B970C00505E96 /* DVTDeveloperModeHelper.framework */; };
-		E3CA0E65214B970C00505E96 /* DVTDeveloperModeHelper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E63214B970C00505E96 /* DVTDeveloperModeHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E67214B972E00505E96 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E66214B972E00505E96 /* IDEFoundation.framework */; };
-		E3CA0E68214B972E00505E96 /* IDEFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E66214B972E00505E96 /* IDEFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E6A214B974800505E96 /* SourceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E69214B974800505E96 /* SourceKit.framework */; };
-		E3CA0E6B214B974800505E96 /* SourceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E69214B974800505E96 /* SourceKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E6D214B976500505E96 /* libLTO.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E6C214B976400505E96 /* libLTO.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		E3CA0E6F214B977800505E96 /* DVTDocumentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E6E214B977800505E96 /* DVTDocumentation.framework */; };
-		E3CA0E70214B977800505E96 /* DVTDocumentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E6E214B977800505E96 /* DVTDocumentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E72214B979400505E96 /* DNTDocumentationModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E71214B979400505E96 /* DNTDocumentationModel.framework */; };
-		E3CA0E73214B979400505E96 /* DNTDocumentationModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E71214B979400505E96 /* DNTDocumentationModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E75214B97A900505E96 /* DNTDocumentationSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E74214B97A900505E96 /* DNTDocumentationSupport.framework */; };
-		E3CA0E76214B97A900505E96 /* DNTDocumentationSupport.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E74214B97A900505E96 /* DNTDocumentationSupport.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E78214B97E600505E96 /* XCTDaemonControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E77214B97E600505E96 /* XCTDaemonControl.framework */; };
-		E3CA0E79214B97E600505E96 /* XCTDaemonControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E77214B97E600505E96 /* XCTDaemonControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E7B214B97F800505E96 /* Localization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E7A214B97F800505E96 /* Localization.framework */; };
-		E3CA0E7C214B97F800505E96 /* Localization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E7A214B97F800505E96 /* Localization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E7E214B980C00505E96 /* DVTSourceControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E7D214B980C00505E96 /* DVTSourceControl.framework */; };
-		E3CA0E7F214B980C00505E96 /* DVTSourceControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E7D214B980C00505E96 /* DVTSourceControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E81214B982300505E96 /* DNTSourceKitSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E80214B982300505E96 /* DNTSourceKitSupport.framework */; };
-		E3CA0E82214B982300505E96 /* DNTSourceKitSupport.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E80214B982300505E96 /* DNTSourceKitSupport.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E84214B983300505E96 /* DNTTransformer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E83214B983300505E96 /* DNTTransformer.framework */; };
-		E3CA0E85214B983300505E96 /* DNTTransformer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E83214B983300505E96 /* DNTTransformer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3CA0E87214B984600505E96 /* DTGraphKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E86214B984600505E96 /* DTGraphKit.framework */; };
-		E3CA0E88214B984600505E96 /* DTGraphKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA0E86214B984600505E96 /* DTGraphKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3A8B1E784C4900A7F2EA /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; };
-		E3FA3A8D1E784C5F00A7F2EA /* DVTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3A921E784C7D00A7F2EA /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */; };
-		E3FA3A941E784C7F00A7F2EA /* DVTKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3A961E784DB100A7F2EA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A951E784DB100A7F2EA /* XCTest.framework */; };
-		E3FA3A981E784DB300A7F2EA /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A951E784DB100A7F2EA /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3A9A1E784DE700A7F2EA /* DTXConnectionServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */; };
-		E3FA3A9C1E784DE900A7F2EA /* DTXConnectionServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3AA01E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3AA21E784E5A00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */; };
-		E3FA3AA41E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3AA61E784E7D00A7F2EA /* SymbolicationDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */; };
-		E3FA3AA81E784E7F00A7F2EA /* SymbolicationDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E3FA3AAA1E784EA300A7F2EA /* kperfdataDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */; };
-		E3FA3AAC1E784EA500A7F2EA /* kperfdataDT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E39A157E214CFE7100F86D5D /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39A157D214CFE7100F86D5D /* DFRFoundation.framework */; };
+		E39A157F214CFE7100F86D5D /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E39A157D214CFE7100F86D5D /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39A1589214D011F00F86D5D /* SkyLight.framework */; };
+		E39A158B214D011F00F86D5D /* SkyLight.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E39A1589214D011F00F86D5D /* SkyLight.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E39A158E214D0C4F00F86D5D /* TouchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A158D214D0C4F00F86D5D /* TouchBarView.swift */; };
 		E3FE2CC31E726CE800C6713A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE2CC21E726CE800C6713A /* AppDelegate.swift */; };
 		E3FE2CC51E726CE800C6713A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3FE2CC41E726CE800C6713A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -90,41 +29,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E3CA0E59214B96C800505E96 /* DVTServices.framework in Embed Frameworks */,
-				E3CA0E88214B984600505E96 /* DTGraphKit.framework in Embed Frameworks */,
-				E3CA0E3C214B8F5B00505E96 /* ktraceDT.framework in Embed Frameworks */,
 				E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */,
-				E3CA0E56214B96B400505E96 /* DVTAnalytics.framework in Embed Frameworks */,
-				E3CA0E7C214B97F800505E96 /* Localization.framework in Embed Frameworks */,
-				E3CA0E42214B8F8300505E96 /* DVTJRPC.framework in Embed Frameworks */,
-				E3CA0E5C214B96D700505E96 /* DVTAnalyticsClient.framework in Embed Frameworks */,
-				E3CA0E3F214B8F7000505E96 /* DVTInstrumentsUtilities.framework in Embed Frameworks */,
-				E3CA0E62214B96FA00505E96 /* DVTPortal.framework in Embed Frameworks */,
-				E3FA3A9C1E784DE900A7F2EA /* DTXConnectionServices.framework in Embed Frameworks */,
-				E3FA3AA81E784E7F00A7F2EA /* SymbolicationDT.framework in Embed Frameworks */,
-				E3FA3AAC1E784EA500A7F2EA /* kperfdataDT.framework in Embed Frameworks */,
-				E3FA3A8D1E784C5F00A7F2EA /* DVTFoundation.framework in Embed Frameworks */,
-				E3CA0E85214B983300505E96 /* DNTTransformer.framework in Embed Frameworks */,
-				E3CA0E79214B97E600505E96 /* XCTDaemonControl.framework in Embed Frameworks */,
-				E3CA0E6D214B976500505E96 /* libLTO.dylib in Embed Frameworks */,
-				E3CA0E68214B972E00505E96 /* IDEFoundation.framework in Embed Frameworks */,
-				E3CA0E70214B977800505E96 /* DVTDocumentation.framework in Embed Frameworks */,
-				E3FA3AA41E784E5C00A7F2EA /* CoreSymbolicationDT.framework in Embed Frameworks */,
-				E3CA0E6B214B974800505E96 /* SourceKit.framework in Embed Frameworks */,
-				E3CA0E53214B969400505E96 /* XcodeKit.framework in Embed Frameworks */,
-				E3FA3A941E784C7F00A7F2EA /* DVTKit.framework in Embed Frameworks */,
-				E3CA0E45214B8F9600505E96 /* DVTDeviceControlServices.framework in Embed Frameworks */,
-				E3CA0E7F214B980C00505E96 /* DVTSourceControl.framework in Embed Frameworks */,
-				E3CA0E73214B979400505E96 /* DNTDocumentationModel.framework in Embed Frameworks */,
-				E3FA3A981E784DB300A7F2EA /* XCTest.framework in Embed Frameworks */,
-				E3CA0E47214B8FC000505E96 /* libclang.dylib in Embed Frameworks */,
-				E3CA0E65214B970C00505E96 /* DVTDeveloperModeHelper.framework in Embed Frameworks */,
-				E3CA0E76214B97A900505E96 /* DNTDocumentationSupport.framework in Embed Frameworks */,
-				E3CA0E82214B982300505E96 /* DNTSourceKitSupport.framework in Embed Frameworks */,
-				E34F2FFC1E89A77400217535 /* DVTDeviceFoundation.framework in Embed Frameworks */,
-				E3FA3AA01E784E2400A7F2EA /* DVTInstrumentsFoundation.framework in Embed Frameworks */,
-				E3CA0E39214B8F2100505E96 /* IDEKit.framework in Embed Frameworks */,
-				E3CA0E5F214B96E900505E96 /* IDEProducts.framework in Embed Frameworks */,
+				E39A158B214D011F00F86D5D /* SkyLight.framework in Embed Frameworks */,
+				E39A157F214CFE7100F86D5D /* DFRFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,45 +42,12 @@
 		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarSlider.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E30988DE1E88DD060078CA9E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E34D6548214BBDAE00786C24 /* Touch Bar Simulator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Touch Bar Simulator.entitlements"; sourceTree = "<group>"; };
-		E34F2FFA1E89A77400217535 /* DVTDeviceFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTDeviceFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTDeviceFoundation.framework; sourceTree = "<absolute>"; };
-		E34F31CC1E89AD7300217535 /* DFRSupportKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DFRSupportKit.framework; sourceTree = "<group>"; };
+		E35579EA21595EDC001CB642 /* TouchBarWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarWindow.swift; sourceTree = "<group>"; };
 		E356A16221028D81000148AD /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = main.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E35831A31F4D7EE0003BE371 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = util.swift; sourceTree = "<group>"; usesTabs = 1; };
-		E3CA0E33214B8E7400505E96 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
-		E3CA0E36214B8EAD00505E96 /* DVTInstrumentsFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTInstrumentsFoundation.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTInstrumentsFoundation.framework; sourceTree = "<group>"; };
-		E3CA0E3A214B8F5B00505E96 /* ktraceDT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ktraceDT.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/ktraceDT.framework; sourceTree = "<group>"; };
-		E3CA0E3D214B8F7000505E96 /* DVTInstrumentsUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTInstrumentsUtilities.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTInstrumentsUtilities.framework; sourceTree = "<group>"; };
-		E3CA0E40214B8F8300505E96 /* DVTJRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTJRPC.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTJRPC.framework; sourceTree = "<group>"; };
-		E3CA0E43214B8F9600505E96 /* DVTDeviceControlServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTDeviceControlServices.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTDeviceControlServices.framework; sourceTree = "<group>"; };
-		E3CA0E46214B8FC000505E96 /* libclang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libclang.dylib; path = ../../../../../Applications/Xcode.app/Contents/Frameworks/libclang.dylib; sourceTree = "<group>"; };
-		E3CA0E50214B969200505E96 /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XcodeKit.framework; sourceTree = "<group>"; };
-		E3CA0E54214B96B400505E96 /* DVTAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTAnalytics.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTAnalytics.framework; sourceTree = "<group>"; };
-		E3CA0E57214B96C800505E96 /* DVTServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTServices.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTServices.framework; sourceTree = "<group>"; };
-		E3CA0E5A214B96D700505E96 /* DVTAnalyticsClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTAnalyticsClient.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTAnalyticsClient.framework; sourceTree = "<group>"; };
-		E3CA0E5D214B96E900505E96 /* IDEProducts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEProducts.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/IDEProducts.framework; sourceTree = "<group>"; };
-		E3CA0E60214B96FA00505E96 /* DVTPortal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTPortal.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTPortal.framework; sourceTree = "<group>"; };
-		E3CA0E63214B970C00505E96 /* DVTDeveloperModeHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTDeveloperModeHelper.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTDeveloperModeHelper.framework; sourceTree = "<group>"; };
-		E3CA0E66214B972E00505E96 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
-		E3CA0E69214B974800505E96 /* SourceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKit.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/SourceKit.framework; sourceTree = "<group>"; };
-		E3CA0E6C214B976400505E96 /* libLTO.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libLTO.dylib; path = ../../../../../Applications/Xcode.app/Contents/Frameworks/libLTO.dylib; sourceTree = "<group>"; };
-		E3CA0E6E214B977800505E96 /* DVTDocumentation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTDocumentation.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTDocumentation.framework; sourceTree = "<group>"; };
-		E3CA0E71214B979400505E96 /* DNTDocumentationModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNTDocumentationModel.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DNTDocumentationModel.framework; sourceTree = "<group>"; };
-		E3CA0E74214B97A900505E96 /* DNTDocumentationSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNTDocumentationSupport.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DNTDocumentationSupport.framework; sourceTree = "<group>"; };
-		E3CA0E77214B97E600505E96 /* XCTDaemonControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTDaemonControl.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/XCTDaemonControl.framework; sourceTree = "<group>"; };
-		E3CA0E7A214B97F800505E96 /* Localization.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localization.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/Localization.framework; sourceTree = "<group>"; };
-		E3CA0E7D214B980C00505E96 /* DVTSourceControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTSourceControl.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTSourceControl.framework; sourceTree = "<group>"; };
-		E3CA0E80214B982300505E96 /* DNTSourceKitSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNTSourceKitSupport.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DNTSourceKitSupport.framework; sourceTree = "<group>"; };
-		E3CA0E83214B983300505E96 /* DNTTransformer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DNTTransformer.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DNTTransformer.framework; sourceTree = "<group>"; };
-		E3CA0E86214B984600505E96 /* DTGraphKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTGraphKit.framework; path = ../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DTGraphKit.framework; sourceTree = "<group>"; };
-		E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<absolute>"; };
-		E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<absolute>"; };
-		E3FA3A951E784DB100A7F2EA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTXConnectionServices.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DTXConnectionServices.framework; sourceTree = "<absolute>"; };
-		E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTInstrumentsFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTInstrumentsFoundation.framework; sourceTree = "<absolute>"; };
-		E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSymbolicationDT.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/CoreSymbolicationDT.framework; sourceTree = "<absolute>"; };
-		E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SymbolicationDT.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/SymbolicationDT.framework; sourceTree = "<absolute>"; };
-		E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = kperfdataDT.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/kperfdataDT.framework; sourceTree = "<absolute>"; };
-		E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTInstrumentsUtilities.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTInstrumentsUtilities.framework; sourceTree = "<absolute>"; };
+		E39A157D214CFE7100F86D5D /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
+		E39A1589214D011F00F86D5D /* SkyLight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyLight.framework; path = ../../../../../System/Library/PrivateFrameworks/SkyLight.framework; sourceTree = "<group>"; };
+		E39A158D214D0C4F00F86D5D /* TouchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarView.swift; sourceTree = "<group>"; };
 		E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Bar Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3FE2CC21E726CE800C6713A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3FE2CC41E726CE800C6713A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -186,40 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3CA0E87214B984600505E96 /* DTGraphKit.framework in Frameworks */,
-				E3CA0E58214B96C800505E96 /* DVTServices.framework in Frameworks */,
-				E3CA0E3B214B8F5B00505E96 /* ktraceDT.framework in Frameworks */,
-				E3CA0E37214B8EAD00505E96 /* DVTInstrumentsFoundation.framework in Frameworks */,
-				E3CA0E84214B983300505E96 /* DNTTransformer.framework in Frameworks */,
-				E3CA0E55214B96B400505E96 /* DVTAnalytics.framework in Frameworks */,
-				E3CA0E41214B8F8300505E96 /* DVTJRPC.framework in Frameworks */,
-				E3CA0E72214B979400505E96 /* DNTDocumentationModel.framework in Frameworks */,
-				E3CA0E5B214B96D700505E96 /* DVTAnalyticsClient.framework in Frameworks */,
-				E3CA0E3E214B8F7000505E96 /* DVTInstrumentsUtilities.framework in Frameworks */,
-				E3CA0E61214B96FA00505E96 /* DVTPortal.framework in Frameworks */,
-				E3FA3AAA1E784EA300A7F2EA /* kperfdataDT.framework in Frameworks */,
-				E3FA3AA61E784E7D00A7F2EA /* SymbolicationDT.framework in Frameworks */,
-				E3FA3AA21E784E5A00A7F2EA /* CoreSymbolicationDT.framework in Frameworks */,
-				E3FA3A9A1E784DE700A7F2EA /* DTXConnectionServices.framework in Frameworks */,
-				E3CA0E67214B972E00505E96 /* IDEFoundation.framework in Frameworks */,
-				E3CA0E78214B97E600505E96 /* XCTDaemonControl.framework in Frameworks */,
-				E34F2FFB1E89A77400217535 /* DVTDeviceFoundation.framework in Frameworks */,
-				E3CA0E6A214B974800505E96 /* SourceKit.framework in Frameworks */,
-				E3CA0E52214B969400505E96 /* XcodeKit.framework in Frameworks */,
-				E3CA0E51214B969200505E96 /* XcodeKit.framework in Frameworks */,
-				E3CA0E75214B97A900505E96 /* DNTDocumentationSupport.framework in Frameworks */,
-				E3FA3A961E784DB100A7F2EA /* XCTest.framework in Frameworks */,
-				E3CA0E81214B982300505E96 /* DNTSourceKitSupport.framework in Frameworks */,
-				E3CA0E44214B8F9600505E96 /* DVTDeviceControlServices.framework in Frameworks */,
+				E39A157E214CFE7100F86D5D /* DFRFoundation.framework in Frameworks */,
+				E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */,
 				E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */,
-				E3CA0E64214B970C00505E96 /* DVTDeveloperModeHelper.framework in Frameworks */,
-				E3CA0E34214B8E7400505E96 /* IDEKit.framework in Frameworks */,
-				E3CA0E6F214B977800505E96 /* DVTDocumentation.framework in Frameworks */,
-				E3FA3A8B1E784C4900A7F2EA /* DVTFoundation.framework in Frameworks */,
-				E3CA0E7E214B980C00505E96 /* DVTSourceControl.framework in Frameworks */,
-				E3FA3A921E784C7D00A7F2EA /* DVTKit.framework in Frameworks */,
-				E3CA0E5E214B96E900505E96 /* IDEProducts.framework in Frameworks */,
-				E3CA0E7B214B97F800505E96 /* Localization.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,32 +86,8 @@
 				E3FE2CC11E726CE800C6713A /* Touch Bar Simulator */,
 				E3FE2CC01E726CE800C6713A /* Products */,
 				E3FE2CD91E7272AD00C6713A /* Frameworks */,
-				E3CA0E86214B984600505E96 /* DTGraphKit.framework */,
-				E3CA0E83214B983300505E96 /* DNTTransformer.framework */,
-				E3CA0E80214B982300505E96 /* DNTSourceKitSupport.framework */,
-				E3CA0E7D214B980C00505E96 /* DVTSourceControl.framework */,
-				E3CA0E7A214B97F800505E96 /* Localization.framework */,
-				E3CA0E77214B97E600505E96 /* XCTDaemonControl.framework */,
-				E3CA0E74214B97A900505E96 /* DNTDocumentationSupport.framework */,
-				E3CA0E71214B979400505E96 /* DNTDocumentationModel.framework */,
-				E3CA0E6E214B977800505E96 /* DVTDocumentation.framework */,
-				E3CA0E6C214B976400505E96 /* libLTO.dylib */,
-				E3CA0E50214B969200505E96 /* XcodeKit.framework */,
-				E3CA0E69214B974800505E96 /* SourceKit.framework */,
-				E3CA0E66214B972E00505E96 /* IDEFoundation.framework */,
-				E3CA0E63214B970C00505E96 /* DVTDeveloperModeHelper.framework */,
-				E3CA0E60214B96FA00505E96 /* DVTPortal.framework */,
-				E3CA0E5D214B96E900505E96 /* IDEProducts.framework */,
-				E3CA0E5A214B96D700505E96 /* DVTAnalyticsClient.framework */,
-				E3CA0E57214B96C800505E96 /* DVTServices.framework */,
-				E3CA0E54214B96B400505E96 /* DVTAnalytics.framework */,
-				E3CA0E46214B8FC000505E96 /* libclang.dylib */,
-				E3CA0E43214B8F9600505E96 /* DVTDeviceControlServices.framework */,
-				E3CA0E40214B8F8300505E96 /* DVTJRPC.framework */,
-				E3CA0E3D214B8F7000505E96 /* DVTInstrumentsUtilities.framework */,
-				E3CA0E3A214B8F5B00505E96 /* ktraceDT.framework */,
-				E3CA0E36214B8EAD00505E96 /* DVTInstrumentsFoundation.framework */,
-				E3CA0E33214B8E7400505E96 /* IDEKit.framework */,
+				E39A1589214D011F00F86D5D /* SkyLight.framework */,
+				E39A157D214CFE7100F86D5D /* DFRFoundation.framework */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -285,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				E3FE2CC21E726CE800C6713A /* AppDelegate.swift */,
+				E35579EA21595EDC001CB642 /* TouchBarWindow.swift */,
+				E39A158D214D0C4F00F86D5D /* TouchBarView.swift */,
 				AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */,
 				E35831A31F4D7EE0003BE371 /* util.swift */,
 				E3FE2CC41E726CE800C6713A /* Assets.xcassets */,
@@ -297,17 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				E30988DE1E88DD060078CA9E /* Sparkle.framework */,
-				E34F31CC1E89AD7300217535 /* DFRSupportKit.framework */,
-				E34F2FFA1E89A77400217535 /* DVTDeviceFoundation.framework */,
-				E3FA3AAD1E784ECA00A7F2EA /* DVTInstrumentsUtilities.framework */,
-				E3FA3AA91E784EA300A7F2EA /* kperfdataDT.framework */,
-				E3FA3AA51E784E7D00A7F2EA /* SymbolicationDT.framework */,
-				E3FA3AA11E784E5A00A7F2EA /* CoreSymbolicationDT.framework */,
-				E3FA3A9D1E784E2200A7F2EA /* DVTInstrumentsFoundation.framework */,
-				E3FA3A991E784DE700A7F2EA /* DTXConnectionServices.framework */,
-				E3FA3A951E784DB100A7F2EA /* XCTest.framework */,
-				E3FA3A911E784C7D00A7F2EA /* DVTKit.framework */,
-				E3FA3A8A1E784C4900A7F2EA /* DVTFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -323,6 +133,7 @@
 				E3FE2CBC1E726CE800C6713A /* Frameworks */,
 				E3FE2CBD1E726CE800C6713A /* Resources */,
 				E3FA3A901E784C5F00A7F2EA /* Embed Frameworks */,
+				E3679C9A215A1ECA0080270F /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -350,7 +161,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -384,6 +195,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E3679C9A215A1ECA0080270F /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E3FE2CBB1E726CE800C6713A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -392,7 +225,9 @@
 				E35831A41F4D7EE0003BE371 /* util.swift in Sources */,
 				AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */,
 				E356A16321028D81000148AD /* main.swift in Sources */,
+				E35579EB21595EDC001CB642 /* TouchBarWindow.swift in Sources */,
 				E3FE2CC31E726CE800C6713A /* AppDelegate.swift in Sources */,
+				E39A158E214D0C4F00F86D5D /* TouchBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,7 +352,6 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = YG56YK5RN5;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -540,6 +374,10 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Touch Bar Simulator/Touch Bar Simulator-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -552,7 +390,6 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = YG56YK5RN5;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -573,6 +410,10 @@
 				REEXPORTED_LIBRARY_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Touch Bar Simulator/Touch Bar Simulator-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;

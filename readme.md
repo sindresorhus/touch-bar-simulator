@@ -6,6 +6,8 @@ Launch the Touch Bar simulator from anywhere without needing to have Xcode insta
 
 You can add a shortcut in `System Preferences` → `Keyboard` → `Shortcuts` → `Services` → `Toggle Touch Bar`.
 
+**Important:** If clicking in the simulator or the screenshot button is not working, you need to go to "System Preferences" → "Security & Privacy" → "Accessibility", and ensure "Touch Bar Simulator.app" is checked. If it's already checked, try unchecking and checking it again.
+
 **[Website](https://sindresorhus.com/touch-bar-simulator/)** &nbsp;&nbsp; **[Discuss it on Product Hunt](https://www.producthunt.com/posts/touch-bar-simulator)**
 
 <img src="screenshot.png" width="1129">
@@ -44,22 +46,15 @@ You can capture a screenshot of the Touch Bar by either:
 
 ## FAQ
 
-### How is this better than [TouchBarLauncher](https://github.com/zats/TouchBarLauncher)?
-
-- Doesn't require Xcode
-- Signed binary
-- Transparency slider
-- Screenshot button
-- Doesn't steal focus when launched
-- Doesn't take up space in the Dock or app switcher
-
 ### Why is this not on the App Store?
 
 Apple would never allow it as it uses private APIs.
 
 ### How does this work?
 
-In short, it exposes the Touch Bar simulator from inside Xcode as a standalone app with added features. I [class-dumped](https://github.com/nygard/class-dump) a private Xcode framework and used that to expose a private class to get a reference to the Touch Bar window controller. I then launch that window and add a screenshot button to it. I've bundled the required private frameworks to make it work without Xcode. That's why the binary is so big.
+~~In short, it exposes the Touch Bar simulator from inside Xcode as a standalone app with added features. I [class-dumped](https://github.com/nygard/class-dump) a private Xcode framework and used that to expose a private class to get a reference to the Touch Bar window controller. I then launch that window and add a screenshot button to it. I've bundled the required private frameworks to make it work without Xcode. That's why the binary is so big.~~
+
+Xcode 10 moved the required private symbols needed to trigger the Touch Bar simulator into the main IDEKit framework, which has a lot of dependencies on its own. I managed to get it working by including all those frameworks, but the app ended up being 700 MB... I then went back to the drawing board. I discovered a way to communicate with the Touch Bar simulator directly. The result of this is a faster and more stable app.
 
 
 ## Build
