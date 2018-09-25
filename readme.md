@@ -28,7 +28,7 @@ You can add a shortcut in `System Preferences` → `Keyboard` → `Shortcuts` �
 Or install it with [Homebrew-Cask](https://caskroom.github.io):
 
 ```
-$ brew update && brew cask install touch-bar-simulator
+$ brew cask install touch-bar-simulator
 ```
 
 
@@ -40,8 +40,8 @@ $ brew update && brew cask install touch-bar-simulator
 You can capture a screenshot of the Touch Bar by either:
 
 1. Clicking the screenshot button in the Touch Bar window which saves it to `~/Desktop`.
-2. Pressing ⇧⌘6 which saves it to `~/Desktop`.
-3. Pressing ⌃⇧⌘6 which saves it to the clipboard.
+2. Pressing <kbd>⇧⌘6</kbd> which saves it to `~/Desktop`.
+3. Pressing <kbd>⌃⇧⌘6</kbd> which saves it to the clipboard.
 
 
 ## FAQ
