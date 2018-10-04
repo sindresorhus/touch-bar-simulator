@@ -37,14 +37,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 			makeTransparencySlider()
 		)
 
-		if window.frameAutosaveName.isEmpty {
-			window.center()
-			var origin = window.frame.origin
-			origin.y = 100
-			window.setFrameOrigin(origin)
-		}
+		window.center()
+		var origin = window.frame.origin
+		origin.y = 100
+		window.setFrameOrigin(origin)
 
-		window.setFrameAutosaveName("TouchBarWindowfoo4")
+		window.setFrameUsingName(Constants.windowAutosaveName)
+		window.setFrameAutosaveName(Constants.windowAutosaveName)
+
 		window.orderFront(nil)
 	}
 

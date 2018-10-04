@@ -13,6 +13,7 @@
 		E35579EB21595EDC001CB642 /* TouchBarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35579EA21595EDC001CB642 /* TouchBarWindow.swift */; };
 		E356A16321028D81000148AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E356A16221028D81000148AD /* main.swift */; };
 		E35831A41F4D7EE0003BE371 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35831A31F4D7EE0003BE371 /* util.swift */; };
+		E3930B10216625BE00F66410 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3930B0F216625BE00F66410 /* Constants.swift */; };
 		E39A157E214CFE7100F86D5D /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39A157D214CFE7100F86D5D /* DFRFoundation.framework */; };
 		E39A157F214CFE7100F86D5D /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E39A157D214CFE7100F86D5D /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39A1589214D011F00F86D5D /* SkyLight.framework */; };
@@ -42,12 +43,13 @@
 		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarSlider.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E30988DE1E88DD060078CA9E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E34D6548214BBDAE00786C24 /* Touch Bar Simulator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Touch Bar Simulator.entitlements"; sourceTree = "<group>"; };
-		E35579EA21595EDC001CB642 /* TouchBarWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarWindow.swift; sourceTree = "<group>"; };
+		E35579EA21595EDC001CB642 /* TouchBarWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TouchBarWindow.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E356A16221028D81000148AD /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = main.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E35831A31F4D7EE0003BE371 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = util.swift; sourceTree = "<group>"; usesTabs = 1; };
+		E3930B0F216625BE00F66410 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Constants.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E39A157D214CFE7100F86D5D /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		E39A1589214D011F00F86D5D /* SkyLight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyLight.framework; path = ../../../../../System/Library/PrivateFrameworks/SkyLight.framework; sourceTree = "<group>"; };
-		E39A158D214D0C4F00F86D5D /* TouchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarView.swift; sourceTree = "<group>"; };
+		E39A158D214D0C4F00F86D5D /* TouchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TouchBarView.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Bar Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3FE2CC21E726CE800C6713A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3FE2CC41E726CE800C6713A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				E35579EA21595EDC001CB642 /* TouchBarWindow.swift */,
 				E39A158D214D0C4F00F86D5D /* TouchBarView.swift */,
 				AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */,
+				E3930B0F216625BE00F66410 /* Constants.swift */,
 				E35831A31F4D7EE0003BE371 /* util.swift */,
 				E3FE2CC41E726CE800C6713A /* Assets.xcassets */,
 				E356A16421028DAB000148AD /* Other */,
@@ -226,6 +229,7 @@
 				AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */,
 				E356A16321028D81000148AD /* main.swift in Sources */,
 				E35579EB21595EDC001CB642 /* TouchBarWindow.swift in Sources */,
+				E3930B10216625BE00F66410 /* Constants.swift in Sources */,
 				E3FE2CC31E726CE800C6713A /* AppDelegate.swift in Sources */,
 				E39A158E214D0C4F00F86D5D /* TouchBarView.swift in Sources */,
 			);
