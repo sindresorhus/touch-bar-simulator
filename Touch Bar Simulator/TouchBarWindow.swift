@@ -1,5 +1,6 @@
 import Cocoa
 
+private let defaults = UserDefaults.standard
 private let windowTitle = "Touch Bar Simulator"
 
 final class TouchBarWindow: NSPanel {
@@ -12,7 +13,7 @@ final class TouchBarWindow: NSPanel {
 			switch docking {
 			case .floating:
 				styleMask.insert(.titled)
-				title = windowTitle
+				becameTitled()
 			case .dockedToTop:
 				styleMask.remove(.titled)
 				setFrameOrigin(NSPoint(x: NSScreen.main!.visibleFrame.width / 2 - frame.width / 2, y: NSScreen.main!.visibleFrame.maxY - frame.height))
@@ -21,6 +22,43 @@ final class TouchBarWindow: NSPanel {
 				setFrameOrigin(NSPoint(x: NSScreen.main!.visibleFrame.width / 2 - frame.width / 2, y: NSScreen.main!.visibleFrame.minY))
 			}
 		}
+	}
+
+	func becameTitled() {
+		title = windowTitle
+		guard let toolbarView = self.toolbarView else {
+			return
+		}
+		toolbarView.addSubviews(
+			makeScreenshotButton(toolbarView),
+			makeTransparencySlider(toolbarView)
+		)
+	}
+
+	func makeScreenshotButton(_ toolbarView: NSView) -> NSButton {
+		let button = NSButton()
+		button.image = #imageLiteral(resourceName: "ScreenshotButton")
+		button.imageScaling = .scaleProportionallyDown
+		button.isBordered = false
+		button.bezelStyle = .shadowlessSquare
+		button.frame = CGRect(x: toolbarView.frame.width - 19, y: 4, width: 16, height: 11)
+		button.action = #selector(AppDelegate.captureScreenshot)
+		return button
+	}
+
+	func makeTransparencySlider(_ toolbarView: NSView) -> ToolbarSlider {
+		let slider = ToolbarSlider()
+		slider.frame = CGRect(x: toolbarView.frame.width - 150, y: 4, width: 120, height: 11)
+		slider.action = #selector(setTransparency)
+		slider.minValue = 0.5
+		slider.doubleValue = defaults.double(forKey: "windowTransparency")
+		return slider
+	}
+
+	@objc
+	func setTransparency(sender: ToolbarSlider) {
+		self.alphaValue = CGFloat(sender.doubleValue)
+		defaults.set(sender.doubleValue, forKey: "windowTransparency")
 	}
 
 	var showOnAllDesktops: Bool = false {
