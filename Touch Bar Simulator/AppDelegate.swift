@@ -141,15 +141,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	]
 }
 
-private func leftMouseIsDown() -> Bool {
-	return NSApp.currentEvent?.type == .leftMouseDown
-}
-private func optionKeyIsDown() -> Bool {
-	return NSApp.currentEvent?.modifierFlags.contains(.option) ?? false
-}
-
 private func statusItemShouldShowMenu() -> Bool {
-	return !leftMouseIsDown() || optionKeyIsDown()
+	return !NSApp.leftMouseIsDown() || NSApp.optionKeyIsDown()
 }
 
 extension AppDelegate: NSMenuDelegate {

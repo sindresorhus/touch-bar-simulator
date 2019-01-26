@@ -96,6 +96,15 @@ extension NSMenuItem {
 	}
 }
 
+extension NSApplication {
+	func leftMouseIsDown() -> Bool {
+		return currentEvent?.type == .leftMouseDown
+	}
+	func optionKeyIsDown() -> Bool {
+		return currentEvent?.modifierFlags.contains(.option) ?? false
+	}
+}
+
 func pressKey(keyCode: CGKeyCode, flags: CGEventFlags = []) {
 	let eventSource = CGEventSource(stateID: .hidSystemState)
 	let keyDown = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: true)
