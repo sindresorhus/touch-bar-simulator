@@ -84,6 +84,18 @@ extension NSView {
 	}
 }
 
+extension NSMenuItem {
+	static func menuItem(_ title: String, keyEquivalent: String = "", keyModifiers: NSEvent.ModifierFlags? = nil, isOn: Bool = false, action: @escaping (NSMenuItem) -> Void) -> NSMenuItem {
+		let item = NSMenuItem(title: title, action: nil, keyEquivalent: keyEquivalent)
+		if let keyModifiers = keyModifiers {
+			item.keyEquivalentModifierMask = keyModifiers
+		}
+		item.state = isOn ? .on : .off
+		item.onAction = action
+		return item
+	}
+}
+
 final class AssociatedObject<T: Any> {
 	subscript(index: Any) -> T? {
 		get {
