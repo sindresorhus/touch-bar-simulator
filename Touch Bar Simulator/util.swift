@@ -45,7 +45,9 @@ extension NSWindow {
 	var toolbarView: NSView? {
 		return standardWindowButton(.closeButton)?.superview
 	}
+}
 
+extension NSWindow {
 	enum MoveXPositioning {
 		case left, center, right
 	}
@@ -121,6 +123,7 @@ extension TargetActionSender {
 
 	/**
 	Closure version of `.action`
+
 	```
 	let menuItem = NSMenuItem(title: "Unicorn")
 	menuItem.onAction = { sender in
@@ -149,6 +152,7 @@ extension NSApplication {
 	func leftMouseIsDown() -> Bool {
 		return currentEvent?.type == .leftMouseDown
 	}
+
 	func optionKeyIsDown() -> Bool {
 		return currentEvent?.modifierFlags.contains(.option) ?? false
 	}
