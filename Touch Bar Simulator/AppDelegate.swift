@@ -1,27 +1,24 @@
 import Cocoa
 import Sparkle
-
-private let defaults = UserDefaults.standard
+import Defaults
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	lazy var window = with(TouchBarWindow()) {
-		$0.alphaValue = CGFloat(defaults.double(forKey: "windowTransparency"))
+		$0.alphaValue = CGFloat(defaults[.windowTransparency])
 	}
 
 	lazy var statusItem = with(NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)) {
 		$0.menu = statusMenu
 		$0.button!.image = NSImage(named: "AppIcon") // TODO: Add proper icon
-		$0.button!.toolTip = "Right or option-click for menu";
+		$0.button!.toolTip = "Right or option-click for menu"
 	}
 	lazy var statusMenu = with(NSMenu()) {
 		$0.delegate = self
 	}
 
 	func applicationWillFinishLaunching(_ notification: Notification) {
-		defaults.register(defaults: [
-			"NSApplicationCrashOnExceptions": true,
-			"windowTransparency": 0.75,
-			"windowDocking": TouchBarWindow.Docking.floating.rawValue
+		UserDefaults.standard.register(defaults: [
+			"NSApplicationCrashOnExceptions": true
 		])
 	}
 
@@ -51,8 +48,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 		_ = statusItem
 
-		docking = defaults.string(forKey: "windowDocking").flatMap { TouchBarWindow.Docking(rawValue: $0) } ?? .floating
-		showOnAllDesktops = defaults.bool(forKey: "showOnAllDesktops")
+		docking = defaults[.windowDocking]
+		showOnAllDesktops = defaults[.showOnAllDesktops]
 	}
 
 	@objc
@@ -72,7 +69,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	var docking: TouchBarWindow.Docking = .floating {
 		didSet {
-			defaults.setValue(docking.rawValue, forKey: "windowDocking")
+			defaults[.windowDocking] = docking
 
 			statusMenuDockingItems.forEach { $0.state = .off }
 
@@ -93,7 +90,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	var showOnAllDesktops: Bool = false {
 		didSet {
-			defaults.setValue(showOnAllDesktops, forKey: "showOnAllDesktops")
+			defaults[.showOnAllDesktops] = showOnAllDesktops
 			statusMenuItemShowOnAllDesktops.state = showOnAllDesktops ? .on : .off
 			window.showOnAllDesktops = showOnAllDesktops
 		}

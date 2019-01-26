@@ -1,10 +1,10 @@
 import Cocoa
+import Defaults
 
-private let defaults = UserDefaults.standard
 private let windowTitle = "Touch Bar Simulator"
 
 final class TouchBarWindow: NSPanel {
-	enum Docking: String {
+	enum Docking: String, Codable {
 		case floating, dockedToTop, dockedToBottom
 	}
 
@@ -51,14 +51,14 @@ final class TouchBarWindow: NSPanel {
 		slider.frame = CGRect(x: toolbarView.frame.width - 150, y: 4, width: 120, height: 11)
 		slider.action = #selector(setTransparency)
 		slider.minValue = 0.5
-		slider.doubleValue = defaults.double(forKey: "windowTransparency")
+		slider.doubleValue = defaults[.windowTransparency]
 		return slider
 	}
 
 	@objc
 	func setTransparency(sender: ToolbarSlider) {
 		self.alphaValue = CGFloat(sender.doubleValue)
-		defaults.set(sender.doubleValue, forKey: "windowTransparency")
+		defaults[.windowTransparency] = sender.doubleValue
 	}
 
 	var showOnAllDesktops: Bool = false {
