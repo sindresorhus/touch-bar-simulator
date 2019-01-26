@@ -12,6 +12,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		$0.button!.image = NSImage(named: "AppIcon") // TODO: Add proper icon
 		$0.button!.toolTip = "Right or option-click for menu"
 	}
+
 	lazy var statusMenu = with(NSMenu()) {
 		createMenuItems() // Items added/removed conditionally in menuNeedsUpdate(_:)
 		$0.delegate = self
@@ -117,17 +118,21 @@ extension AppDelegate: NSMenuDelegate {
 		statusMenuItemFloating = menuItem("Floating") { _ in
 			self.docking = .floating
 		}
+
 		statusMenuItemDockedToTop = menuItem("Docked to Top") { _ in
 			self.docking = .dockedToTop
 		}
+
 		statusMenuItemDockedToBottom = menuItem("Docked to Bottom") { _ in
 			self.docking = .dockedToBottom
 		}
+
 		statusMenuDockingItems = [
 			statusMenuItemFloating,
 			statusMenuItemDockedToTop,
 			statusMenuItemDockedToBottom
 		]
+
 		for item in statusMenuDockingItems {
 			item.indentationLevel = 1
 		}
@@ -188,9 +193,11 @@ extension AppDelegate: NSMenuDelegate {
 			menu.removeAllItems()
 			return
 		}
+
 		guard menu.numberOfItems != statusMenuItems.count else {
 			return
 		}
+
 		menu.items = statusMenuItems
 	}
 
@@ -202,6 +209,9 @@ extension AppDelegate: NSMenuDelegate {
 
 	private func statusItemButtonClicked() {
 		toggleView()
-		if window.isVisible { window.orderFront(nil) }
+
+		if window.isVisible {
+			window.orderFront(nil)
+		}
 	}
 }
