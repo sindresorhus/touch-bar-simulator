@@ -162,15 +162,16 @@ extension AppDelegate: NSMenuDelegate {
 			statusMenuItemDockedToTop,
 			statusMenuItemDockedToBottom,
 
-			NSMenuItem.separator(),
-
-			statusMenuItemShowOnAllDesktops,
+			NSMenuItem(title: "Transparency", action: nil, keyEquivalent: ""),
+			transparencyItem,
 
 			NSMenuItem.separator(),
 
 			takeScreenshotItem,
-			NSMenuItem(title: "Transparency", action: nil, keyEquivalent: ""),
-			transparencyItem,
+
+			NSMenuItem.separator(),
+
+			statusMenuItemShowOnAllDesktops,
 
 			NSMenuItem.separator(),
 
