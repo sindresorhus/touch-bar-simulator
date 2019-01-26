@@ -102,23 +102,28 @@ protocol TargetActionSender: AnyObject {
 
 extension NSControl: TargetActionSender {}
 extension NSMenuItem: TargetActionSender {}
+extension NSGestureRecognizer: TargetActionSender {}
 
-private final class ActionClosureCaller: NSObject {
-	@objc
-	func callClosure(_ sender: TargetActionSender) {
-		onAction?(sender)
+private final class ActionTrampoline<Sender>: NSObject {
+	typealias ActionClosure = ((Sender) -> Void)
+
+	let action: ActionClosure
+
+	init(action: @escaping ActionClosure) {
+		self.action = action
 	}
 
-	var onAction: TargetActionSender.ActionClosure?
+	@objc
+	func performAction(_ sender: TargetActionSender) {
+		action(sender as! Sender)
+	}
 }
 
 struct TargetActionSenderAssociatedKeys {
-	fileprivate static let caller = AssociatedObject<ActionClosureCaller>()
+	fileprivate static let trampoline = AssociatedObject<AnyObject>()
 }
 
 extension TargetActionSender {
-	typealias ActionClosure = ((TargetActionSender) -> Void)
-
 	/**
 	Closure version of `.action`
 	```
@@ -128,17 +133,16 @@ extension TargetActionSender {
 	}
 	```
 	*/
-	var onAction: ActionClosure? {
+	var onAction: (Self) -> Void {
 		get {
-			return TargetActionSenderAssociatedKeys.caller[self]?.onAction
+			return (TargetActionSenderAssociatedKeys.trampoline[self] as! ActionTrampoline<Self>).action
 		}
 		set {
-			if let caller = TargetActionSenderAssociatedKeys.caller[self] {
-				caller.onAction = newValue
-				action = #selector(ActionClosureCaller.callClosure)
-				target = caller
+			if let trampoline = TargetActionSenderAssociatedKeys.trampoline[self] {
+				self.target = trampoline
+				self.action = #selector(ActionTrampoline<Self>.performAction)
 			} else {
-				TargetActionSenderAssociatedKeys.caller[self] = ActionClosureCaller()
+				TargetActionSenderAssociatedKeys.trampoline[self] = ActionTrampoline(action: newValue)
 				self.onAction = newValue
 			}
 		}
