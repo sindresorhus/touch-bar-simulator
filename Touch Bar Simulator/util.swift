@@ -94,17 +94,30 @@ final class AssociatedObject<T: Any> {
 	}
 }
 
-extension NSMenuItem {
-	typealias ActionClosure = ((NSMenuItem) -> Void)
+@objc
+protocol TargetActionSender: AnyObject {
+	var target: AnyObject? { get set }
+	var action: Selector? { get set }
+}
 
-	private struct AssociatedKeys {
-		static let onActionClosure = AssociatedObject<ActionClosure>()
-	}
+extension NSControl: TargetActionSender {}
+extension NSMenuItem: TargetActionSender {}
 
+private final class ActionClosureCaller: NSObject {
 	@objc
-	private func callClosure(_ sender: NSMenuItem) {
+	func callClosure(_ sender: TargetActionSender) {
 		onAction?(sender)
 	}
+
+	var onAction: TargetActionSender.ActionClosure?
+}
+
+struct TargetActionSenderAssociatedKeys {
+	fileprivate static let caller = AssociatedObject<ActionClosureCaller>()
+}
+
+extension TargetActionSender {
+	typealias ActionClosure = ((TargetActionSender) -> Void)
 
 	/**
 	Closure version of `.action`
@@ -117,12 +130,17 @@ extension NSMenuItem {
 	*/
 	var onAction: ActionClosure? {
 		get {
-			return AssociatedKeys.onActionClosure[self]
+			return TargetActionSenderAssociatedKeys.caller[self]?.onAction
 		}
 		set {
-			AssociatedKeys.onActionClosure[self] = newValue
-			action = #selector(callClosure)
-			target = self
+			if let caller = TargetActionSenderAssociatedKeys.caller[self] {
+				caller.onAction = newValue
+				action = #selector(ActionClosureCaller.callClosure)
+				target = caller
+			} else {
+				TargetActionSenderAssociatedKeys.caller[self] = ActionClosureCaller()
+				self.onAction = newValue
+			}
 		}
 	}
 }

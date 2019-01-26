@@ -108,7 +108,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension AppDelegate: NSMenuDelegate {
 	func createMenuItems() {
-		func menuItem(_ title: String, keyEquivalent: String = "", action: @escaping NSMenuItem.ActionClosure) -> NSMenuItem {
+		func menuItem(_ title: String, keyEquivalent: String = "", action: @escaping TargetActionSender.ActionClosure) -> NSMenuItem {
 			let item = NSMenuItem(title: title, action: nil, keyEquivalent: keyEquivalent)
 			item.onAction = action
 			return item
