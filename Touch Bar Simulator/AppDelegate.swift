@@ -132,6 +132,22 @@ extension AppDelegate: NSMenuDelegate {
 			item.indentationLevel = 1
 		}
 
+		let takeScreenshotItem = menuItem("Take Screenshot") { _ in
+			self.captureScreenshot()
+		}
+		let transparencyItem = menuItem("Transparency") { _ in }
+		let transparencyView = NSView(frame: CGRect(origin: .zero, size: CGSize(width: 180, height: 20)))
+		let slider = window.makeTransparencySlider(transparencyView)
+		slider.onAction = { sender in
+			self.window.setTransparency(sender: sender as! ToolbarSlider)
+		}
+		transparencyView.addSubview(slider)
+		slider.translatesAutoresizingMaskIntoConstraints = false
+		slider.leadingAnchor.constraint(equalTo: transparencyView.leadingAnchor, constant: 40).isActive = true
+		slider.trailingAnchor.constraint(equalTo: transparencyView.trailingAnchor, constant: -20).isActive = true
+		slider.centerYAnchor.constraint(equalTo: transparencyView.centerYAnchor).isActive = true
+		transparencyItem.view = transparencyView
+
 		statusMenuItemShowOnAllDesktops = menuItem("Show on All Desktops") { _ in
 			self.showOnAllDesktops = !self.showOnAllDesktops
 		}
@@ -149,6 +165,12 @@ extension AppDelegate: NSMenuDelegate {
 			NSMenuItem.separator(),
 
 			statusMenuItemShowOnAllDesktops,
+
+			NSMenuItem.separator(),
+
+			takeScreenshotItem,
+			NSMenuItem(title: "Transparency", action: nil, keyEquivalent: ""),
+			transparencyItem,
 
 			NSMenuItem.separator(),
 
