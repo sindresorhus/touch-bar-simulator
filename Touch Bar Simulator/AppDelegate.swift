@@ -11,7 +11,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	lazy var statusItem = with(NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)) {
 		$0.menu = statusMenu
 		$0.button!.image = NSImage(named: "AppIcon") // TODO: Add proper icon
-		$0.button!.toolTip = NSLocalizedString("Right or option-click for menu", comment: "Status bar item tooltip")
+		$0.button!.toolTip = "Right or option-click for menu";
 	}
 	lazy var statusMenu = with(NSMenu()) {
 		$0.delegate = self
@@ -129,20 +129,20 @@ private func statusItemShouldShowMenu() -> Bool {
 	return !leftMouseIsDown() || optionKeyIsDown()
 }
 
-private var statusMenuDockingItemFloating = NSMenuItem(title: NSLocalizedString("Floating", comment: "Status menu Docking item"), action: #selector(AppDelegate.setFloating), keyEquivalent: "")
-private var statusMenuDockingItemDockedToTop = NSMenuItem(title: NSLocalizedString("Docked to Top", comment: "Status menu Docking item"), action: #selector(AppDelegate.setDockedToTop), keyEquivalent: "")
-private var statusMenuDockingItemDockedToBottom = NSMenuItem(title: NSLocalizedString("Docked to Bottom", comment: "Status menu Docking item"), action: #selector(AppDelegate.setDockedToBottom), keyEquivalent: "")
+private var statusMenuDockingItemFloating = NSMenuItem(title: "Floating", action: #selector(AppDelegate.setFloating), keyEquivalent: "")
+private var statusMenuDockingItemDockedToTop = NSMenuItem(title: "Docked to Top", action: #selector(AppDelegate.setDockedToTop), keyEquivalent: "")
+private var statusMenuDockingItemDockedToBottom = NSMenuItem(title: "Docked to Bottom", action: #selector(AppDelegate.setDockedToBottom), keyEquivalent: "")
 private var statusMenuDockingItems: [NSMenuItem] = [
 	statusMenuDockingItemFloating,
 	statusMenuDockingItemDockedToTop,
 	statusMenuDockingItemDockedToBottom
 ].map { $0.indentationLevel = 1; return $0 }
 
-private var statusMenuItemShowOnAllDesktops = NSMenuItem(title: NSLocalizedString("Show on All Desktops", comment: "Status menu item"), action: #selector(AppDelegate.toggleShowOnAllDesktops), keyEquivalent: "")
+private var statusMenuItemShowOnAllDesktops = NSMenuItem(title: "Show on All Desktops", action: #selector(AppDelegate.toggleShowOnAllDesktops), keyEquivalent: "")
 
 private var statusMenuOptionItems: [NSMenuItem] = [
 
-	NSMenuItem(title: NSLocalizedString("Docking", comment: "Status menu label item"), action: nil, keyEquivalent: ""),
+	NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""),
 	statusMenuDockingItemFloating,
 	statusMenuDockingItemDockedToTop,
 	statusMenuDockingItemDockedToBottom,
@@ -153,7 +153,7 @@ private var statusMenuOptionItems: [NSMenuItem] = [
 
 	NSMenuItem.separator(),
 
-	NSMenuItem(title: NSLocalizedString("Quit Touch Bar Simulator", comment: "Status menu item"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
+	NSMenuItem(title: "Quit Touch Bar Simulator", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
 
 ]
 
