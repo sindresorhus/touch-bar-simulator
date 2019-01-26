@@ -16,10 +16,10 @@ final class TouchBarWindow: NSPanel {
 				becameTitled()
 			case .dockedToTop:
 				styleMask.remove(.titled)
-				setFrameOrigin(NSPoint(x: NSScreen.main!.visibleFrame.width / 2 - frame.width / 2, y: NSScreen.main!.visibleFrame.maxY - frame.height))
+				moveTo(x: .center, y: .top)
 			case .dockedToBottom:
 				styleMask.remove(.titled)
-				setFrameOrigin(NSPoint(x: NSScreen.main!.visibleFrame.width / 2 - frame.width / 2, y: NSScreen.main!.visibleFrame.minY))
+				moveTo(x: .center, y: .bottom)
 			}
 		}
 	}

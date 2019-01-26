@@ -155,7 +155,7 @@ extension AppDelegate: NSMenuDelegate {
 			quitItem
 		]
 	}
-	
+
 	private func statusItemShouldShowMenu() -> Bool {
 		return !NSApp.leftMouseIsDown() || NSApp.optionKeyIsDown()
 	}

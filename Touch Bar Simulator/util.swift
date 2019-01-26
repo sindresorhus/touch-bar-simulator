@@ -45,6 +45,37 @@ extension NSWindow {
 	var toolbarView: NSView? {
 		return standardWindowButton(.closeButton)?.superview
 	}
+
+	enum MoveXPositioning {
+		case left, center, right
+	}
+	enum MoveYPositioning {
+		case top, center, bottom
+	}
+
+	func moveTo(x xPositioning: MoveXPositioning, y yPositioning: MoveYPositioning) {
+		let visibleFrame = NSScreen.main!.visibleFrame
+
+		let x: CGFloat, y: CGFloat
+		switch xPositioning {
+		case .left:
+			x = visibleFrame.minX
+		case .center:
+			x = visibleFrame.midX - frame.width / 2
+		case .right:
+			x = visibleFrame.maxX - frame.width
+		}
+		switch yPositioning {
+		case .top:
+			y = visibleFrame.maxY - frame.height
+		case .center:
+			y = visibleFrame.midY - frame.height / 2
+		case .bottom:
+			y = visibleFrame.minY
+		}
+
+		setFrameOrigin(CGPoint(x: x, y: y))
+	}
 }
 
 extension NSView {
