@@ -13,6 +13,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		$0.button!.toolTip = "Right or option-click for menu"
 	}
 	lazy var statusMenu = with(NSMenu()) {
+		createMenuItems() // Items added/removed conditionally in menuNeedsUpdate(_:)
 		$0.delegate = self
 	}
 
@@ -67,6 +68,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		window.setIsVisible(!window.isVisible)
 	}
 
+	private var statusMenuItemFloating: NSMenuItem!
+	private var statusMenuItemDockedToTop: NSMenuItem!
+	private var statusMenuItemDockedToBottom: NSMenuItem!
+	private var statusMenuDockingItems: [NSMenuItem]!
+	private var statusMenuItemShowOnAllDesktops: NSMenuItem!
+	private var statusMenuItems: [NSMenuItem]!
+
 	var docking: TouchBarWindow.Docking = .floating {
 		didSet {
 			defaults[.windowDocking] = docking
@@ -76,11 +84,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 			let onItem: NSMenuItem
 			switch docking {
 			case .floating:
-				onItem = statusMenuDockingItemFloating
+				onItem = statusMenuItemFloating
 			case .dockedToTop:
-				onItem = statusMenuDockingItemDockedToTop
+				onItem = statusMenuItemDockedToTop
 			case .dockedToBottom:
-				onItem = statusMenuDockingItemDockedToBottom
+				onItem = statusMenuItemDockedToBottom
 			}
 			onItem.state = .on
 
@@ -96,80 +104,80 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 
-	private lazy var statusMenuDockingItemFloating = with(NSMenuItem(title: "Floating", action: nil, keyEquivalent: "")) {
-		$0.onAction = { _ in
-			self.docking = .floating
-		}
-	}
-	private lazy var statusMenuDockingItemDockedToTop = with(NSMenuItem(title: "Docked to Top", action: nil, keyEquivalent: "")) {
-		$0.onAction = { _ in
-			self.docking = .dockedToTop
-		}
-	}
-	private lazy var statusMenuDockingItemDockedToBottom = with(NSMenuItem(title: "Docked to Bottom", action: nil, keyEquivalent: "")) {
-		$0.onAction = { _ in
-			self.docking = .dockedToBottom
-		}
-	}
-	private lazy var statusMenuDockingItems: [NSMenuItem] = [
-		statusMenuDockingItemFloating,
-		statusMenuDockingItemDockedToTop,
-		statusMenuDockingItemDockedToBottom
-	].map { $0.indentationLevel = 1; return $0 }
-
-	private lazy var statusMenuItemShowOnAllDesktops = with(NSMenuItem(title: "Show on All Desktops", action: nil, keyEquivalent: "")) {
-		$0.onAction = { _ in
-			self.showOnAllDesktops = !self.showOnAllDesktops
-		}
-	}
-
-	private lazy var statusMenuOptionItems: [NSMenuItem] = [
-
-		NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""),
-		statusMenuDockingItemFloating,
-		statusMenuDockingItemDockedToTop,
-		statusMenuDockingItemDockedToBottom,
-
-		NSMenuItem.separator(),
-
-		statusMenuItemShowOnAllDesktops,
-
-		NSMenuItem.separator(),
-
-		NSMenuItem(title: "Quit Touch Bar Simulator", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
-
-	]
-}
-
-private func statusItemShouldShowMenu() -> Bool {
-	return !NSApp.leftMouseIsDown() || NSApp.optionKeyIsDown()
 }
 
 extension AppDelegate: NSMenuDelegate {
+	func createMenuItems() {
+		func menuItem(_ title: String, keyEquivalent: String = "", action: @escaping NSMenuItem.ActionClosure) -> NSMenuItem {
+			let item = NSMenuItem(title: title, action: nil, keyEquivalent: keyEquivalent)
+			item.onAction = action
+			return item
+		}
+
+		statusMenuItemFloating = menuItem("Floating") { _ in
+			self.docking = .floating
+		}
+		statusMenuItemDockedToTop = menuItem("Docked to Top") { _ in
+			self.docking = .dockedToTop
+		}
+		statusMenuItemDockedToBottom = menuItem("Docked to Bottom") { _ in
+			self.docking = .dockedToBottom
+		}
+		statusMenuDockingItems = [
+			statusMenuItemFloating,
+			statusMenuItemDockedToTop,
+			statusMenuItemDockedToBottom
+		]
+		for item in statusMenuDockingItems {
+			item.indentationLevel = 1
+		}
+
+		statusMenuItemShowOnAllDesktops = menuItem("Show on All Desktops") { _ in
+			self.showOnAllDesktops = !self.showOnAllDesktops
+		}
+
+		let quitItem = menuItem("Quit Touch Bar Simulator", keyEquivalent: "q") { _ in
+			NSApp.terminate(nil)
+		}
+
+		statusMenuItems = [
+			NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""),
+			statusMenuItemFloating,
+			statusMenuItemDockedToTop,
+			statusMenuItemDockedToBottom,
+
+			NSMenuItem.separator(),
+
+			statusMenuItemShowOnAllDesktops,
+
+			NSMenuItem.separator(),
+
+			quitItem
+		]
+	}
+	
+	private func statusItemShouldShowMenu() -> Bool {
+		return !NSApp.leftMouseIsDown() || NSApp.optionKeyIsDown()
+	}
+
 	func menuNeedsUpdate(_ menu: NSMenu) {
 		guard statusItemShouldShowMenu() else {
 			menu.removeAllItems()
 			return
 		}
-		guard menu.numberOfItems != statusMenuOptionItems.count else {
+		guard menu.numberOfItems != statusMenuItems.count else {
 			return
 		}
-		menu.removeAllItems()
-		if #available(macOS 10.14, *) {
-			menu.items = statusMenuOptionItems
-		} else {
-			statusMenuOptionItems.forEach { menu.addItem($0) }
-		}
+		menu.items = statusMenuItems
 	}
 
 	func menuWillOpen(_ menu: NSMenu) {
-		guard !statusItemShouldShowMenu() else {
-			return
+		if !statusItemShouldShowMenu() {
+			statusItemButtonClicked()
 		}
-		statusItemButtonClicked()
 	}
 
-	func statusItemButtonClicked() {
+	private func statusItemButtonClicked() {
 		toggleView()
 		if window.isVisible { window.orderFront(nil) }
 	}
