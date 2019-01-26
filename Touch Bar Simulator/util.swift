@@ -107,14 +107,14 @@ extension NSMenuItem: TargetActionSender {}
 
 private final class ActionClosureCaller: NSObject {
 	@objc
-	func callClosure(_ sender: TargetActionSender) {
+	fileprivate func callClosure(_ sender: TargetActionSender) {
 		onAction?(sender)
 	}
 
-	var onAction: TargetActionSender.ActionClosure?
+	fileprivate var onAction: TargetActionSender.ActionClosure?
 }
 
-struct TargetActionSenderAssociatedKeys {
+private struct TargetActionSenderAssociatedKeys {
 	fileprivate static let caller = AssociatedObject<ActionClosureCaller>()
 }
 
