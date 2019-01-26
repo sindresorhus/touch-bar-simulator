@@ -53,6 +53,49 @@ extension NSView {
 	}
 }
 
+final class AssociatedObject<T: Any> {
+	subscript(index: Any) -> T? {
+		get {
+			return objc_getAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque()) as! T?
+		} set {
+			objc_setAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque(), newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+		}
+	}
+}
+
+extension NSMenuItem {
+	typealias ActionClosure = ((NSMenuItem) -> Void)
+
+	private struct AssociatedKeys {
+		static let onActionClosure = AssociatedObject<ActionClosure>()
+	}
+
+	@objc
+	private func callClosure(_ sender: NSMenuItem) {
+		onAction?(sender)
+	}
+
+	/**
+	Closure version of `.action`
+	```
+	let menuItem = NSMenuItem(title: "Unicorn")
+	menuItem.onAction = { sender in
+		print("NSMenuItem action: \(sender)")
+	}
+	```
+	*/
+	var onAction: ActionClosure? {
+		get {
+			return AssociatedKeys.onActionClosure[self]
+		}
+		set {
+			AssociatedKeys.onActionClosure[self] = newValue
+			action = #selector(callClosure)
+			target = self
+		}
+	}
+}
+
 func pressKey(keyCode: CGKeyCode, flags: CGEventFlags = []) {
 	let eventSource = CGEventSource(stateID: .hidSystemState)
 	let keyDown = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: true)

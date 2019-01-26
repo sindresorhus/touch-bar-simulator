@@ -99,23 +99,49 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 
-	@objc
-	func setFloating() {
-		docking = .floating
+	private lazy var statusMenuDockingItemFloating = with(NSMenuItem(title: "Floating", action: nil, keyEquivalent: "")) {
+		$0.onAction = { _ in
+			self.docking = .floating
+		}
 	}
-	@objc
-	func setDockedToTop() {
-		docking = .dockedToTop
+	private lazy var statusMenuDockingItemDockedToTop = with(NSMenuItem(title: "Docked to Top", action: nil, keyEquivalent: "")) {
+		$0.onAction = { _ in
+			self.docking = .dockedToTop
+		}
 	}
-	@objc
-	func setDockedToBottom() {
-		docking = .dockedToBottom
+	private lazy var statusMenuDockingItemDockedToBottom = with(NSMenuItem(title: "Docked to Bottom", action: nil, keyEquivalent: "")) {
+		$0.onAction = { _ in
+			self.docking = .dockedToBottom
+		}
+	}
+	private lazy var statusMenuDockingItems: [NSMenuItem] = [
+		statusMenuDockingItemFloating,
+		statusMenuDockingItemDockedToTop,
+		statusMenuDockingItemDockedToBottom
+	].map { $0.indentationLevel = 1; return $0 }
+
+	private lazy var statusMenuItemShowOnAllDesktops = with(NSMenuItem(title: "Show on All Desktops", action: nil, keyEquivalent: "")) {
+		$0.onAction = { _ in
+			self.showOnAllDesktops = !self.showOnAllDesktops
+		}
 	}
 
-	@objc
-	func toggleShowOnAllDesktops() {
-		showOnAllDesktops = !showOnAllDesktops
-	}
+	private lazy var statusMenuOptionItems: [NSMenuItem] = [
+
+		NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""),
+		statusMenuDockingItemFloating,
+		statusMenuDockingItemDockedToTop,
+		statusMenuDockingItemDockedToBottom,
+
+		NSMenuItem.separator(),
+
+		statusMenuItemShowOnAllDesktops,
+
+		NSMenuItem.separator(),
+
+		NSMenuItem(title: "Quit Touch Bar Simulator", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
+
+	]
 }
 
 private func leftMouseIsDown() -> Bool {
@@ -128,34 +154,6 @@ private func optionKeyIsDown() -> Bool {
 private func statusItemShouldShowMenu() -> Bool {
 	return !leftMouseIsDown() || optionKeyIsDown()
 }
-
-private var statusMenuDockingItemFloating = NSMenuItem(title: "Floating", action: #selector(AppDelegate.setFloating), keyEquivalent: "")
-private var statusMenuDockingItemDockedToTop = NSMenuItem(title: "Docked to Top", action: #selector(AppDelegate.setDockedToTop), keyEquivalent: "")
-private var statusMenuDockingItemDockedToBottom = NSMenuItem(title: "Docked to Bottom", action: #selector(AppDelegate.setDockedToBottom), keyEquivalent: "")
-private var statusMenuDockingItems: [NSMenuItem] = [
-	statusMenuDockingItemFloating,
-	statusMenuDockingItemDockedToTop,
-	statusMenuDockingItemDockedToBottom
-].map { $0.indentationLevel = 1; return $0 }
-
-private var statusMenuItemShowOnAllDesktops = NSMenuItem(title: "Show on All Desktops", action: #selector(AppDelegate.toggleShowOnAllDesktops), keyEquivalent: "")
-
-private var statusMenuOptionItems: [NSMenuItem] = [
-
-	NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""),
-	statusMenuDockingItemFloating,
-	statusMenuDockingItemDockedToTop,
-	statusMenuDockingItemDockedToBottom,
-
-	NSMenuItem.separator(),
-
-	statusMenuItemShowOnAllDesktops,
-
-	NSMenuItem.separator(),
-
-	NSMenuItem(title: "Quit Touch Bar Simulator", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
-
-]
 
 extension AppDelegate: NSMenuDelegate {
 	func menuNeedsUpdate(_ menu: NSMenu) {
