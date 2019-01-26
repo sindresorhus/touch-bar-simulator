@@ -28,6 +28,9 @@ final class TouchBarWindow: NSPanel {
 				styleMask.remove(.titled)
 				moveTo(x: .center, y: .bottom)
 			}
+
+			setIsVisible(true)
+			orderFront(nil)
 		}
 	}
 
