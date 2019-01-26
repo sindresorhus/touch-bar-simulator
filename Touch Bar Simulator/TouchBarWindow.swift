@@ -56,12 +56,15 @@ final class TouchBarWindow: NSPanel {
 		return button
 	}
 
+	private var transparencySliders: [ToolbarSlider] = []
+
 	func makeTransparencySlider(_ parentView: NSView) -> ToolbarSlider {
 		let slider = ToolbarSlider()
 		slider.frame = CGRect(x: parentView.frame.width - 150, y: 4, width: 120, height: 11)
 		slider.action = #selector(setTransparency)
 		slider.minValue = 0.5
 		slider.doubleValue = defaults[.windowTransparency]
+		transparencySliders.append(slider)
 		return slider
 	}
 
@@ -69,6 +72,9 @@ final class TouchBarWindow: NSPanel {
 	func setTransparency(sender: ToolbarSlider) {
 		self.alphaValue = CGFloat(sender.doubleValue)
 		defaults[.windowTransparency] = sender.doubleValue
+		for slider in transparencySliders where slider !== sender {
+			slider.doubleValue = sender.doubleValue
+		}
 	}
 
 	var showOnAllDesktops: Bool = false {
