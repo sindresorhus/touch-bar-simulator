@@ -8,12 +8,19 @@ final class TouchBarWindow: NSPanel {
 		case floating, dockedToTop, dockedToBottom
 	}
 
-	var docking: Docking = .floating {
+	var docking: Docking! {
 		didSet {
-			switch docking {
+			if oldValue == .floating && docking != .floating {
+				defaults[.lastFloatingPos] = frame.origin
+			}
+
+			switch docking! {
 			case .floating:
 				styleMask.insert(.titled)
 				becameTitled()
+				if let prevPos = defaults[.lastFloatingPos] {
+					setFrameOrigin(prevPos)
+				}
 			case .dockedToTop:
 				styleMask.remove(.titled)
 				moveTo(x: .center, y: .top)
