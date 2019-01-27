@@ -5,6 +5,7 @@ import Defaults
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	lazy var window = with(TouchBarWindow()) {
 		$0.alphaValue = CGFloat(defaults[.windowTransparency])
+		$0.setUp()
 	}
 
 	lazy var statusItem = with(NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)) {
@@ -21,28 +22,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		NSApp.servicesProvider = self
-
 		_ = SUUpdater()
-
-		let view = window.contentView!
-		view.wantsLayer = true
-		view.layer?.backgroundColor = NSColor.black.cgColor
-
-		let touchBarView = TouchBarView()
-		window.setContentSize(touchBarView.bounds.adding(padding: 5).size)
-		touchBarView.frame = touchBarView.frame.centered(in: view.bounds)
-		view.addSubview(touchBarView)
-
-		window.center()
-		var origin = window.frame.origin
-		origin.y = 100
-		window.setFrameOrigin(origin)
-
-		window.setFrameUsingName(Constants.windowAutosaveName)
-		window.setFrameAutosaveName(Constants.windowAutosaveName)
-
-		window.orderFront(nil)
-
 		_ = statusItem
 
 		docking = defaults[.windowDocking]

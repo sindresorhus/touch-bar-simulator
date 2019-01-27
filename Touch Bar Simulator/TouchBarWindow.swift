@@ -95,6 +95,27 @@ final class TouchBarWindow: NSPanel {
 		return false
 	}
 
+	func setUp() {
+		let view = self.contentView!
+		view.wantsLayer = true
+		view.layer?.backgroundColor = NSColor.black.cgColor
+
+		let touchBarView = TouchBarView()
+		self.setContentSize(touchBarView.bounds.adding(padding: 5).size)
+		touchBarView.frame = touchBarView.frame.centered(in: view.bounds)
+		view.addSubview(touchBarView)
+
+		self.center()
+		self.setFrameOrigin(CGPoint(x: self.frame.origin.x, y: 100))
+
+		self.setFrameUsingName(Constants.windowAutosaveName)
+		self.setFrameAutosaveName(Constants.windowAutosaveName)
+
+		self.orderFront(nil)
+	}
+
+	private var defaultsObservations: [DefaultsObservation] = []
+
 	convenience init() {
 		self.init(
 			contentRect: .zero,
