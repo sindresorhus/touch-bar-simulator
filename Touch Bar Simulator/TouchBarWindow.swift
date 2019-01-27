@@ -56,7 +56,7 @@ final class TouchBarWindow: NSPanel {
 			makeTransparencySlider(toolbarView)
 		)
 	}
-	
+
 	func removeTitlebar() {
 		styleMask.remove(.titled)
 	}

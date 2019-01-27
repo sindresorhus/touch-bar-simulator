@@ -64,7 +64,7 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem(title: "Transparency", action: nil, keyEquivalent: ""))
 		let transparencyItem = NSMenuItem.menuItem("Transparency") { _ in }
-		let transparencyView = NSView(frame: CGRect(origin: .zero, size: CGSize(width: 180, height: 20)))
+		let transparencyView = NSView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 20)))
 		let slider = ToolbarSlider()
 		slider.frame = CGRect(x: 20, y: 4, width: 180, height: 11)
 		slider.onAction = { sender in
@@ -74,8 +74,8 @@ extension AppDelegate: NSMenuDelegate {
 		slider.doubleValue = defaults[.windowTransparency]
 		transparencyView.addSubview(slider)
 		slider.translatesAutoresizingMaskIntoConstraints = false
-		slider.leadingAnchor.constraint(equalTo: transparencyView.leadingAnchor, constant: 40).isActive = true
-		slider.trailingAnchor.constraint(equalTo: transparencyView.trailingAnchor, constant: -20).isActive = true
+		slider.leadingAnchor.constraint(equalTo: transparencyView.leadingAnchor, constant: 33).isActive = true
+		slider.trailingAnchor.constraint(equalTo: transparencyView.trailingAnchor, constant: -18).isActive = true
 		slider.centerYAnchor.constraint(equalTo: transparencyView.centerYAnchor).isActive = true
 		transparencyItem.view = transparencyView
 		menu.addItem(transparencyItem)
