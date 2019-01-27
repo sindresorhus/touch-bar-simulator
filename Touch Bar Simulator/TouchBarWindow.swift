@@ -6,28 +6,32 @@ private let windowTitle = "Touch Bar Simulator"
 final class TouchBarWindow: NSPanel {
 	enum Docking: String, Codable {
 		case floating, dockedToTop, dockedToBottom
+
+		func dock(window: TouchBarWindow) {
+			switch self {
+			case .floating:
+				window.styleMask.insert(.titled)
+				window.becameTitled()
+				if let prevPosition = defaults[.lastFloatingPosition] {
+					window.setFrameOrigin(prevPosition)
+				}
+			case .dockedToTop:
+				window.styleMask.remove(.titled)
+				window.moveTo(x: .center, y: .top)
+			case .dockedToBottom:
+				window.styleMask.remove(.titled)
+				window.moveTo(x: .center, y: .bottom)
+			}
+		}
 	}
 
-	var docking: Docking! {
+	var docking: Docking? {
 		didSet {
 			if oldValue == .floating && docking != .floating {
 				defaults[.lastFloatingPosition] = frame.origin
 			}
 
-			switch docking! {
-			case .floating:
-				styleMask.insert(.titled)
-				becameTitled()
-				if let prevPos = defaults[.lastFloatingPosition] {
-					setFrameOrigin(prevPos)
-				}
-			case .dockedToTop:
-				styleMask.remove(.titled)
-				moveTo(x: .center, y: .top)
-			case .dockedToBottom:
-				styleMask.remove(.titled)
-				moveTo(x: .center, y: .bottom)
-			}
+			docking?.dock(window: self)
 
 			setIsVisible(true)
 			orderFront(nil)
