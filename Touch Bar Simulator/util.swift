@@ -170,11 +170,12 @@ extension TargetActionSender {
 }
 
 extension NSApplication {
-	func leftMouseIsDown() -> Bool {
+	var isLeftMouseDown: Bool {
 		return currentEvent?.type == .leftMouseDown
 	}
-	func optionKeyIsDown() -> Bool {
-		return currentEvent?.modifierFlags.contains(.option) ?? false
+
+	var isOptionKeyDown: Bool {
+		return NSEvent.modifierFlags.contains(.option)
 	}
 }
 
