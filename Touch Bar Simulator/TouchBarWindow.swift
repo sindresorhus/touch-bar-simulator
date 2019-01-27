@@ -95,6 +95,8 @@ final class TouchBarWindow: NSPanel {
 		return false
 	}
 
+	private var defaultsObservations: [DefaultsObservation] = []
+
 	func setUp() {
 		let view = self.contentView!
 		view.wantsLayer = true
@@ -105,7 +107,15 @@ final class TouchBarWindow: NSPanel {
 		touchBarView.frame = touchBarView.frame.centered(in: view.bounds)
 		view.addSubview(touchBarView)
 
-		self.addTitlebar()
+		defaultsObservations.append(defaults.observe(.windowTransparency) { change in
+			self.alphaValue = CGFloat(change.newValue)
+		})
+		defaultsObservations.append(defaults.observe(.windowDocking) { change in
+			self.docking = change.newValue
+		})
+		defaultsObservations.append(defaults.observe(.showOnAllDesktops) { change in
+			self.showOnAllDesktops = change.newValue
+		})
 
 		self.center()
 		self.setFrameOrigin(CGPoint(x: self.frame.origin.x, y: 100))
@@ -116,7 +126,11 @@ final class TouchBarWindow: NSPanel {
 		self.orderFront(nil)
 	}
 
-	private var defaultsObservations: [DefaultsObservation] = []
+	deinit {
+		for observation in defaultsObservations {
+			observation.invalidate()
+		}
+	}
 
 	convenience init() {
 		self.init(
@@ -137,21 +151,5 @@ final class TouchBarWindow: NSPanel {
 		self.worksWhenModal = true
 		self.acceptsMouseMovedEvents = true
 		self.isMovableByWindowBackground = false
-
-		defaultsObservations.append(defaults.observe(.windowTransparency) { change in
-			self.alphaValue = CGFloat(change.newValue)
-		})
-		defaultsObservations.append(defaults.observe(.windowDocking) { change in
-			self.docking = change.newValue
-		})
-		defaultsObservations.append(defaults.observe(.showOnAllDesktops) { change in
-			self.showOnAllDesktops = change.newValue
-		})
-	}
-
-	deinit {
-		for observation in defaultsObservations {
-			observation.invalidate()
-		}
 	}
 }
