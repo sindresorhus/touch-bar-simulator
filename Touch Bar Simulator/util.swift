@@ -54,7 +54,9 @@ extension NSWindow {
 	}
 
 	func moveTo(x xPositioning: MoveXPositioning, y yPositioning: MoveYPositioning) {
-		let visibleFrame = NSScreen.main!.visibleFrame
+		guard let visibleFrame = NSScreen.main?.visibleFrame else {
+			return
+		}
 
 		let x: CGFloat, y: CGFloat
 		switch xPositioning {
