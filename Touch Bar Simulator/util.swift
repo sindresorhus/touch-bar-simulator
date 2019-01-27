@@ -145,11 +145,17 @@ extension TargetActionSender {
 	}
 	```
 	*/
-	var onAction: (Self) -> Void {
+	var onAction: ((Self) -> Void)? {
 		get {
-			return (TargetActionSenderAssociatedKeys.trampoline[self] as! ActionTrampoline<Self>).action
+			return (TargetActionSenderAssociatedKeys.trampoline[self] as? ActionTrampoline<Self>)?.action
 		}
 		set {
+			guard let newValue = newValue else {
+				self.target = nil
+				self.action = nil
+				TargetActionSenderAssociatedKeys.trampoline[self] = nil
+				return
+			}
 			if let trampoline = TargetActionSenderAssociatedKeys.trampoline[self] {
 				self.target = trampoline
 				self.action = #selector(ActionTrampoline<Self>.performAction)
