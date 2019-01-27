@@ -23,6 +23,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		NSApp.servicesProvider = self
 		_ = SUUpdater()
+		_ = window
 		_ = statusItem
 	}
 
@@ -94,7 +95,7 @@ extension AppDelegate: NSMenuDelegate {
 	}
 
 	private func statusItemShouldShowMenu() -> Bool {
-		return !NSApp.leftMouseIsDown() || NSApp.optionKeyIsDown()
+		return !NSApp.isLeftMouseDown || NSApp.isOptionKeyDown
 	}
 
 	func menuNeedsUpdate(_ menu: NSMenu) {
