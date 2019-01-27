@@ -45,7 +45,9 @@ extension NSWindow {
 	var toolbarView: NSView? {
 		return standardWindowButton(.closeButton)?.superview
 	}
+}
 
+extension NSWindow {
 	enum MoveXPositioning {
 		case left, center, right
 	}
@@ -130,18 +132,19 @@ private final class ActionTrampoline<Sender>: NSObject {
 	}
 
 	@objc
-	func performAction(_ sender: TargetActionSender) {
+	fileprivate func performAction(_ sender: TargetActionSender) {
 		action(sender as! Sender)
-	}
+    }
 }
 
-struct TargetActionSenderAssociatedKeys {
+private struct TargetActionSenderAssociatedKeys {
 	fileprivate static let trampoline = AssociatedObject<AnyObject>()
 }
 
 extension TargetActionSender {
 	/**
 	Closure version of `.action`
+
 	```
 	let menuItem = NSMenuItem(title: "Unicorn")
 	menuItem.onAction = { sender in
@@ -160,13 +163,10 @@ extension TargetActionSender {
 				TargetActionSenderAssociatedKeys.trampoline[self] = nil
 				return
 			}
-			if let trampoline = TargetActionSenderAssociatedKeys.trampoline[self] {
-				self.target = trampoline
-				self.action = #selector(ActionTrampoline<Self>.performAction)
-			} else {
-				TargetActionSenderAssociatedKeys.trampoline[self] = ActionTrampoline(action: newValue)
-				self.onAction = newValue
-			}
+			let trampoline = ActionTrampoline(action: newValue)
+			TargetActionSenderAssociatedKeys.trampoline[self] = trampoline
+			self.target = trampoline
+			self.action = #selector(ActionTrampoline<Self>.performAction)
 		}
 	}
 }
