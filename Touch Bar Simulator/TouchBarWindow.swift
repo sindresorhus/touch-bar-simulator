@@ -1,8 +1,6 @@
 import Cocoa
 import Defaults
 
-private let windowTitle = "Touch Bar Simulator"
-
 final class TouchBarWindow: NSPanel {
 	enum Docking: String, Codable {
 		case floating, dockedToTop, dockedToBottom
@@ -10,16 +8,15 @@ final class TouchBarWindow: NSPanel {
 		func dock(window: TouchBarWindow) {
 			switch self {
 			case .floating:
-				window.styleMask.insert(.titled)
-				window.becameTitled()
+				window.addTitlebar()
 				if let prevPosition = defaults[.lastFloatingPosition] {
 					window.setFrameOrigin(prevPosition)
 				}
 			case .dockedToTop:
-				window.styleMask.remove(.titled)
+				window.removeTitlebar()
 				window.moveTo(x: .center, y: .top)
 			case .dockedToBottom:
-				window.styleMask.remove(.titled)
+				window.removeTitlebar()
 				window.moveTo(x: .center, y: .bottom)
 			}
 		}
@@ -48,8 +45,9 @@ final class TouchBarWindow: NSPanel {
 		}
 	}
 
-	func becameTitled() {
-		title = windowTitle
+	func addTitlebar() {
+		styleMask.insert(.titled)
+		title = "Touch Bar Simulator"
 		guard let toolbarView = self.toolbarView else {
 			return
 		}
@@ -57,6 +55,10 @@ final class TouchBarWindow: NSPanel {
 			makeScreenshotButton(toolbarView),
 			makeTransparencySlider(toolbarView)
 		)
+	}
+	
+	func removeTitlebar() {
+		styleMask.remove(.titled)
 	}
 
 	func makeScreenshotButton(_ toolbarView: NSView) -> NSButton {
@@ -108,6 +110,8 @@ final class TouchBarWindow: NSPanel {
 		self.setContentSize(touchBarView.bounds.adding(padding: 5).size)
 		touchBarView.frame = touchBarView.frame.centered(in: view.bounds)
 		view.addSubview(touchBarView)
+
+		self.addTitlebar()
 
 		self.center()
 		self.setFrameOrigin(CGPoint(x: self.frame.origin.x, y: 100))
