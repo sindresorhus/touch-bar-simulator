@@ -141,11 +141,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3FE2CCC1E726CE800C6713A /* Build configuration list for PBXNativeTarget "Touch Bar Simulator" */;
 			buildPhases = (
+				E3679C9A215A1ECA0080270F /* SwiftLint */,
 				E3FE2CBB1E726CE800C6713A /* Sources */,
 				E3FE2CBC1E726CE800C6713A /* Frameworks */,
 				E3FE2CBD1E726CE800C6713A /* Resources */,
 				E3FA3A901E784C5F00A7F2EA /* Embed Frameworks */,
-				E3679C9A215A1ECA0080270F /* SwiftLint */,
 			);
 			buildRules = (
 			);
