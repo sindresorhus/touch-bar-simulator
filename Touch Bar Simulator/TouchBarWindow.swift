@@ -72,25 +72,19 @@ final class TouchBarWindow: NSPanel {
 		return button
 	}
 
-	private var transparencySliders: [ToolbarSlider] = []
+	private var transparencySlider: ToolbarSlider?
 
 	func makeTransparencySlider(_ parentView: NSView) -> ToolbarSlider {
 		let slider = ToolbarSlider()
 		slider.frame = CGRect(x: parentView.frame.width - 150, y: 4, width: 120, height: 11)
-		slider.action = #selector(setTransparency)
-		slider.minValue = 0.5
-		slider.doubleValue = defaults[.windowTransparency]
-		transparencySliders.append(slider)
-		return slider
-	}
-
-	@objc
-	func setTransparency(sender: ToolbarSlider) {
-		self.alphaValue = CGFloat(sender.doubleValue)
-		defaults[.windowTransparency] = sender.doubleValue
-		for slider in transparencySliders where slider !== sender {
-			slider.doubleValue = sender.doubleValue
+		slider.onAction = { sender in
+			defaults[.windowTransparency] = sender.doubleValue
 		}
+		slider.minValue = 0.5
+		defaultsObservations.append(defaults.observe(.windowTransparency) { change in
+			slider.doubleValue = change.newValue
+		})
+		return slider
 	}
 
 	override var canBecomeMain: Bool {
@@ -138,13 +132,15 @@ final class TouchBarWindow: NSPanel {
 		)
 
 		self._setPreventsActivation(true)
-		self.title = windowTitle
 		self.isRestorable = true
 		self.hidesOnDeactivate = false
 		self.worksWhenModal = true
 		self.acceptsMouseMovedEvents = true
 		self.isMovableByWindowBackground = false
 
+		defaultsObservations.append(defaults.observe(.windowTransparency) { change in
+			self.alphaValue = CGFloat(change.newValue)
+		})
 		defaultsObservations.append(defaults.observe(.windowDocking) { change in
 			self.docking = change.newValue
 		})

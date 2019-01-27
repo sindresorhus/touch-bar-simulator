@@ -6,9 +6,7 @@ extension NSMenuItem {
 		let action = self.onAction
 		self.onAction = { sender in
 			defaults[key] = !defaults[key]
-			if let action = action {
-				action(sender)
-			}
+			action?(sender)
 		}
 		self.state = defaults[key] ? .on : .off
 		return self
@@ -18,9 +16,7 @@ extension NSMenuItem {
 		let action = self.onAction
 		self.onAction = { sender in
 			defaults[key] = value
-			if let action = action {
-				action(sender)
-			}
+			action?(sender)
 		}
 		self.state = defaults[key] == value ? .on : .off
 		return self
