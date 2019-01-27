@@ -85,13 +85,15 @@ extension NSView {
 }
 
 extension NSMenuItem {
-	static func menuItem(_ title: String, keyEquivalent: String = "", keyModifiers: NSEvent.ModifierFlags? = nil, isOn: Bool = false, action: @escaping (NSMenuItem) -> Void) -> NSMenuItem {
+	static func menuItem(_ title: String, keyEquivalent: String = "", keyModifiers: NSEvent.ModifierFlags? = nil, isOn: Bool = false, action: ((NSMenuItem) -> Void)? = nil) -> NSMenuItem {
 		let item = NSMenuItem(title: title, action: nil, keyEquivalent: keyEquivalent)
 		if let keyModifiers = keyModifiers {
 			item.keyEquivalentModifierMask = keyModifiers
 		}
 		item.state = isOn ? .on : .off
-		item.onAction = action
+		if let action = action {
+			item.onAction = action
+		}
 		return item
 	}
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C37035421FBEBD300177657 /* Defaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C37035321FBEBD300177657 /* Defaults.framework */; };
 		3C37035521FBEBD300177657 /* Defaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C37035321FBEBD300177657 /* Defaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C8493AD21FD3B7F00F12966 /* Glue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8493AC21FD3B7F00F12966 /* Glue.swift */; };
 		AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */; };
 		E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; };
 		E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		3C37035321FBEBD300177657 /* Defaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Defaults.framework; path = Carthage/Build/Mac/Defaults.framework; sourceTree = "<group>"; };
+		3C8493AC21FD3B7F00F12966 /* Glue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glue.swift; sourceTree = "<group>"; };
 		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarSlider.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E30988DE1E88DD060078CA9E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E34D6548214BBDAE00786C24 /* Touch Bar Simulator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Touch Bar Simulator.entitlements"; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				E35579EA21595EDC001CB642 /* TouchBarWindow.swift */,
 				E39A158D214D0C4F00F86D5D /* TouchBarView.swift */,
 				AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */,
+				3C8493AC21FD3B7F00F12966 /* Glue.swift */,
 				E3930B0F216625BE00F66410 /* Constants.swift */,
 				E35831A31F4D7EE0003BE371 /* util.swift */,
 				E3FE2CC41E726CE800C6713A /* Assets.xcassets */,
@@ -233,6 +236,7 @@
 			files = (
 				E35831A41F4D7EE0003BE371 /* util.swift in Sources */,
 				AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */,
+				3C8493AD21FD3B7F00F12966 /* Glue.swift in Sources */,
 				E356A16321028D81000148AD /* main.swift in Sources */,
 				E35579EB21595EDC001CB642 /* TouchBarWindow.swift in Sources */,
 				E3930B10216625BE00F66410 /* Constants.swift in Sources */,

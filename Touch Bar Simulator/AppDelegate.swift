@@ -24,9 +24,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		NSApp.servicesProvider = self
 		_ = SUUpdater()
 		_ = statusItem
-
-		docking = defaults[.windowDocking]
-		showOnAllDesktops = defaults[.showOnAllDesktops]
 	}
 
 	@objc
@@ -44,20 +41,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		window.setIsVisible(!window.isVisible)
 	}
 
-	var docking: TouchBarWindow.Docking = .floating {
-		didSet {
-			defaults[.windowDocking] = docking
-			window.docking = docking
-		}
-	}
-
-	var showOnAllDesktops: Bool = false {
-		didSet {
-			defaults[.showOnAllDesktops] = showOnAllDesktops
-			window.showOnAllDesktops = showOnAllDesktops
-		}
-	}
-
 }
 
 extension AppDelegate: NSMenuDelegate {
@@ -70,15 +53,9 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""))
 		var statusMenuDockingItems: [NSMenuItem] = []
-		statusMenuDockingItems.append(NSMenuItem.menuItem("Floating", isOn: docking == .floating) { _ in
-			self.docking = .floating
-		})
-		statusMenuDockingItems.append(NSMenuItem.menuItem("Docked to Top", isOn: docking == .dockedToTop) { _ in
-			self.docking = .dockedToTop
-		})
-		statusMenuDockingItems.append(NSMenuItem.menuItem("Docked to Bottom", isOn: docking == .dockedToBottom) { _ in
-			self.docking = .dockedToBottom
-		})
+		statusMenuDockingItems.append(NSMenuItem.menuItem("Floating").bindActivation(to: .windowDocking, value: .floating))
+		statusMenuDockingItems.append(NSMenuItem.menuItem("Docked to Top").bindActivation(to: .windowDocking, value: .dockedToTop))
+		statusMenuDockingItems.append(NSMenuItem.menuItem("Docked to Bottom").bindActivation(to: .windowDocking, value: .dockedToBottom))
 		for item in statusMenuDockingItems {
 			item.indentationLevel = 1
 		}
@@ -107,10 +84,7 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem.separator())
 
-		let showOnAllDesktopsItem = NSMenuItem.menuItem("Show on All Desktops", isOn: defaults[.showOnAllDesktops]) { _ in
-			self.showOnAllDesktops = !self.showOnAllDesktops
-		}
-		menu.addItem(showOnAllDesktopsItem)
+		menu.addItem(NSMenuItem.menuItem("Show on All Desktops").bindToggle(to: .showOnAllDesktops))
 
 		menu.addItem(NSMenuItem.separator())
 

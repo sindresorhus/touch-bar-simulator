@@ -34,6 +34,16 @@ final class TouchBarWindow: NSPanel {
 		}
 	}
 
+	var showOnAllDesktops: Bool = false {
+		didSet {
+			if showOnAllDesktops {
+				collectionBehavior = .canJoinAllSpaces
+			} else {
+				collectionBehavior = .moveToActiveSpace
+			}
+		}
+	}
+
 	func becameTitled() {
 		title = windowTitle
 		guard let toolbarView = self.toolbarView else {
@@ -74,16 +84,6 @@ final class TouchBarWindow: NSPanel {
 		defaults[.windowTransparency] = sender.doubleValue
 		for slider in transparencySliders where slider !== sender {
 			slider.doubleValue = sender.doubleValue
-		}
-	}
-
-	var showOnAllDesktops: Bool = false {
-		didSet {
-			if showOnAllDesktops {
-				collectionBehavior = .canJoinAllSpaces
-			} else {
-				collectionBehavior = .moveToActiveSpace
-			}
 		}
 	}
 
@@ -136,5 +136,18 @@ final class TouchBarWindow: NSPanel {
 		self.worksWhenModal = true
 		self.acceptsMouseMovedEvents = true
 		self.isMovableByWindowBackground = false
+
+		defaultsObservations.append(defaults.observe(.windowDocking) { change in
+			self.docking = change.newValue
+		})
+		defaultsObservations.append(defaults.observe(.showOnAllDesktops) { change in
+			self.showOnAllDesktops = change.newValue
+		})
+	}
+
+	deinit {
+		for observation in defaultsObservations {
+			observation.invalidate()
+		}
 	}
 }
