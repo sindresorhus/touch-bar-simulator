@@ -41,7 +41,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	func toggleView() {
 		window.setIsVisible(!window.isVisible)
 	}
-
 }
 
 extension AppDelegate: NSMenuDelegate {
@@ -54,16 +53,16 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""))
 		var statusMenuDockingItems: [NSMenuItem] = []
-		statusMenuDockingItems.append(NSMenuItem.menuItem("Floating").bindActivation(to: .windowDocking, value: .floating))
-		statusMenuDockingItems.append(NSMenuItem.menuItem("Docked to Top").bindActivation(to: .windowDocking, value: .dockedToTop))
-		statusMenuDockingItems.append(NSMenuItem.menuItem("Docked to Bottom").bindActivation(to: .windowDocking, value: .dockedToBottom))
+		statusMenuDockingItems.append(NSMenuItem("Floating").bindActivation(to: .windowDocking, value: .floating))
+		statusMenuDockingItems.append(NSMenuItem("Docked to Top").bindActivation(to: .windowDocking, value: .dockedToTop))
+		statusMenuDockingItems.append(NSMenuItem("Docked to Bottom").bindActivation(to: .windowDocking, value: .dockedToBottom))
 		for item in statusMenuDockingItems {
 			item.indentationLevel = 1
 		}
 		menu.items.append(contentsOf: statusMenuDockingItems)
 
 		menu.addItem(NSMenuItem(title: "Transparency", action: nil, keyEquivalent: ""))
-		let transparencyItem = NSMenuItem.menuItem("Transparency") { _ in }
+		let transparencyItem = NSMenuItem("Transparency")
 		let transparencyView = NSView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 20)))
 		let slider = MenubarSlider()
 		slider.frame = CGRect(x: 20, y: 4, width: 180, height: 11)
@@ -82,17 +81,17 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem.separator())
 
-		menu.addItem(NSMenuItem.menuItem("Take Screenshot", keyEquivalent: "6", keyModifiers: [.shift, .command]) { _ in
+		menu.addItem(NSMenuItem("Take Screenshot", keyEquivalent: "6", keyModifiers: [.shift, .command]) { _ in
 			self.captureScreenshot()
 		})
 
 		menu.addItem(NSMenuItem.separator())
 
-		menu.addItem(NSMenuItem.menuItem("Show on All Desktops").bindToggle(to: .showOnAllDesktops))
+		menu.addItem(NSMenuItem("Show on All Desktops").bindToggle(to: .showOnAllDesktops))
 
 		menu.addItem(NSMenuItem.separator())
 
-		menu.addItem(NSMenuItem.menuItem("Quit Touch Bar Simulator", keyEquivalent: "q") { _ in
+		menu.addItem(NSMenuItem("Quit Touch Bar Simulator", keyEquivalent: "q") { _ in
 			NSApp.terminate(nil)
 		})
 	}

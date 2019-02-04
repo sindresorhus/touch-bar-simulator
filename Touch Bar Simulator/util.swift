@@ -89,16 +89,26 @@ extension NSView {
 }
 
 extension NSMenuItem {
-	static func menuItem(_ title: String, keyEquivalent: String = "", keyModifiers: NSEvent.ModifierFlags? = nil, isOn: Bool = false, action: ((NSMenuItem) -> Void)? = nil) -> NSMenuItem {
-		let item = NSMenuItem(title: title, action: nil, keyEquivalent: keyEquivalent)
+	var isChecked: Bool {
+		get {
+			return state == .on
+		}
+		set {
+			state = newValue ? .on : .off
+		}
+	}
+}
+
+extension NSMenuItem {
+	convenience init(_ title: String, keyEquivalent: String = "", keyModifiers: NSEvent.ModifierFlags? = nil, isChecked: Bool = false, action: ((NSMenuItem) -> Void)? = nil) {
+		self.init(title: title, action: nil, keyEquivalent: keyEquivalent)
 		if let keyModifiers = keyModifiers {
-			item.keyEquivalentModifierMask = keyModifiers
+			self.keyEquivalentModifierMask = keyModifiers
 		}
-		item.state = isOn ? .on : .off
+		self.isChecked = isChecked
 		if let action = action {
-			item.onAction = action
+			self.onAction = action
 		}
-		return item
 	}
 }
 
