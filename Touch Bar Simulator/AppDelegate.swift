@@ -53,9 +53,9 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""))
 		var statusMenuDockingItems: [NSMenuItem] = []
-		statusMenuDockingItems.append(NSMenuItem("Floating").bindActivation(to: .windowDocking, value: .floating))
-		statusMenuDockingItems.append(NSMenuItem("Docked to Top").bindActivation(to: .windowDocking, value: .dockedToTop))
-		statusMenuDockingItems.append(NSMenuItem("Docked to Bottom").bindActivation(to: .windowDocking, value: .dockedToBottom))
+		statusMenuDockingItems.append(NSMenuItem("Floating").bindChoice(to: .windowDocking, value: .floating))
+		statusMenuDockingItems.append(NSMenuItem("Docked to Top").bindChoice(to: .windowDocking, value: .dockedToTop))
+		statusMenuDockingItems.append(NSMenuItem("Docked to Bottom").bindChoice(to: .windowDocking, value: .dockedToBottom))
 		for item in statusMenuDockingItems {
 			item.indentationLevel = 1
 		}
