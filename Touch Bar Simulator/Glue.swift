@@ -8,14 +8,14 @@ extension NSMenuItem {
 	`key`.
 	
 	```
-	let menuItem = NSMenuItem(title: "Invert Colors").bindToggle(to: .invertColors)
+	let menuItem = NSMenuItem(title: "Invert Colors").streamState(to: .invertColors)
 	```
 	*/
-	func bindToggle(to key: Defaults.Key<Bool>) -> NSMenuItem {
+	func streamState(to key: Defaults.Key<Bool>) -> Self {
 		let action = self.onAction
 		self.onAction = { sender in
-			defaults[key].toggle()
 			action?(sender)
+			defaults[key].toggle()
 		}
 		self.isChecked = defaults[key]
 		return self
@@ -30,14 +30,14 @@ extension NSMenuItem {
 	enum BillingType {
 		case paper, electronic, duck
 	}
-	let menuItem = NSMenuItem(title: "Duck").bindChoice(to: .billingType, value: .duck)
+	let menuItem = NSMenuItem(title: "Duck").streamChoice(to: .billingType, value: .duck)
 	```
 	*/
-	func bindChoice<Value: Equatable>(to key: Defaults.Key<Value>, value: Value) -> NSMenuItem {
+	func streamChoice<Value: Equatable>(to key: Defaults.Key<Value>, value: Value) -> Self {
 		let action = self.onAction
 		self.onAction = { sender in
-			defaults[key] = value
 			action?(sender)
+			defaults[key] = value
 		}
 		self.isChecked = (defaults[key] == value)
 		return self
