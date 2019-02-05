@@ -75,11 +75,8 @@ final class TouchBarWindow: NSPanel {
 	private var transparencySlider: ToolbarSlider?
 
 	func makeTransparencySlider(_ parentView: NSView) -> ToolbarSlider {
-		let slider = ToolbarSlider()
+		let slider = ToolbarSlider().streamDoubleValue(to: .windowTransparency)
 		slider.frame = CGRect(x: parentView.frame.width - 150, y: 4, width: 120, height: 11)
-		slider.onAction = { sender in
-			defaults[.windowTransparency] = sender.doubleValue
-		}
 		slider.minValue = 0.5
 		defaultsObservations.append(defaults.observe(.windowTransparency) { change in
 			slider.doubleValue = change.newValue

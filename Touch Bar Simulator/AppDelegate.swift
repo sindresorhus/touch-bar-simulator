@@ -65,12 +65,19 @@ extension AppDelegate: NSMenuDelegate {
 		let transparencyItem = NSMenuItem("Transparency")
 		let transparencyView = NSView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 20)))
 		let slider = MenubarSlider()
-		slider.frame = CGRect(x: 20, y: 4, width: 180, height: 11)
 		slider.onAction = { sender in
-			defaults[.windowTransparency] = sender.doubleValue
+			// Redisplaying the slider prevents shadow artifacts that result
+			// from moving a knob that draws a shadow
+			// However, only do so if its value has changed, because if a
+			// redisplay is attempted without a change, then the slider draws
+			// itself brighter for some reason
+			if (defaults[.windowTransparency] - sender.doubleValue) != 0 {
+				sender.needsDisplay = true
+			}
 		}
+		_ = slider.streamDoubleValue(to: .windowTransparency)
+		slider.frame = CGRect(x: 20, y: 4, width: 180, height: 11)
 		slider.minValue = 0.5
-		slider.doubleValue = defaults[.windowTransparency]
 		transparencyView.addSubview(slider)
 		slider.translatesAutoresizingMaskIntoConstraints = false
 		slider.leadingAnchor.constraint(equalTo: transparencyView.leadingAnchor, constant: 33).isActive = true
