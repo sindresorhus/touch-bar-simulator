@@ -1,4 +1,5 @@
 import Cocoa
+import Defaults
 
 private final class ToolbarSliderCell: NSSliderCell {
 	var fillColor: NSColor
@@ -29,19 +30,44 @@ private final class ToolbarSliderCell: NSSliderCell {
 		self.fillColor.set()
 		path.fill()
 
+		// Border should not draw a shadow
+		NSShadow().set()
+
 		// Border
 		self.borderColor.set()
-		path.lineWidth = 2
+		path.lineWidth = 0.8
 		path.stroke()
 
 		NSGraphicsContext.restoreGraphicsState()
 	}
 }
 
+extension NSSlider {
+	// Redisplaying the slider prevents shadow artifacts that result
+	// from moving a knob that draws a shadow
+	// However, only do so if its value has changed, because if a
+	// redisplay is attempted without a change, then the slider draws
+	// itself brighter for some reason
+	func alwaysRedisplayOnValueChanged() -> Self {
+		self.addAction { sender in
+			if (defaults[.windowTransparency] - sender.doubleValue) != 0 {
+				sender.needsDisplay = true
+			}
+		}
+		return self
+	}
+}
+
 final class ToolbarSlider: NSSlider {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		self.cell = ToolbarSliderCell(fillColor: .lightGray, borderColor: .black)
+
+		let knobShadow = NSShadow()
+		knobShadow.shadowColor = NSColor.black.withAlphaComponent(0.7)
+		knobShadow.shadowOffset = CGSize(width: 0.8, height: -0.8)
+		knobShadow.shadowBlurRadius = 5
+
+		self.cell = ToolbarSliderCell(fillColor: NSColor.lightGray, borderColor: .black, shadow: knobShadow)
 	}
 
 	@available(*, unavailable)
@@ -54,15 +80,12 @@ final class MenubarSlider: NSSlider {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
-		let accentColor = NSColor.controlAccentColor.withAlphaComponent(1.0)
-		let dimmedAccentColor = accentColor.blended(withFraction: 0.35, of: .black) ?? accentColor
-
 		let knobShadow = NSShadow()
 		knobShadow.shadowColor = NSColor.black.withAlphaComponent(0.6)
 		knobShadow.shadowOffset = CGSize(width: 0.8, height: -0.8)
 		knobShadow.shadowBlurRadius = 4
 
-		self.cell = ToolbarSliderCell(fillColor: dimmedAccentColor, borderColor: .clear, shadow: knobShadow)
+		self.cell = ToolbarSliderCell(fillColor: .controlTextColor, borderColor: .clear, shadow: knobShadow)
 	}
 
 	@available(*, unavailable)
