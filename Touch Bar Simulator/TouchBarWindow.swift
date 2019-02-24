@@ -79,7 +79,7 @@ final class TouchBarWindow: NSPanel {
 		defaultsObservations.append(defaults.observe(.windowTransparency) { change in
 			slider.doubleValue = change.newValue
 		})
-		slider.frame = CGRect(x: parentView.frame.width - 150, y: 4, width: 120, height: 11)
+		slider.frame = CGRect(x: parentView.frame.width - 160, y: 4, width: 140, height: 11)
 		slider.minValue = 0.5
 		return slider
 	}

@@ -69,8 +69,8 @@ extension AppDelegate: NSMenuDelegate {
 		slider.minValue = 0.5
 		transparencyView.addSubview(slider)
 		slider.translatesAutoresizingMaskIntoConstraints = false
-		slider.leadingAnchor.constraint(equalTo: transparencyView.leadingAnchor, constant: 33).isActive = true
-		slider.trailingAnchor.constraint(equalTo: transparencyView.trailingAnchor, constant: -18).isActive = true
+		slider.leadingAnchor.constraint(equalTo: transparencyView.leadingAnchor, constant: 24).isActive = true
+		slider.trailingAnchor.constraint(equalTo: transparencyView.trailingAnchor, constant: -9).isActive = true
 		slider.centerYAnchor.constraint(equalTo: transparencyView.centerYAnchor).isActive = true
 		transparencyItem.view = transparencyView
 		menu.addItem(transparencyItem)
