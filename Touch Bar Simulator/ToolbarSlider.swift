@@ -86,7 +86,7 @@ final class ToolbarSlider: NSSlider {
 		knobShadow.shadowOffset = CGSize(width: 0.8, height: -0.8)
 		knobShadow.shadowBlurRadius = 5
 
-		self.cell = ToolbarSliderCell(fillColor: NSColor.lightGray, borderColor: .black, shadow: knobShadow)
+		self.cell = ToolbarSliderCell(fillColor: .lightGray, borderColor: .black, shadow: knobShadow)
 	}
 
 	@available(*, unavailable)
