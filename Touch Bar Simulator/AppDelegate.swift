@@ -53,9 +53,9 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""))
 		var statusMenuDockingItems: [NSMenuItem] = []
-		statusMenuDockingItems.append(NSMenuItem("Floating").streamChoice(to: .windowDocking, value: .floating))
-		statusMenuDockingItems.append(NSMenuItem("Docked to Top").streamChoice(to: .windowDocking, value: .dockedToTop))
-		statusMenuDockingItems.append(NSMenuItem("Docked to Bottom").streamChoice(to: .windowDocking, value: .dockedToBottom))
+		statusMenuDockingItems.append(NSMenuItem("Floating").bindChecked(to: .windowDocking, value: .floating))
+		statusMenuDockingItems.append(NSMenuItem("Docked to Top").bindChecked(to: .windowDocking, value: .dockedToTop))
+		statusMenuDockingItems.append(NSMenuItem("Docked to Bottom").bindChecked(to: .windowDocking, value: .dockedToBottom))
 		for item in statusMenuDockingItems {
 			item.indentationLevel = 1
 		}
@@ -64,7 +64,7 @@ extension AppDelegate: NSMenuDelegate {
 		menu.addItem(NSMenuItem(title: "Transparency", action: nil, keyEquivalent: ""))
 		let transparencyItem = NSMenuItem("Transparency")
 		let transparencyView = NSView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 20)))
-		let slider = MenubarSlider().alwaysRedisplayOnValueChanged().streamDoubleValue(to: .windowTransparency)
+		let slider = MenubarSlider().alwaysRedisplayOnValueChanged().bindDoubleValue(to: .windowTransparency)
 		slider.frame = CGRect(x: 20, y: 4, width: 180, height: 11)
 		slider.minValue = 0.5
 		transparencyView.addSubview(slider)
@@ -83,7 +83,7 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem.separator())
 
-		menu.addItem(NSMenuItem("Show on All Desktops").streamState(to: .showOnAllDesktops))
+		menu.addItem(NSMenuItem("Show on All Desktops").bindState(to: .showOnAllDesktops))
 
 		menu.addItem(NSMenuItem.separator())
 
