@@ -12,9 +12,7 @@ extension NSMenuItem {
 	```
 	*/
 	func streamState(to key: Defaults.Key<Bool>) -> Self {
-		let action = self.onAction
-		self.onAction = { sender in
-			action?(sender)
+		self.addAction { _ in
 			defaults[key].toggle()
 		}
 		self.isChecked = defaults[key]
@@ -34,9 +32,7 @@ extension NSMenuItem {
 	```
 	*/
 	func streamChoice<Value: Equatable>(to key: Defaults.Key<Value>, value: Value) -> Self {
-		let action = self.onAction
-		self.onAction = { sender in
-			action?(sender)
+		self.addAction { _ in
 			defaults[key] = value
 		}
 		self.isChecked = (defaults[key] == value)
@@ -55,9 +51,7 @@ extension NSSlider {
 	```
 	*/
 	func streamDoubleValue(to key: Defaults.Key<Double>) -> Self {
-		let action = self.onAction
-		self.onAction = { sender in
-			action?(sender)
+		self.addAction { sender in
 			defaults[key] = sender.doubleValue
 		}
 		self.doubleValue = defaults[key]

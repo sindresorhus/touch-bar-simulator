@@ -179,6 +179,13 @@ extension TargetActionSender {
 			self.action = #selector(ActionTrampoline<Self>.performAction)
 		}
 	}
+	func addAction(_ action: @escaping ((Self) -> Void)) {
+		let lastAction = self.onAction
+		self.onAction = { sender in
+			lastAction?(sender)
+			action(sender)
+		}
+	}
 }
 
 extension NSApplication {
