@@ -47,9 +47,154 @@ extension NSWindow {
 	}
 }
 
+extension NSWindow {
+	enum MoveXPositioning {
+		case left, center, right
+	}
+	enum MoveYPositioning {
+		case top, center, bottom
+	}
+
+	func moveTo(x xPositioning: MoveXPositioning, y yPositioning: MoveYPositioning) {
+		guard let visibleFrame = NSScreen.main?.visibleFrame else {
+			return
+		}
+
+		let x: CGFloat, y: CGFloat
+		switch xPositioning {
+		case .left:
+			x = visibleFrame.minX
+		case .center:
+			x = visibleFrame.midX - frame.width / 2
+		case .right:
+			x = visibleFrame.maxX - frame.width
+		}
+		switch yPositioning {
+		case .top:
+			y = visibleFrame.maxY - frame.height
+		case .center:
+			y = visibleFrame.midY - frame.height / 2
+		case .bottom:
+			y = visibleFrame.minY
+		}
+
+		setFrameOrigin(CGPoint(x: x, y: y))
+	}
+}
+
 extension NSView {
 	func addSubviews(_ subviews: NSView...) {
 		subviews.forEach { addSubview($0) }
+	}
+}
+
+extension NSMenuItem {
+	var isChecked: Bool {
+		get {
+			return state == .on
+		}
+		set {
+			state = newValue ? .on : .off
+		}
+	}
+}
+
+extension NSMenuItem {
+	convenience init(_ title: String, keyEquivalent: String = "", keyModifiers: NSEvent.ModifierFlags? = nil, isChecked: Bool = false, action: ((NSMenuItem) -> Void)? = nil) {
+		self.init(title: title, action: nil, keyEquivalent: keyEquivalent)
+		if let keyModifiers = keyModifiers {
+			self.keyEquivalentModifierMask = keyModifiers
+		}
+		self.isChecked = isChecked
+		if let action = action {
+			self.onAction = action
+		}
+	}
+}
+
+final class AssociatedObject<T: Any> {
+	subscript(index: Any) -> T? {
+		get {
+			return objc_getAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque()) as! T?
+		} set {
+			objc_setAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque(), newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+		}
+	}
+}
+
+@objc
+protocol TargetActionSender: AnyObject {
+	var target: AnyObject? { get set }
+	var action: Selector? { get set }
+}
+
+extension NSControl: TargetActionSender {}
+extension NSMenuItem: TargetActionSender {}
+extension NSGestureRecognizer: TargetActionSender {}
+
+private final class ActionTrampoline<Sender>: NSObject {
+	typealias ActionClosure = ((Sender) -> Void)
+
+	let action: ActionClosure
+
+	init(action: @escaping ActionClosure) {
+		self.action = action
+	}
+
+	@objc
+	fileprivate func performAction(_ sender: TargetActionSender) {
+		action(sender as! Sender)
+    }
+}
+
+private struct TargetActionSenderAssociatedKeys {
+	fileprivate static let trampoline = AssociatedObject<AnyObject>()
+}
+
+extension TargetActionSender {
+	/**
+	Closure version of `.action`
+
+	```
+	let menuItem = NSMenuItem(title: "Unicorn")
+	menuItem.onAction = { sender in
+		print("NSMenuItem action: \(sender)")
+	}
+	```
+	*/
+	var onAction: ((Self) -> Void)? {
+		get {
+			return (TargetActionSenderAssociatedKeys.trampoline[self] as? ActionTrampoline<Self>)?.action
+		}
+		set {
+			guard let newValue = newValue else {
+				self.target = nil
+				self.action = nil
+				TargetActionSenderAssociatedKeys.trampoline[self] = nil
+				return
+			}
+			let trampoline = ActionTrampoline(action: newValue)
+			TargetActionSenderAssociatedKeys.trampoline[self] = trampoline
+			self.target = trampoline
+			self.action = #selector(ActionTrampoline<Self>.performAction)
+		}
+	}
+	func addAction(_ action: @escaping ((Self) -> Void)) {
+		let lastAction = self.onAction
+		self.onAction = { sender in
+			lastAction?(sender)
+			action(sender)
+		}
+	}
+}
+
+extension NSApplication {
+	var isLeftMouseDown: Bool {
+		return currentEvent?.type == .leftMouseDown
+	}
+
+	var isOptionKeyDown: Bool {
+		return NSEvent.modifierFlags.contains(.option)
 	}
 }
 

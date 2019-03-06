@@ -1,71 +1,30 @@
 import Cocoa
 import Sparkle
-
-private let defaults = UserDefaults.standard
+import Defaults
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	lazy var window = with(TouchBarWindow()) {
-		$0.delegate = self
-		$0.alphaValue = CGFloat(defaults.double(forKey: "windowTransparency"))
+		$0.alphaValue = CGFloat(defaults[.windowTransparency])
+		$0.setUp()
 	}
 
-	lazy var toolbarView: NSView = self.window.toolbarView!
+	lazy var statusItem = with(NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)) {
+		$0.menu = with(NSMenu()) { $0.delegate = self }
+		$0.button!.image = NSImage(named: "AppIcon") // TODO: Add proper icon
+		$0.button!.toolTip = "Right-click or option-click for menu"
+	}
 
 	func applicationWillFinishLaunching(_ notification: Notification) {
-		defaults.register(defaults: [
-			"NSApplicationCrashOnExceptions": true,
-			"windowTransparency": 0.75
+		UserDefaults.standard.register(defaults: [
+			"NSApplicationCrashOnExceptions": true
 		])
 	}
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		NSApp.servicesProvider = self
-
 		_ = SUUpdater()
-
-		let view = window.contentView!
-		view.wantsLayer = true
-		view.layer?.backgroundColor = NSColor.black.cgColor
-
-		let touchBarView = TouchBarView()
-		window.setContentSize(touchBarView.bounds.adding(padding: 5).size)
-		touchBarView.frame = touchBarView.frame.centered(in: view.bounds)
-		view.addSubview(touchBarView)
-
-		toolbarView.addSubviews(
-			makeScreenshotButton(),
-			makeTransparencySlider()
-		)
-
-		window.center()
-		var origin = window.frame.origin
-		origin.y = 100
-		window.setFrameOrigin(origin)
-
-		window.setFrameUsingName(Constants.windowAutosaveName)
-		window.setFrameAutosaveName(Constants.windowAutosaveName)
-
-		window.orderFront(nil)
-	}
-
-	func makeScreenshotButton() -> NSButton {
-		let button = NSButton()
-		button.image = #imageLiteral(resourceName: "ScreenshotButton")
-		button.imageScaling = .scaleProportionallyDown
-		button.isBordered = false
-		button.bezelStyle = .shadowlessSquare
-		button.frame = CGRect(x: toolbarView.frame.width - 19, y: 4, width: 16, height: 11)
-		button.action = #selector(captureScreenshot)
-		return button
-	}
-
-	func makeTransparencySlider() -> ToolbarSlider {
-		let slider = ToolbarSlider()
-		slider.frame = CGRect(x: toolbarView.frame.width - 150, y: 4, width: 120, height: 11)
-		slider.action = #selector(setTransparency)
-		slider.minValue = 0.5
-		slider.doubleValue = defaults.double(forKey: "windowTransparency")
-		return slider
+		_ = window
+		_ = statusItem
 	}
 
 	@objc
@@ -75,19 +34,80 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@objc
-	func setTransparency(sender: ToolbarSlider) {
-		window.alphaValue = CGFloat(sender.doubleValue)
-		defaults.set(sender.doubleValue, forKey: "windowTransparency")
+	func toggleView(_ pboard: NSPasteboard, userData: String, error: NSErrorPointer) {
+		toggleView()
 	}
 
-	@objc
-	func toggleView(_ pboard: NSPasteboard, userData: String, error: NSErrorPointer) {
+	func toggleView() {
 		window.setIsVisible(!window.isVisible)
 	}
 }
 
-extension AppDelegate: NSWindowDelegate {
-	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-		return true
+extension AppDelegate: NSMenuDelegate {
+	private func update(menu: NSMenu) {
+		menu.removeAllItems()
+
+		guard statusItemShouldShowMenu() else {
+			return
+		}
+
+		menu.addItem(NSMenuItem(title: "Docking", action: nil, keyEquivalent: ""))
+		var statusMenuDockingItems: [NSMenuItem] = []
+		statusMenuDockingItems.append(NSMenuItem("Floating").bindChecked(to: .windowDocking, value: .floating))
+		statusMenuDockingItems.append(NSMenuItem("Docked to Top").bindChecked(to: .windowDocking, value: .dockedToTop))
+		statusMenuDockingItems.append(NSMenuItem("Docked to Bottom").bindChecked(to: .windowDocking, value: .dockedToBottom))
+		for item in statusMenuDockingItems {
+			item.indentationLevel = 1
+		}
+		menu.items.append(contentsOf: statusMenuDockingItems)
+
+		menu.addItem(NSMenuItem(title: "Transparency", action: nil, keyEquivalent: ""))
+		let transparencyItem = NSMenuItem("Transparency")
+		let transparencyView = NSView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 20)))
+		let slider = MenubarSlider().alwaysRedisplayOnValueChanged().bindDoubleValue(to: .windowTransparency)
+		slider.frame = CGRect(x: 20, y: 4, width: 180, height: 11)
+		slider.minValue = 0.5
+		transparencyView.addSubview(slider)
+		slider.translatesAutoresizingMaskIntoConstraints = false
+		slider.leadingAnchor.constraint(equalTo: transparencyView.leadingAnchor, constant: 24).isActive = true
+		slider.trailingAnchor.constraint(equalTo: transparencyView.trailingAnchor, constant: -9).isActive = true
+		slider.centerYAnchor.constraint(equalTo: transparencyView.centerYAnchor).isActive = true
+		transparencyItem.view = transparencyView
+		menu.addItem(transparencyItem)
+
+		menu.addItem(NSMenuItem.separator())
+
+		menu.addItem(NSMenuItem("Take Screenshot", keyEquivalent: "6", keyModifiers: [.shift, .command]) { _ in
+			self.captureScreenshot()
+		})
+
+		menu.addItem(NSMenuItem.separator())
+
+		menu.addItem(NSMenuItem("Show on All Desktops").bindState(to: .showOnAllDesktops))
+
+		menu.addItem(NSMenuItem.separator())
+
+		menu.addItem(NSMenuItem("Quit Touch Bar Simulator", keyEquivalent: "q") { _ in
+			NSApp.terminate(nil)
+		})
+	}
+
+	private func statusItemShouldShowMenu() -> Bool {
+		return !NSApp.isLeftMouseDown || NSApp.isOptionKeyDown
+	}
+
+	func menuNeedsUpdate(_ menu: NSMenu) {
+		update(menu: menu)
+	}
+
+	func menuWillOpen(_ menu: NSMenu) {
+		if !statusItemShouldShowMenu() {
+			statusItemButtonClicked()
+		}
+	}
+
+	private func statusItemButtonClicked() {
+		toggleView()
+		if window.isVisible { window.orderFront(nil) }
 	}
 }
