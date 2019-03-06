@@ -10,7 +10,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	lazy var statusItem = with(NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)) {
 		$0.menu = with(NSMenu()) { $0.delegate = self }
-		$0.button!.image = NSImage(named: "AppIcon") // TODO: Add proper icon
+		$0.button!.image = NSImage(named: "MenuBarIcon")
 		$0.button!.toolTip = "Right-click or option-click for menu"
 	}
 
