@@ -23,24 +23,24 @@ private final class ToolbarSliderCell: NSSliderCell {
 		if let shadow = self.shadow {
 			// Make room on either side of the view for the shadow to spill into,
 			// rather than clip on the edges
-			frame.origin.x *= ((self.barRect.width - shadow.shadowBlurRadius * 2) / self.barRect.width)
+			frame.origin.x *= ((barRect.width - shadow.shadowBlurRadius * 2) / barRect.width)
 			frame.origin.x += shadow.shadowBlurRadius
 		}
 
 		NSGraphicsContext.saveGraphicsState()
 
-		self.shadow?.set()
+		shadow?.set()
 
 		// Circle
 		let path = NSBezierPath(roundedRect: frame, xRadius: 4, yRadius: 12)
-		self.fillColor.set()
+		fillColor.set()
 		path.fill()
 
 		// Border should not draw a shadow
 		NSShadow().set()
 
 		// Border
-		self.borderColor.set()
+		borderColor.set()
 		path.lineWidth = 0.8
 		path.stroke()
 
@@ -50,14 +50,16 @@ private final class ToolbarSliderCell: NSSliderCell {
 	private var barRect = CGRect.zero
 
 	override func drawBar(inside rect: CGRect, flipped: Bool) {
-		self.barRect = rect
+		barRect = rect
+
 		// A knob shadow requires a small skew in the origin of the knob (see above),
-		// which causes the knob to not go all the way to the ends of the bar
-		// Fix this by shortening the bar
+		// which causes the knob to not go all the way to the ends of the bar.
+		// Fix this by shortening the bar.
 		if let shadow = self.shadow {
-			self.barRect = self.barRect.insetBy(dx: shadow.shadowBlurRadius * 2, dy: 0)
+			barRect = barRect.insetBy(dx: shadow.shadowBlurRadius * 2, dy: 0)
 		}
-		super.drawBar(inside: self.barRect, flipped: flipped)
+
+		super.drawBar(inside: barRect, flipped: flipped)
 	}
 }
 
@@ -66,13 +68,14 @@ extension NSSlider {
 	// from moving a knob that draws a shadow
 	// However, only do so if its value has changed, because if a
 	// redisplay is attempted without a change, then the slider draws
-	// itself brighter for some reason
+	// itself brighter for some reason.
 	func alwaysRedisplayOnValueChanged() -> Self {
-		self.addAction { sender in
+		addAction { sender in
 			if (defaults[.windowTransparency] - sender.doubleValue) != 0 {
 				sender.needsDisplay = true
 			}
 		}
+
 		return self
 	}
 }

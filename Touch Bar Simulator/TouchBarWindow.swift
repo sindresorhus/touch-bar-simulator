@@ -48,9 +48,11 @@ final class TouchBarWindow: NSPanel {
 	func addTitlebar() {
 		styleMask.insert(.titled)
 		title = "Touch Bar Simulator"
+
 		guard let toolbarView = self.toolbarView else {
 			return
 		}
+
 		toolbarView.addSubviews(
 			makeScreenshotButton(toolbarView),
 			makeTransparencySlider(toolbarView)
@@ -92,32 +94,37 @@ final class TouchBarWindow: NSPanel {
 	private var defaultsObservations: [DefaultsObservation] = []
 
 	func setUp() {
-		let view = self.contentView!
+		let view = contentView!
 		view.wantsLayer = true
 		view.layer?.backgroundColor = NSColor.black.cgColor
 
 		let touchBarView = TouchBarView()
-		self.setContentSize(touchBarView.bounds.adding(padding: 5).size)
+		setContentSize(touchBarView.bounds.adding(padding: 5).size)
 		touchBarView.frame = touchBarView.frame.centered(in: view.bounds)
 		view.addSubview(touchBarView)
 
+		// TODO: These could use the `observe` method with `tiedToLifetimeOf` so we don't have to manually invalidate them.
 		defaultsObservations.append(defaults.observe(.windowTransparency) { change in
 			self.alphaValue = CGFloat(change.newValue)
 		})
+
 		defaultsObservations.append(defaults.observe(.windowDocking) { change in
 			self.docking = change.newValue
 		})
+
+		// TODO: We could maybe simplify this by creating another `Default` extension to bind a default to a KeyPath:
+		// `defaults.bind(.showOnAllDesktops, to: \.showOnAllDesktop)`
 		defaultsObservations.append(defaults.observe(.showOnAllDesktops) { change in
 			self.showOnAllDesktops = change.newValue
 		})
 
-		self.center()
-		self.setFrameOrigin(CGPoint(x: self.frame.origin.x, y: 100))
+		center()
+		setFrameOrigin(CGPoint(x: frame.origin.x, y: 100))
 
-		self.setFrameUsingName(Constants.windowAutosaveName)
-		self.setFrameAutosaveName(Constants.windowAutosaveName)
+		setFrameUsingName(Constants.windowAutosaveName)
+		setFrameAutosaveName(Constants.windowAutosaveName)
 
-		self.orderFront(nil)
+		orderFront(nil)
 	}
 
 	deinit {

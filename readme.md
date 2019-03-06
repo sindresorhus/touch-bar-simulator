@@ -4,28 +4,22 @@
 
 Launch the Touch Bar simulator from anywhere without needing to have Xcode installed, whereas Apple requires you to launch it from inside Xcode. It also comes with a handy transparency slider, a screenshot button, and a menu bar icon and system service to toggle the Touch Bar with a click or keyboard shortcut.
 
-Right- or option-clicking the menu bar icon displays a menu with options to dock the window to the top or bottom of the screen, make it show on all desktops at once, access toolbar features in docked mode, or quit the app.
+<img src="screenshot-menu-bar.png" width="379" height="283" align="left">
+
+Clicking the menu bar icon toggles the Touch Bar window.
+
+Right-clicking or option-clicking the menu bar icon displays a menu with options to dock the window to the top or bottom of the screen, make it show on all desktops at once, access toolbar features in docked mode, or quit the app.
 
 You can add a toggle shortcut in `System Preferences` → `Keyboard` → `Shortcuts` → `Services` → `Toggle Touch Bar`.
 
 **Important:** If clicking in the simulator or the screenshot button is not working, you need to go to "System Preferences" → "Security & Privacy" → "Accessibility", and ensure "Touch Bar Simulator.app" is checked. If it's already checked, try unchecking and checking it again.
 
-**[Website](https://sindresorhus.com/touch-bar-simulator/)** &nbsp;&nbsp; **[Discuss it on Product Hunt](https://www.producthunt.com/posts/touch-bar-simulator)**
-
 <img src="screenshot.png" width="1129">
-
-*Check out my other [macOS apps](https://sindresorhus.com/apps)*
-
-<a href="https://www.patreon.com/sindresorhus">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
 
 
 ## Getting started
 
 #### [Download the latest release](https://sindresorhus.com/touch-bar-simulator)
-
----
 
 Or install it with [Homebrew-Cask](https://caskroom.github.io):
 
@@ -35,6 +29,10 @@ $ brew cask install touch-bar-simulator
 
 
 *Requires macOS 10.14 or later.*
+
+<a href="https://www.patreon.com/sindresorhus">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
 
 
 ## Screenshot
@@ -68,6 +66,8 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 
 ## Related
 
+- [Website](https://sindresorhus.com/touch-bar-simulator/)
+- [Product Hunt submission](https://www.producthunt.com/posts/touch-bar-simulator)
 - [Gifski](https://github.com/sindresorhus/gifski-app) - Convert videos to high-quality GIFs on your Mac
 - [More apps…](https://sindresorhus.com/#apps)
 

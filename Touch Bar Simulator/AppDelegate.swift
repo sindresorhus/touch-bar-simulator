@@ -77,7 +77,7 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem.separator())
 
-		menu.addItem(NSMenuItem("Take Screenshot", keyEquivalent: "6", keyModifiers: [.shift, .command]) { _ in
+		menu.addItem(NSMenuItem("Capture Screenshot", keyEquivalent: "6", keyModifiers: [.shift, .command]) { _ in
 			self.captureScreenshot()
 		})
 
@@ -108,6 +108,9 @@ extension AppDelegate: NSMenuDelegate {
 
 	private func statusItemButtonClicked() {
 		toggleView()
-		if window.isVisible { window.orderFront(nil) }
+
+		if window.isVisible {
+			window.orderFront(nil)
+		}
 	}
 }

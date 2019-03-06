@@ -31,7 +31,7 @@ final class TouchBarView: NSView {
 			}
 
 			self.layer!.contents = frameSurface
-		} .takeUnretainedValue()
+		}.takeUnretainedValue()
 
 		DFRSetStatus(2)
 		stream?.start()

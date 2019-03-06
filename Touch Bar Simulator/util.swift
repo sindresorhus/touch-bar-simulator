@@ -51,6 +51,7 @@ extension NSWindow {
 	enum MoveXPositioning {
 		case left, center, right
 	}
+
 	enum MoveYPositioning {
 		case top, center, bottom
 	}
@@ -100,12 +101,21 @@ extension NSMenuItem {
 }
 
 extension NSMenuItem {
-	convenience init(_ title: String, keyEquivalent: String = "", keyModifiers: NSEvent.ModifierFlags? = nil, isChecked: Bool = false, action: ((NSMenuItem) -> Void)? = nil) {
+	convenience init(
+		_ title: String,
+		keyEquivalent: String = "",
+		keyModifiers: NSEvent.ModifierFlags? = nil,
+		isChecked: Bool = false,
+		action: ((NSMenuItem) -> Void)? = nil
+	) {
 		self.init(title: title, action: nil, keyEquivalent: keyEquivalent)
+
 		if let keyModifiers = keyModifiers {
 			self.keyEquivalentModifierMask = keyModifiers
 		}
+
 		self.isChecked = isChecked
+
 		if let action = action {
 			self.onAction = action
 		}
@@ -144,7 +154,7 @@ private final class ActionTrampoline<Sender>: NSObject {
 	@objc
 	fileprivate func performAction(_ sender: TargetActionSender) {
 		action(sender as! Sender)
-    }
+	}
 }
 
 private struct TargetActionSenderAssociatedKeys {
@@ -153,7 +163,7 @@ private struct TargetActionSenderAssociatedKeys {
 
 extension TargetActionSender {
 	/**
-	Closure version of `.action`
+	Closure version of `.action`.
 
 	```
 	let menuItem = NSMenuItem(title: "Unicorn")
@@ -168,20 +178,23 @@ extension TargetActionSender {
 		}
 		set {
 			guard let newValue = newValue else {
-				self.target = nil
-				self.action = nil
+				target = nil
+				action = nil
 				TargetActionSenderAssociatedKeys.trampoline[self] = nil
 				return
 			}
+
 			let trampoline = ActionTrampoline(action: newValue)
 			TargetActionSenderAssociatedKeys.trampoline[self] = trampoline
-			self.target = trampoline
-			self.action = #selector(ActionTrampoline<Self>.performAction)
+			target = trampoline
+			action = #selector(ActionTrampoline<Self>.performAction)
 		}
 	}
+
 	func addAction(_ action: @escaping ((Self) -> Void)) {
-		let lastAction = self.onAction
-		self.onAction = { sender in
+		// TODO: The problem with doing it like this is that there's no way to add ability to remove an action. I think a better solution would be to store an array of action handlers using associated object.
+		let lastAction = onAction
+		onAction = { sender in
 			lastAction?(sender)
 			action(sender)
 		}
@@ -198,6 +211,7 @@ extension NSApplication {
 	}
 }
 
+// TODO: Find a namespace to put this onto. I don't like free-floating functions.
 func pressKey(keyCode: CGKeyCode, flags: CGEventFlags = []) {
 	let eventSource = CGEventSource(stateID: .hidSystemState)
 	let keyDown = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: true)

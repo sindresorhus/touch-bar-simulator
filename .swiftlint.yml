@@ -122,6 +122,7 @@ whitelist_rules:
   - xct_specific_matcher
   - xctfail_message
   - yoda_condition
+  - todo
 analyzer_rules:
   - unused_import
   - unused_private_declaration
