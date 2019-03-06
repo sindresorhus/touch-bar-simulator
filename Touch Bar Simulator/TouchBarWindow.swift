@@ -63,7 +63,7 @@ final class TouchBarWindow: NSPanel {
 
 	func makeScreenshotButton(_ toolbarView: NSView) -> NSButton {
 		let button = NSButton()
-		button.image = #imageLiteral(resourceName: "ScreenshotButton")
+		button.image = NSImage(named: "ScreenshotButton")
 		button.imageScaling = .scaleProportionallyDown
 		button.isBordered = false
 		button.bezelStyle = .shadowlessSquare
