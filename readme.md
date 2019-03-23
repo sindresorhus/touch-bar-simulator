@@ -72,6 +72,12 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 - [More apps…](https://sindresorhus.com/#apps)
 
 
+## Maintainers
+
+- [Sindre Sorhus](https://github.com/sindresorhus)
+- [@ThatsJustCheesy](https://github.com/ThatsJustCheesy)
+
+
 ## License
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+MIT
