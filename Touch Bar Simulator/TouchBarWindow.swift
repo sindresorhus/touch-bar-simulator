@@ -139,8 +139,9 @@ final class TouchBarWindow: NSPanel {
 			styleMask: [
 				.titled,
 				.closable,
+				.nonactivatingPanel,
 				.hudWindow,
-				.nonactivatingPanel
+				.utilityWindow
 			],
 			backing: .buffered,
 			defer: false
