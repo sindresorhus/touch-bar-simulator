@@ -145,6 +145,7 @@ final class TouchBarWindow: NSPanel {
 			backing: .buffered,
 			defer: false
 		)
+		self.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.assistiveTechHighWindow)))
 
 		self._setPreventsActivation(true)
 		self.isRestorable = true
