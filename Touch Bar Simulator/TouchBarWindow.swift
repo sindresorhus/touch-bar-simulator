@@ -9,17 +9,41 @@ final class TouchBarWindow: NSPanel {
 			switch self {
 			case .floating:
 				window.addTitlebar()
+			case .dockedToTop:
+				window.removeTitlebar()
+			case .dockedToBottom:
+				window.removeTitlebar()
+			}
+			position(window: window)
+		}
+		func position(window: NSWindow) {
+			switch self {
+			case .floating:
 				if let prevPosition = defaults[.lastFloatingPosition] {
 					window.setFrameOrigin(prevPosition)
 				}
 			case .dockedToTop:
-				window.removeTitlebar()
 				window.moveTo(x: .center, y: .top)
 			case .dockedToBottom:
-				window.removeTitlebar()
 				window.moveTo(x: .center, y: .bottom)
 			}
 		}
+	}
+
+	private var dockingPollTimer: Timer?
+	private func startPolling(positionFor docking: Docking) {
+		let timer = Timer(timeInterval: 0.3, repeats: true) { [weak self] _ in
+			guard let self = self else {
+				return
+			}
+			docking.position(window: self)
+		}
+		dockingPollTimer = timer
+		RunLoop.main.add(timer, forMode: .default)
+	}
+	private func stopPollingPositionForDocking() {
+		dockingPollTimer?.invalidate()
+		dockingPollTimer = nil
 	}
 
 	var docking: Docking? {
@@ -28,7 +52,13 @@ final class TouchBarWindow: NSPanel {
 				defaults[.lastFloatingPosition] = frame.origin
 			}
 
-			docking?.dock(window: self)
+			stopPollingPositionForDocking()
+			if let docking = docking {
+				docking.dock(window: self)
+				if docking != .floating {
+					startPolling(positionFor: docking)
+				}
+			}
 
 			setIsVisible(true)
 			orderFront(nil)
