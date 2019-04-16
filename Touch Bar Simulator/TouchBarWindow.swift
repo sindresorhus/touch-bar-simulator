@@ -155,22 +155,3 @@ final class TouchBarWindow: NSPanel {
 		self.isMovableByWindowBackground = false
 	}
 }
-
-extension NSWindow.Level {
-	private static func level(for cgLevelKey: CGWindowLevelKey) -> NSWindow.Level {
-		return NSWindow.Level(rawValue: Int(CGWindowLevelForKey(cgLevelKey)))
-	}
-
-	public static let desktop = level(for: .desktopWindow)
-	public static let desktopIcon = level(for: .desktopIconWindow)
-	public static let backstopMenu = level(for: .backstopMenu)
-	public static let dragging = level(for: .draggingWindow)
-	public static let overlay = level(for: .overlayWindow)
-	public static let help = level(for: .helpWindow)
-	public static let utility = level(for: .utilityWindow)
-	public static let assistiveTechHigh = level(for: .assistiveTechHighWindow)
-	public static let cursor = level(for: .cursorWindow)
-
-	public static let minimum = level(for: .minimumWindow)
-	public static let maximum = level(for: .maximumWindow)
-}
