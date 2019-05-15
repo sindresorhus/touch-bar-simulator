@@ -80,6 +80,7 @@ final class TouchBarWindow: NSPanel {
 		let slider = ToolbarSlider().alwaysRedisplayOnValueChanged().bindDoubleValue(to: .windowTransparency)
 		slider.frame = CGRect(x: parentView.frame.width - 160, y: 4, width: 140, height: 11)
 		slider.minValue = 0.5
+		slider.trackFillColor = NSColor.gray.cgColor
 		return slider
 	}
 
