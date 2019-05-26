@@ -10,4 +10,5 @@ extension Defaults.Keys {
 	static let windowDocking = Key<TouchBarWindow.Docking>("windowDocking", default: .floating)
 	static let showOnAllDesktops = Key<Bool>("showOnAllDesktops", default: false)
 	static let lastFloatingPosition = OptionalKey<CGPoint>("lastFloatingPosition")
+	static let dockBehavior = Key<Bool>("dockBehavior", default: false)
 }

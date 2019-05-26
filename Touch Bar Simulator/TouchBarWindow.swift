@@ -28,10 +28,31 @@ final class TouchBarWindow: NSPanel {
 				defaults[.lastFloatingPosition] = frame.origin
 			}
 
-			docking?.dock(window: self)
+			// Prevent the touch bar from shortly becoming visible.
+			if self.docking != nil {
+				if self.docking! == .floating {
+					stopDockBehaviorTimer()
+					docking?.dock(window: self)
+					setIsVisible(true)
+					orderFront(nil)
+					return
+				}
+			}
 
-			setIsVisible(true)
-			orderFront(nil)
+			if !dockBehavior {
+				stopDockBehaviorTimer()
+				docking?.dock(window: self)
+				setIsVisible(true)
+				orderFront(nil)
+				return
+			}
+
+			// When docking is set to `dockedToTop` or `dockedToBottom` dockBehavior should start
+			if dockBehavior {
+				setIsVisible(false)
+				docking?.dock(window: self)
+				startDockBehaviorTimer()
+			}
 		}
 	}
 
@@ -41,6 +62,83 @@ final class TouchBarWindow: NSPanel {
 				collectionBehavior = .canJoinAllSpaces
 			} else {
 				collectionBehavior = .moveToActiveSpace
+			}
+		}
+	}
+
+	var dockBehaviorTimer: Timer?
+
+	func startDockBehaviorTimer() {
+		stopDockBehaviorTimer()
+		// Throttles the function to only execute every 1/10 second.
+		// Without any throttling the function would be very expensive and use an average of 7% CPU (on my machine) which is too much IMO.
+		dockBehaviorTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleDockBehavior), userInfo: nil, repeats: true)
+		dockBehaviorTimer!.fire()
+	}
+
+	func stopDockBehaviorTimer() {
+		guard dockBehaviorTimer != nil else {
+			return
+		}
+		dockBehaviorTimer!.invalidate()
+		dockBehaviorTimer = nil
+	}
+
+	var dockBehavior: Bool = defaults[.dockBehavior] {
+		didSet {
+			if dockBehavior {
+				guard self.docking != nil else {
+					return
+				}
+				guard self.docking! != .floating else {
+					return
+				}
+				startDockBehaviorTimer()
+			} else {
+				stopDockBehaviorTimer()
+			}
+		}
+	}
+
+	@objc
+	func handleDockBehavior() {
+		guard self.docking != nil else {
+			return
+		}
+		guard let screen = NSScreen.main else {
+			return
+		}
+		var detectionRect: NSRect = .zero
+		if self.docking! == .dockedToBottom {
+			if self.isVisible {
+				detectionRect = NSRect(x: 0, y: 0, width: screen.frame.width, height: self.frame.height)
+			} else {
+				detectionRect = NSRect(x: 0, y: 0, width: screen.frame.width, height: 1)
+			}
+		} else if self.docking! == .dockedToTop {
+			if self.isVisible {
+				detectionRect = NSRect(
+					x: 0,
+					// without `+ 1` the touch bar would glitch (toggling rapidly).
+					y: screen.frame.height - self.frame.height - NSStatusBar.system.thickness + 1,
+					width: screen.frame.width,
+					height: self.frame.height + NSStatusBar.system.thickness)
+			} else {
+				detectionRect = NSRect(
+					x: 0,
+					y: screen.frame.height,
+					width: screen.frame.width,
+					height: 1)
+			}
+		}
+		let mouseLocation = NSEvent.mouseLocation
+		if detectionRect.contains(mouseLocation) {
+			if !self.isVisible {
+				self.setIsVisible(true)
+			}
+		} else {
+			if self.isVisible {
+				self.setIsVisible(false)
 			}
 		}
 	}
@@ -118,13 +216,20 @@ final class TouchBarWindow: NSPanel {
 			self.showOnAllDesktops = change.newValue
 		})
 
+		defaultsObservations.append(defaults.observe(.dockBehavior) { change in
+			self.dockBehavior = change.newValue
+		})
+
 		center()
 		setFrameOrigin(CGPoint(x: frame.origin.x, y: 100))
 
 		setFrameUsingName(Constants.windowAutosaveName)
 		setFrameAutosaveName(Constants.windowAutosaveName)
 
-		orderFront(nil)
+		// Prevent the touch bar from shortly becoming visible.
+		if !dockBehavior {
+			orderFront(nil)
+		}
 	}
 
 	deinit {
