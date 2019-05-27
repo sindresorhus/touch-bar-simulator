@@ -99,10 +99,8 @@ final class TouchBarWindow: NSPanel {
 
 	@objc
 	func handleDockBehavior() {
-		guard self.docking != nil else {
-			return
-		}
-		guard let screen = NSScreen.main else {
+		guard self.docking != nil,
+			let screen = NSScreen.main else {
 			return
 		}
 		var detectionRect: NSRect = .zero
