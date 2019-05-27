@@ -67,6 +67,7 @@ final class TouchBarWindow: NSPanel {
 	}
 
 	var dockBehaviorTimer: Timer?
+	var showTouchBarTimer = Timer()
 
 	func startDockBehaviorTimer() {
 		stopDockBehaviorTimer()
@@ -128,13 +129,14 @@ final class TouchBarWindow: NSPanel {
 		}
 		let mouseLocation = NSEvent.mouseLocation
 		if detectionRect.contains(mouseLocation) {
-			if !self.isVisible {
-				self.setIsVisible(true)
+			if !showTouchBarTimer.isValid {
+				showTouchBarTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { timer in
+					self.setIsVisible(true)
+				})
 			}
 		} else {
-			if self.isVisible {
-				self.setIsVisible(false)
-			}
+			showTouchBarTimer.invalidate()
+			self.setIsVisible(false)
 		}
 	}
 
