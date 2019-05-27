@@ -85,8 +85,6 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem("Show on All Desktops").bindState(to: .showOnAllDesktops))
 
-		menu.addItem(NSMenuItem.separator())
-
 		menu.addItem(NSMenuItem("Dock Behavior").bindState(to: .dockBehavior))
 
 		menu.addItem(NSMenuItem.separator())
