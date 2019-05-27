@@ -87,10 +87,9 @@ final class TouchBarWindow: NSPanel {
 	var dockBehavior: Bool = defaults[.dockBehavior] {
 		didSet {
 			if dockBehavior {
-				guard self.docking != nil else {
-					return
-				}
-				guard self.docking! != .floating else {
+				guard self.docking != nil &&
+					self.docking! == .dockedToBottom ||
+					self.docking! == .dockedToTop else {
 					return
 				}
 				startDockBehaviorTimer()
