@@ -70,8 +70,6 @@ final class TouchBarWindow: NSPanel {
 
 	func startDockBehaviorTimer() {
 		stopDockBehaviorTimer()
-		// Throttles the function to only execute every 1/10 second.
-		// Without any throttling the function would be very expensive and use an average of 7% CPU (on my machine) which is too much IMO.
 		dockBehaviorTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleDockBehavior), userInfo: nil, repeats: true)
 		dockBehaviorTimer!.fire()
 	}
