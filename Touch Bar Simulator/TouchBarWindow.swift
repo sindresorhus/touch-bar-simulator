@@ -101,34 +101,36 @@ final class TouchBarWindow: NSPanel {
 	@objc
 	func handleDockBehavior() {
 		guard self.docking != nil,
-			let screen = NSScreen.main else {
+			let visibleFrame = NSScreen.main?.visibleFrame,
+			let screenFrame = NSScreen.main?.frame else {
 			return
 		}
 		var detectionRect: NSRect = .zero
 		if self.docking! == .dockedToBottom {
 			if self.isVisible {
-				detectionRect = NSRect(x: 0, y: 0, width: screen.frame.width, height: self.frame.height)
+				detectionRect = NSRect(x: 0, y: 0, width: visibleFrame.width, height: self.frame.height+(screenFrame.height - visibleFrame.height - NSStatusBar.system.thickness))
 			} else {
-				detectionRect = NSRect(x: 0, y: 0, width: screen.frame.width, height: 1)
+				detectionRect = NSRect(x: 0, y: 0, width: visibleFrame.width, height: 1)
 			}
 		} else if self.docking! == .dockedToTop {
 			if self.isVisible {
 				detectionRect = NSRect(
 					x: 0,
 					// without `+ 1` the touch bar would glitch (toggling rapidly).
-					y: screen.frame.height - self.frame.height - NSStatusBar.system.thickness + 1,
-					width: screen.frame.width,
+					y: visibleFrame.height - self.frame.height - NSStatusBar.system.thickness + 1,
+					width: visibleFrame.width,
 					height: self.frame.height + NSStatusBar.system.thickness)
 			} else {
 				detectionRect = NSRect(
 					x: 0,
-					y: screen.frame.height,
-					width: screen.frame.width,
+					y: visibleFrame.height,
+					width: visibleFrame.width,
 					height: 1)
 			}
 		}
 		let mouseLocation = NSEvent.mouseLocation
 		if detectionRect.contains(mouseLocation) {
+			dismissAnimationDidRun = false
 			guard !showTouchBarTimer.isValid && !showAnimationDidRun else {
 				return
 			}
@@ -140,8 +142,9 @@ final class TouchBarWindow: NSPanel {
 			showTouchBarTimer.invalidate()
 			showTouchBarTimer = Timer()
 			showAnimationDidRun = false
-			if self.isVisible {
+			if self.isVisible && !dismissAnimationDidRun {
 				dismissTouchBarWithAnimation()
+				dismissAnimationDidRun = true
 			}
 		}
 	}
@@ -158,6 +161,7 @@ final class TouchBarWindow: NSPanel {
 	}
 
 	var showAnimationDidRun = false
+	var dismissAnimationDidRun = false
 
 	func showTouchBarWithAnimation() {
 		guard self.docking != nil &&
@@ -171,7 +175,7 @@ final class TouchBarWindow: NSPanel {
 		if self.docking! == .dockedToTop {
 			startOrigin = NSPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height)
 		} else if self.docking! == .dockedToBottom {
-			startOrigin = NSPoint(x: self.frame.origin.x, y: self.frame.origin.y - self.frame.height)
+			startOrigin = NSPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
 		}
 		self.setFrameOrigin(startOrigin)
 		NSAnimationContext.runAnimationGroup({ context in
@@ -192,7 +196,7 @@ final class TouchBarWindow: NSPanel {
 		if self.docking! == .dockedToTop {
 			endFrame.origin = NSPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height + NSStatusBar.system.thickness)
 		} else if self.docking! == .dockedToBottom {
-			endFrame.origin = NSPoint(x: self.frame.origin.x, y: self.frame.origin.y - self.frame.height)
+			endFrame.origin = NSPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
 		}
 		NSAnimationContext.runAnimationGroup({ context in
 			context.duration = TimeInterval(0.3)
