@@ -66,21 +66,17 @@ final class TouchBarWindow: NSPanel {
 		}
 	}
 
-	var dockBehaviorTimer: Timer?
+	var dockBehaviorTimer = Timer()
 	var showTouchBarTimer = Timer()
 
 	func startDockBehaviorTimer() {
 		stopDockBehaviorTimer()
 		dockBehaviorTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleDockBehavior), userInfo: nil, repeats: true)
-		dockBehaviorTimer!.fire()
 	}
 
 	func stopDockBehaviorTimer() {
-		guard dockBehaviorTimer != nil else {
-			return
-		}
-		dockBehaviorTimer!.invalidate()
-		dockBehaviorTimer = nil
+		dockBehaviorTimer.invalidate()
+		dockBehaviorTimer = Timer()
 	}
 
 	var dockBehavior: Bool = defaults[.dockBehavior] {
@@ -108,7 +104,7 @@ final class TouchBarWindow: NSPanel {
 		var detectionRect: NSRect = .zero
 		if self.docking! == .dockedToBottom {
 			if self.isVisible {
-				detectionRect = NSRect(x: 0, y: 0, width: visibleFrame.width, height: self.frame.height+(screenFrame.height - visibleFrame.height - NSStatusBar.system.thickness))
+				detectionRect = NSRect(x: 0, y: 0, width: visibleFrame.width, height: self.frame.height + (screenFrame.height - visibleFrame.height - NSStatusBar.system.thickness))
 			} else {
 				detectionRect = NSRect(x: 0, y: 0, width: visibleFrame.width, height: 1)
 			}
@@ -117,13 +113,13 @@ final class TouchBarWindow: NSPanel {
 				detectionRect = NSRect(
 					x: 0,
 					// without `+ 1` the touch bar would glitch (toggling rapidly).
-					y: visibleFrame.height - self.frame.height - NSStatusBar.system.thickness + 1,
+					y: screenFrame.height - self.frame.height - NSStatusBar.system.thickness + 1,
 					width: visibleFrame.width,
 					height: self.frame.height + NSStatusBar.system.thickness)
 			} else {
 				detectionRect = NSRect(
 					x: 0,
-					y: visibleFrame.height,
+					y: screenFrame.height,
 					width: visibleFrame.width,
 					height: 1)
 			}
