@@ -110,7 +110,7 @@ extension AppDelegate: NSMenuDelegate {
 
 	private func statusItemButtonClicked() {
 		// When the user explicit wants the touch bar to appear when `dockBahavior` should be disabled.
-		// This is also how the macOS dock bahaves.
+		// This is also how the macOS dock behaves.
 		defaults[.dockBehavior] = false
 
 		toggleView()
