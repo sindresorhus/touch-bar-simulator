@@ -320,7 +320,7 @@ final class TouchBarWindow: NSPanel {
 		setFrameUsingName(Constants.windowAutosaveName)
 		setFrameAutosaveName(Constants.windowAutosaveName)
 
-		// Prevent the touch bar from shortly becoming visible.
+		// Prevent the Touch Bar from momentarily becoming visible.
 		if !dockBehavior {
 			orderFront(nil)
 		}
