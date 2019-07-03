@@ -30,39 +30,28 @@ final class TouchBarWindow: NSPanel {
 		}
 	}
 
-	private var dockingPollTimer: Timer?
-	private func startPolling(positionFor docking: Docking) {
-		let timer = Timer(timeInterval: 0.3, repeats: true) { [weak self] _ in
-			guard let self = self else {
-				return
-			}
-			docking.position(window: self)
-		}
-		dockingPollTimer = timer
-		RunLoop.main.add(timer, forMode: .default)
-	}
-	private func stopPollingPositionForDocking() {
-		dockingPollTimer?.invalidate()
-		dockingPollTimer = nil
-	}
-
 	var docking: Docking? {
 		didSet {
 			if oldValue == .floating && docking != .floating {
 				defaults[.lastFloatingPosition] = frame.origin
 			}
 
-			stopPollingPositionForDocking()
+			NSScreen.stopNotifyingOnVisibleFrameChanged()
 			if let docking = docking {
 				docking.dock(window: self)
 				if docking != .floating {
-					startPolling(positionFor: docking)
+					NSScreen.startNotifyingOnVisibleFrameChanged()
 				}
 			}
 
 			setIsVisible(true)
 			orderFront(nil)
 		}
+	}
+
+	@objc
+	func visibleFrameChanged(_ notification: Notification) {
+		self.docking?.position(window: self)
 	}
 
 	var showOnAllDesktops: Bool = false {
@@ -147,6 +136,8 @@ final class TouchBarWindow: NSPanel {
 		defaultsObservations.append(defaults.observe(.showOnAllDesktops) { change in
 			self.showOnAllDesktops = change.newValue
 		})
+
+		NotificationCenter.default.addObserver(self, selector: #selector(visibleFrameChanged(_:)), name: .nsScreenVisibleFrameChanged, object: nil)
 
 		center()
 		setFrameOrigin(CGPoint(x: frame.origin.x, y: 100))
