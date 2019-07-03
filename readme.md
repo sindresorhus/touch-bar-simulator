@@ -4,11 +4,11 @@
 
 Launch the Touch Bar simulator from anywhere without needing to have Xcode installed, whereas Apple requires you to launch it from inside Xcode. It also comes with a handy transparency slider, a screenshot button, and a menu bar icon and system service to toggle the Touch Bar with a click or keyboard shortcut.
 
-<img src="screenshot-menu-bar.png" width="379" height="283" align="left">
+<img src="screenshot-menu-bar.png" width="277" align="left">
 
 Clicking the menu bar icon toggles the Touch Bar window.
 
-Right-clicking or option-clicking the menu bar icon displays a menu with options to dock the window to the top or bottom of the screen, make it show on all desktops at once, access toolbar features in docked mode, or quit the app.
+Right-clicking or option-clicking the menu bar icon displays a menu with options to dock the window to the top or bottom of the screen, make it show on all desktops at once, access toolbar features in docked mode, automatically show and hide the Touch Bar, or quit the app.
 
 You can add a toggle shortcut in `System Preferences` → `Keyboard` → `Shortcuts` → `Services` → `Toggle Touch Bar`.
 

@@ -14,8 +14,10 @@ final class TouchBarWindow: NSPanel {
 			case .dockedToBottom:
 				window.removeTitlebar()
 			}
+
 			reposition(window: window)
 		}
+
 		func reposition(window: NSWindow) {
 			switch self {
 			case .floating:
