@@ -57,9 +57,10 @@ extension NSWindow {
 	}
 
 	func moveTo(x xPositioning: MoveXPositioning, y yPositioning: MoveYPositioning) {
-		guard let visibleFrame = NSScreen.main?.visibleFrame else {
+		guard let screen = NSScreen.main else {
 			return
 		}
+		let visibleFrame = screen.visibleFrame
 
 		let x: CGFloat, y: CGFloat
 		switch xPositioning {
@@ -72,7 +73,7 @@ extension NSWindow {
 		}
 		switch yPositioning {
 		case .top:
-			y = visibleFrame.maxY - frame.height
+			y = min(visibleFrame.maxY - frame.height, screen.frame.maxY - 22 - frame.height)
 		case .center:
 			y = visibleFrame.midY - frame.height / 2
 		case .bottom:
