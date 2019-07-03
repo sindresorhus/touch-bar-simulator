@@ -28,6 +28,10 @@ final class TouchBarWindow: NSPanel {
 				defaults[.lastFloatingPosition] = frame.origin
 			}
 
+			if self.docking == .floating {
+				dockBehavior = false
+			}
+
 			// Prevent the Touch Bar from momentarily becoming visible.
 			if self.docking == .floating || !dockBehavior {
 				stopDockBehaviorTimer()
@@ -71,6 +75,7 @@ final class TouchBarWindow: NSPanel {
 
 	var dockBehavior: Bool = defaults[.dockBehavior] {
 		didSet {
+			defaults[.dockBehavior] = self.dockBehavior
 			if self.docking == .dockedToBottom || self.docking == .dockedToTop {
 				defaults[.lastWindowDockingWithDockBehavior] = self.docking
 			}
