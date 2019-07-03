@@ -14,9 +14,9 @@ final class TouchBarWindow: NSPanel {
 			case .dockedToBottom:
 				window.removeTitlebar()
 			}
-			position(window: window)
+			reposition(window: window)
 		}
-		func position(window: NSWindow) {
+		func reposition(window: NSWindow) {
 			switch self {
 			case .floating:
 				if let prevPosition = defaults[.lastFloatingPosition] {
@@ -30,39 +30,22 @@ final class TouchBarWindow: NSPanel {
 		}
 	}
 
-	private var dockingPollTimer: Timer?
-	private func startPolling(positionFor docking: Docking) {
-		let timer = Timer(timeInterval: 0.3, repeats: true) { [weak self] _ in
-			guard let self = self else {
-				return
-			}
-			docking.position(window: self)
-		}
-		dockingPollTimer = timer
-		RunLoop.main.add(timer, forMode: .default)
-	}
-	private func stopPollingPositionForDocking() {
-		dockingPollTimer?.invalidate()
-		dockingPollTimer = nil
-	}
-
 	var docking: Docking? {
 		didSet {
 			if oldValue == .floating && docking != .floating {
 				defaults[.lastFloatingPosition] = frame.origin
 			}
 
-			stopPollingPositionForDocking()
-			if let docking = docking {
-				docking.dock(window: self)
-				if docking != .floating {
-					startPolling(positionFor: docking)
-				}
-			}
+			docking?.dock(window: self)
 
 			setIsVisible(true)
 			orderFront(nil)
 		}
+	}
+
+	@objc
+	func didChangeScreenParameters(_ notification: Notification) {
+		docking?.reposition(window: self)
 	}
 
 	var showOnAllDesktops: Bool = false {
@@ -155,6 +138,8 @@ final class TouchBarWindow: NSPanel {
 		setFrameAutosaveName(Constants.windowAutosaveName)
 
 		orderFront(nil)
+
+		NotificationCenter.default.addObserver(self, selector: #selector(didChangeScreenParameters(_:)), name: NSApplication.didChangeScreenParametersNotification, object: nil)
 	}
 
 	deinit {
