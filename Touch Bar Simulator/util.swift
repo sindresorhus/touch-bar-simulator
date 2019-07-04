@@ -57,9 +57,10 @@ extension NSWindow {
 	}
 
 	func moveTo(x xPositioning: MoveXPositioning, y yPositioning: MoveYPositioning) {
-		guard let visibleFrame = NSScreen.main?.visibleFrame else {
+		guard let screen = NSScreen.main else {
 			return
 		}
+		let visibleFrame = screen.visibleFrame
 
 		let x: CGFloat, y: CGFloat
 		switch xPositioning {
@@ -72,7 +73,11 @@ extension NSWindow {
 		}
 		switch yPositioning {
 		case .top:
-			y = visibleFrame.maxY - frame.height
+			// Defect fix: keep docked windows below menubar area
+			// Previously, the window would obstruct menubar clicks when the menubar was set to auto-hide.
+			// Now, the window stays below that area.
+			let menubarThickness = NSStatusBar.system.thickness
+			y = min(visibleFrame.maxY - frame.height, screen.frame.maxY - menubarThickness - frame.height)
 		case .center:
 			y = visibleFrame.midY - frame.height / 2
 		case .bottom:

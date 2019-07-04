@@ -9,14 +9,22 @@ final class TouchBarWindow: NSPanel {
 			switch self {
 			case .floating:
 				window.addTitlebar()
+			case .dockedToTop:
+				window.removeTitlebar()
+			case .dockedToBottom:
+				window.removeTitlebar()
+			}
+			reposition(window: window)
+		}
+		func reposition(window: NSWindow) {
+			switch self {
+			case .floating:
 				if let prevPosition = defaults[.lastFloatingPosition] {
 					window.setFrameOrigin(prevPosition)
 				}
 			case .dockedToTop:
-				window.removeTitlebar()
 				window.moveTo(x: .center, y: .top)
 			case .dockedToBottom:
-				window.removeTitlebar()
 				window.moveTo(x: .center, y: .bottom)
 			}
 		}
@@ -48,6 +56,11 @@ final class TouchBarWindow: NSPanel {
 				startDockBehaviorTimer()
 			}
 		}
+	}
+
+	@objc
+	func didChangeScreenParameters(_ notification: Notification) {
+		docking.reposition(window: self)
 	}
 
 	var showOnAllDesktops: Bool = false {
@@ -350,6 +363,8 @@ final class TouchBarWindow: NSPanel {
 		if !dockBehavior {
 			orderFront(nil)
 		}
+
+		NotificationCenter.default.addObserver(self, selector: #selector(didChangeScreenParameters(_:)), name: NSApplication.didChangeScreenParametersNotification, object: nil)
 	}
 
 	deinit {
