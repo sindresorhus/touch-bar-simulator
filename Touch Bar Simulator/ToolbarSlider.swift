@@ -71,6 +71,7 @@ private final class ToolbarSliderCell: NSSliderCell {
 
 		super.drawBar(inside: barRect, flipped: flipped)
 	}
+
 }
 
 extension NSSlider {
