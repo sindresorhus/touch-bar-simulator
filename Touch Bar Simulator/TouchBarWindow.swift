@@ -30,22 +30,37 @@ final class TouchBarWindow: NSPanel {
 		}
 	}
 
-	var docking: Docking? {
+	var docking: Docking = .floating {
 		didSet {
 			if oldValue == .floating && docking != .floating {
 				defaults[.lastFloatingPosition] = frame.origin
 			}
 
-			docking?.dock(window: self)
+			if self.docking == .floating {
+				dockBehavior = false
+			}
 
-			setIsVisible(true)
-			orderFront(nil)
+			// Prevent the Touch Bar from momentarily becoming visible.
+			if self.docking == .floating || !dockBehavior {
+				stopDockBehaviorTimer()
+				docking.dock(window: self)
+				setIsVisible(true)
+				orderFront(nil)
+				return
+			}
+
+			// When docking is set to `dockedToTop` or `dockedToBottom` dockBehavior should start
+			if dockBehavior {
+				setIsVisible(false)
+				docking.dock(window: self)
+				startDockBehaviorTimer()
+			}
 		}
 	}
 
 	@objc
 	func didChangeScreenParameters(_ notification: Notification) {
-		docking?.reposition(window: self)
+		docking.reposition(window: self)
 	}
 
 	var showOnAllDesktops: Bool = false {
@@ -56,6 +71,209 @@ final class TouchBarWindow: NSPanel {
 				collectionBehavior = .moveToActiveSpace
 			}
 		}
+	}
+
+	var dockBehaviorTimer = Timer()
+	var showTouchBarTimer = Timer()
+
+	func startDockBehaviorTimer() {
+		stopDockBehaviorTimer()
+		dockBehaviorTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleDockBehavior), userInfo: nil, repeats: true)
+	}
+
+	func stopDockBehaviorTimer() {
+		dockBehaviorTimer.invalidate()
+		dockBehaviorTimer = Timer()
+	}
+
+	var dockBehavior: Bool = defaults[.dockBehavior] {
+		didSet {
+			defaults[.dockBehavior] = self.dockBehavior
+			if self.docking == .dockedToBottom || self.docking == .dockedToTop {
+				defaults[.lastWindowDockingWithDockBehavior] = self.docking
+			}
+
+			if dockBehavior {
+				if self.docking == .dockedToBottom || self.docking == .dockedToTop {
+					self.docking = defaults[.lastWindowDockingWithDockBehavior]
+					startDockBehaviorTimer()
+				} else if self.docking == .floating {
+					defaults[.windowDocking] = defaults[.lastWindowDockingWithDockBehavior]
+				}
+			} else {
+				stopDockBehaviorTimer()
+				self.setIsVisible(true)
+			}
+		}
+	}
+
+	@objc
+	func handleDockBehavior() {
+		guard
+			let visibleFrame = NSScreen.main?.visibleFrame,
+			let screenFrame = NSScreen.main?.frame
+		else {
+			return
+		}
+
+		var detectionRect: NSRect = .zero
+		if self.docking == .dockedToBottom {
+			if self.isVisible {
+				detectionRect = CGRect(
+					x: 0,
+					y: 0,
+					width: visibleFrame.width,
+					height: self.frame.height + (screenFrame.height - visibleFrame.height - NSStatusBar.system.thickness)
+				)
+			} else {
+				detectionRect = CGRect(x: 0, y: 0, width: visibleFrame.width, height: 1)
+			}
+		} else if self.docking == .dockedToTop {
+			if self.isVisible {
+				detectionRect = CGRect(
+					x: 0,
+					// Without `+ 1`, the Touch Bar would glitch (toggling rapidly).
+					y: screenFrame.height - self.frame.height - NSStatusBar.system.thickness + 1,
+					width: visibleFrame.width,
+					height: self.frame.height + NSStatusBar.system.thickness)
+			} else {
+				detectionRect = CGRect(
+					x: 0,
+					y: screenFrame.height,
+					width: visibleFrame.width,
+					height: 1)
+			}
+		}
+
+		let mouseLocation = NSEvent.mouseLocation
+		if detectionRect.contains(mouseLocation) {
+			dismissAnimationDidRun = false
+
+			guard
+				!showTouchBarTimer.isValid,
+				!showAnimationDidRun
+			else {
+				return
+			}
+
+			showTouchBarTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+				self.performActionWithAnimation(action: .show)
+				self.showAnimationDidRun = true
+			}
+		} else {
+			showTouchBarTimer.invalidate()
+			showTouchBarTimer = Timer()
+			showAnimationDidRun = false
+
+			if self.isVisible && !dismissAnimationDidRun {
+				performActionWithAnimation(action: .dismiss)
+				dismissAnimationDidRun = true
+			}
+		}
+	}
+
+	func moveToStartPoint() {
+		if self.docking == .dockedToTop {
+			self.moveTo(x: .center, y: .top)
+		} else if self.docking == .dockedToBottom {
+			self.moveTo(x: .center, y: .bottom)
+		}
+	}
+
+	var showAnimationDidRun = false
+	var dismissAnimationDidRun = false
+
+	func showTouchBarWithAnimation() {
+		guard
+			self.docking == .dockedToTop ||
+			self.docking == .dockedToBottom
+		else {
+			return
+		}
+
+		var startOrigin: CGPoint!
+		let endFrame = self.frame
+		self.setIsVisible(true)
+		if self.docking == .dockedToTop {
+			startOrigin = CGPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height)
+		} else if self.docking == .dockedToBottom {
+			startOrigin = CGPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
+		}
+		self.setFrameOrigin(startOrigin)
+
+		NSAnimationContext.runAnimationGroup({ context in
+			context.duration = TimeInterval(0.3)
+			self.animator().setFrame(endFrame, display: false, animate: true)
+		}, completionHandler: {
+			self.moveToStartPoint()
+		})
+	}
+
+	func dismissTouchBarWithAnimation() {
+		guard
+			self.docking == .dockedToTop ||
+			self.docking == .dockedToBottom
+		else {
+			return
+		}
+
+		var endFrame = self.frame
+		if self.docking == .dockedToTop {
+			endFrame.origin = NSPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height + NSStatusBar.system.thickness)
+		} else if self.docking == .dockedToBottom {
+			endFrame.origin = NSPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
+		}
+
+		NSAnimationContext.runAnimationGroup({ context in
+			context.duration = TimeInterval(0.3)
+			self.animator().setFrame(endFrame, display: false, animate: true)
+		}, completionHandler: {
+			self.setIsVisible(false)
+			self.moveToStartPoint()
+		})
+	}
+
+	func performActionWithAnimation(action: TouchBarAction) {
+		guard
+			self.docking == .dockedToTop ||
+				self.docking == .dockedToBottom
+			else {
+				return
+		}
+
+		var startOrigin: CGPoint!
+		var endFrame = self.frame
+
+		if action == .show {
+			self.setIsVisible(true)
+			if self.docking == .dockedToTop {
+				startOrigin = CGPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height)
+			} else if self.docking == .dockedToBottom {
+				startOrigin = CGPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
+			}
+			self.setFrameOrigin(startOrigin)
+		} else if action == .dismiss {
+			if self.docking == .dockedToTop {
+				endFrame.origin = NSPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height + NSStatusBar.system.thickness)
+			} else if self.docking == .dockedToBottom {
+				endFrame.origin = NSPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
+			}
+		}
+
+		NSAnimationContext.runAnimationGroup({ context in
+			context.duration = TimeInterval(0.3)
+			self.animator().setFrame(endFrame, display: false, animate: true)
+		}, completionHandler: {
+			if action == .dismiss {
+				self.setIsVisible(false)
+			}
+			self.moveToStartPoint()
+		})
+	}
+
+	enum TouchBarAction {
+		case show
+		case dismiss
 	}
 
 	func addTitlebar() {
@@ -131,13 +349,20 @@ final class TouchBarWindow: NSPanel {
 			self.showOnAllDesktops = change.newValue
 		})
 
+		defaultsObservations.append(defaults.observe(.dockBehavior) { change in
+			self.dockBehavior = change.newValue
+		})
+
 		center()
 		setFrameOrigin(CGPoint(x: frame.origin.x, y: 100))
 
 		setFrameUsingName(Constants.windowAutosaveName)
 		setFrameAutosaveName(Constants.windowAutosaveName)
 
-		orderFront(nil)
+		// Prevent the Touch Bar from momentarily becoming visible.
+		if !dockBehavior {
+			orderFront(nil)
+		}
 
 		NotificationCenter.default.addObserver(self, selector: #selector(didChangeScreenParameters(_:)), name: NSApplication.didChangeScreenParametersNotification, object: nil)
 	}

@@ -30,10 +30,6 @@ $ brew cask install touch-bar-simulator
 
 *Requires macOS 10.14 or later.*
 
-<a href="https://www.patreon.com/sindresorhus">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
-
 
 ## Screenshot
 
@@ -68,7 +64,7 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 
 - [Website](https://sindresorhus.com/touch-bar-simulator/)
 - [Product Hunt submission](https://www.producthunt.com/posts/touch-bar-simulator)
-- [Gifski](https://github.com/sindresorhus/gifski-app) - Convert videos to high-quality GIFs on your Mac
+- [Gifski](https://github.com/sindresorhus/Gifski) - Convert videos to high-quality GIFs on your Mac
 - [More apps…](https://sindresorhus.com/#apps)
 
 
@@ -76,8 +72,3 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 
 - [Sindre Sorhus](https://github.com/sindresorhus)
 - [@ThatsJustCheesy](https://github.com/ThatsJustCheesy)
-
-
-## License
-
-MIT
