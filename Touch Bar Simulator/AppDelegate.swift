@@ -85,6 +85,8 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem("Show on All Desktops").bindState(to: .showOnAllDesktops))
 
+		menu.addItem(NSMenuItem("Hide and Show Automatically").bindState(to: .dockBehavior))
+
 		menu.addItem(NSMenuItem.separator())
 
 		menu.addItem(NSMenuItem("Quit Touch Bar Simulator", keyEquivalent: "q") { _ in
@@ -107,6 +109,10 @@ extension AppDelegate: NSMenuDelegate {
 	}
 
 	private func statusItemButtonClicked() {
+		// When the user explicitly wants the Touch Bar to appear then `dockBahavior` should be disabled.
+		// This is also how the macOS Dock behaves.
+		defaults[.dockBehavior] = false
+
 		toggleView()
 
 		if window.isVisible {
