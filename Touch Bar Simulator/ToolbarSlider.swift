@@ -27,7 +27,15 @@ private final class ToolbarSliderCell: NSSliderCell {
 			frame.origin.x += shadow.shadowBlurRadius
 		}
 
-		createGreySlider()
+		// Make the slider grey
+		var greySliderFrame = barRect
+		greySliderFrame.origin.x -= 1
+		greySliderFrame.origin.y = barRect.origin.y + 1
+		greySliderFrame.size.width = frame.origin.x
+		greySliderFrame.size.height = 3
+		let greySliderPath = NSBezierPath(roundedRect: greySliderFrame, xRadius: 1.5, yRadius: 1.5)
+		NSColor.lightGray.setFill()
+		greySliderPath.fill()
 
 		NSGraphicsContext.saveGraphicsState()
 
@@ -62,15 +70,6 @@ private final class ToolbarSliderCell: NSSliderCell {
 		}
 
 		super.drawBar(inside: barRect, flipped: flipped)
-	}
-
-	private func createGreySlider() {
-		var greyFrame = barRect
-		greyFrame.origin.y = barRect.origin.y + 1
-		greyFrame.size.height = 3
-		let greySliderPath = NSBezierPath(roundedRect: greyFrame, xRadius: 1, yRadius: 1)
-		NSColor.lightGray.setFill()
-		greySliderPath.fill()
 	}
 }
 
