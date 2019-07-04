@@ -29,10 +29,11 @@ private final class ToolbarSliderCell: NSSliderCell {
 
 		// Make the slider grey
 		var greySliderFrame = barRect
+		greySliderFrame.origin.x -= 1
 		greySliderFrame.origin.y = barRect.origin.y + 1
 		greySliderFrame.size.width = frame.origin.x
 		greySliderFrame.size.height = 3
-		let greySliderPath = NSBezierPath(roundedRect: greySliderFrame, xRadius: 1, yRadius: 1)
+		let greySliderPath = NSBezierPath(roundedRect: greySliderFrame, xRadius: 1.5, yRadius: 1.5)
 		NSColor.lightGray.setFill()
 		greySliderPath.fill()
 
