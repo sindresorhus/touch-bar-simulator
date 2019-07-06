@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  Touch Bar Simulator
+
+  Created by Licardo on 2019/7/7.
+  Copyright © 2019 Sindre Sorhus. All rights reserved.
+*/
+
+"Right-click or option-click for menu" = "右击 或 option+点击 来打开菜单";
+
+"Docking" = "停留";
+
+"Floating" = "悬浮";
+
+"Docked to Top" = "停留在顶部";
+
+"Docked to Bottom" = "停留在底部";
+
+"Transparency" = "透明度";
+
+"Capture TouchBarshot" = "触控栏截屏";
+
+"Show on All Desktops" = "在所有桌面上显示";
+
+"Hide and Show Automatically" = "自动隐藏和显示";
+
+"Quit Touch Bar Simulator" = "退出 Touch Bar Simulator";

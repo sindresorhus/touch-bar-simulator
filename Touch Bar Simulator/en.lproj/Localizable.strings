@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  Touch Bar Simulator
+
+  Created by Licardo on 2019/7/7.
+  Copyright © 2019 Sindre Sorhus. All rights reserved.
+*/
+
+"Right-click or option-click for menu" = "Right-click or option-click for menu";
+
+"Docking" = "Docking";
+
+"Floating" = "Floating";
+
+"Docked to Top" = "Docked to Top";
+
+"Docked to Bottom" = "Docked to Bottom";
+
+"Transparency" = "Transparency";
+
+"Capture TouchBarshot" = "Capture TouchBarshot";
+
+"Show on All Desktops" = "Show on All Desktops";
+
+"Hide and Show Automatically" = "Hide and Show Automatically";
+
+"Quit Touch Bar Simulator" = "Quit Touch Bar Simulator";
