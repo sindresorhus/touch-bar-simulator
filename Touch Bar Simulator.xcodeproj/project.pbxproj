@@ -10,6 +10,9 @@
 		3C37035421FBEBD300177657 /* Defaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C37035321FBEBD300177657 /* Defaults.framework */; };
 		3C37035521FBEBD300177657 /* Defaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C37035321FBEBD300177657 /* Defaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C8493AD21FD3B7F00F12966 /* Glue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8493AC21FD3B7F00F12966 /* Glue.swift */; };
+		3C906EEC231C5FB50099B139 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; };
+		3C906EED231C5FB90099B139 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; };
+		3C906EEE231C5FB90099B139 /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */; };
 		E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; };
 		E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -35,6 +38,7 @@
 			files = (
 				E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */,
 				E39A158B214D011F00F86D5D /* SkyLight.framework in Embed Frameworks */,
+				3C906EEE231C5FB90099B139 /* LaunchAtLogin.framework in Embed Frameworks */,
 				3C37035521FBEBD300177657 /* Defaults.framework in Embed Frameworks */,
 				E39A157F214CFE7100F86D5D /* DFRFoundation.framework in Embed Frameworks */,
 			);
@@ -46,6 +50,7 @@
 /* Begin PBXFileReference section */
 		3C37035321FBEBD300177657 /* Defaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Defaults.framework; path = Carthage/Build/Mac/Defaults.framework; sourceTree = "<group>"; };
 		3C8493AC21FD3B7F00F12966 /* Glue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Glue.swift; sourceTree = "<group>"; usesTabs = 1; };
+		3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
 		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarSlider.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E30988DE1E88DD060078CA9E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E34D6548214BBDAE00786C24 /* Touch Bar Simulator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Touch Bar Simulator.entitlements"; sourceTree = "<group>"; };
@@ -70,6 +75,8 @@
 			files = (
 				E39A157E214CFE7100F86D5D /* DFRFoundation.framework in Frameworks */,
 				E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */,
+				3C906EED231C5FB90099B139 /* LaunchAtLogin.framework in Frameworks */,
+				3C906EEC231C5FB50099B139 /* LaunchAtLogin.framework in Frameworks */,
 				3C37035421FBEBD300177657 /* Defaults.framework in Frameworks */,
 				E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */,
 			);
@@ -130,6 +137,7 @@
 			children = (
 				E30988DE1E88DD060078CA9E /* Sparkle.framework */,
 				3C37035321FBEBD300177657 /* Defaults.framework */,
+				3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -146,6 +154,7 @@
 				E3FE2CBC1E726CE800C6713A /* Frameworks */,
 				E3FE2CBD1E726CE800C6713A /* Resources */,
 				E3FA3A901E784C5F00A7F2EA /* Embed Frameworks */,
+				3C906EEF231C60060099B139 /* Copy Launch at Login Helper */,
 			);
 			buildRules = (
 			);
@@ -184,6 +193,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				en,
 				Base,
 			);
 			mainGroup = E3FE2CB61E726CE800C6713A;
@@ -208,6 +218,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3C906EEF231C60060099B139 /* Copy Launch at Login Helper */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Launch at Login Helper";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Carthage/Build/Mac/LaunchAtLogin.framework/Resources/copy-helper.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E3679C9A215A1ECA0080270F /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

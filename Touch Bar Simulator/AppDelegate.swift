@@ -1,6 +1,7 @@
 import Cocoa
 import Sparkle
 import Defaults
+import LaunchAtLogin
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	lazy var window = with(TouchBarWindow()) {
@@ -25,6 +26,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		_ = SUUpdater()
 		_ = window
 		_ = statusItem
+		
+		defaults.observe(.launchAtLogin, tiedToLifetimeOf: self, options: [.initial, .new]) { change in
+			LaunchAtLogin.isEnabled = change.newValue
+		}
 	}
 
 	@objc
@@ -86,6 +91,8 @@ extension AppDelegate: NSMenuDelegate {
 		menu.addItem(NSMenuItem("Show on All Desktops").bindState(to: .showOnAllDesktops))
 
 		menu.addItem(NSMenuItem("Hide and Show Automatically").bindState(to: .dockBehavior))
+		
+		menu.addItem(NSMenuItem("Launch at Login").bindState(to: .launchAtLogin))
 
 		menu.addItem(NSMenuItem.separator())
 
