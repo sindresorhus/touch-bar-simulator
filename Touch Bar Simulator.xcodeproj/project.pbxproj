@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C2E1377231C3F2900E0EB8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2E1376231C3F2900E0EB8E /* AppDelegate.swift */; };
-		3C2E137C231C3F2900E0EB8E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C2E137A231C3F2900E0EB8E /* MainMenu.xib */; };
-		3C2E1384231C459B00E0EB8E /* Touch Bar Simulator Launcher.app in Embed Login Items */ = {isa = PBXBuildFile; fileRef = 3C2E1374231C3F2900E0EB8E /* Touch Bar Simulator Launcher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3C37035421FBEBD300177657 /* Defaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C37035321FBEBD300177657 /* Defaults.framework */; };
 		3C37035521FBEBD300177657 /* Defaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C37035321FBEBD300177657 /* Defaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C8493AD21FD3B7F00F12966 /* Glue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8493AC21FD3B7F00F12966 /* Glue.swift */; };
@@ -29,28 +26,7 @@
 		E3FE2CC51E726CE800C6713A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3FE2CC41E726CE800C6713A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3C2E1385231C45CA00E0EB8E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3FE2CB71E726CE800C6713A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3C2E1373231C3F2900E0EB8E;
-			remoteInfo = "Touch Bar Simulator Launcher";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		3C2E1383231C456900E0EB8E /* Embed Login Items */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Contents/Library/LoginItems;
-			dstSubfolderSpec = 1;
-			files = (
-				3C2E1384231C459B00E0EB8E /* Touch Bar Simulator Launcher.app in Embed Login Items */,
-			);
-			name = "Embed Login Items";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E3FA3A901E784C5F00A7F2EA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,10 +44,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3C2E1374231C3F2900E0EB8E /* Touch Bar Simulator Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Bar Simulator Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C2E1376231C3F2900E0EB8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3C2E137B231C3F2900E0EB8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		3C2E137D231C3F2900E0EB8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C37035321FBEBD300177657 /* Defaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Defaults.framework; path = Carthage/Build/Mac/Defaults.framework; sourceTree = "<group>"; };
 		3C8493AC21FD3B7F00F12966 /* Glue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Glue.swift; sourceTree = "<group>"; usesTabs = 1; };
 		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarSlider.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -92,13 +64,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3C2E1371231C3F2900E0EB8E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E3FE2CBC1E726CE800C6713A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,16 +78,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C2E1375231C3F2900E0EB8E /* Touch Bar Simulator Launcher */ = {
-			isa = PBXGroup;
-			children = (
-				3C2E1376231C3F2900E0EB8E /* AppDelegate.swift */,
-				3C2E137A231C3F2900E0EB8E /* MainMenu.xib */,
-				3C2E137D231C3F2900E0EB8E /* Info.plist */,
-			);
-			path = "Touch Bar Simulator Launcher";
-			sourceTree = "<group>";
-		};
 		E356A16421028DAB000148AD /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				E3FE2CC11E726CE800C6713A /* Touch Bar Simulator */,
-				3C2E1375231C3F2900E0EB8E /* Touch Bar Simulator Launcher */,
 				E3FE2CC01E726CE800C6713A /* Products */,
 				E3FE2CD91E7272AD00C6713A /* Frameworks */,
 				E39A1589214D011F00F86D5D /* SkyLight.framework */,
@@ -151,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */,
-				3C2E1374231C3F2900E0EB8E /* Touch Bar Simulator Launcher.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,24 +137,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3C2E1373231C3F2900E0EB8E /* Touch Bar Simulator Launcher */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3C2E1381231C3F2900E0EB8E /* Build configuration list for PBXNativeTarget "Touch Bar Simulator Launcher" */;
-			buildPhases = (
-				3C2E1382231C453B00E0EB8E /* SwiftLint */,
-				3C2E1370231C3F2900E0EB8E /* Sources */,
-				3C2E1371231C3F2900E0EB8E /* Frameworks */,
-				3C2E1372231C3F2900E0EB8E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Touch Bar Simulator Launcher";
-			productName = "Touch Bar Simulator Launcher";
-			productReference = 3C2E1374231C3F2900E0EB8E /* Touch Bar Simulator Launcher.app */;
-			productType = "com.apple.product-type.application";
-		};
 		E3FE2CBE1E726CE800C6713A /* Touch Bar Simulator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3FE2CCC1E726CE800C6713A /* Build configuration list for PBXNativeTarget "Touch Bar Simulator" */;
@@ -211,12 +146,10 @@
 				E3FE2CBC1E726CE800C6713A /* Frameworks */,
 				E3FE2CBD1E726CE800C6713A /* Resources */,
 				E3FA3A901E784C5F00A7F2EA /* Embed Frameworks */,
-				3C2E1383231C456900E0EB8E /* Embed Login Items */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3C2E1386231C45CA00E0EB8E /* PBXTargetDependency */,
 			);
 			name = "Touch Bar Simulator";
 			productName = "Touch Bar Simulator";
@@ -229,18 +162,10 @@
 		E3FE2CB71E726CE800C6713A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Sindre Sorhus";
 				TargetAttributes = {
-					3C2E1373231C3F2900E0EB8E = {
-						CreatedOnToolsVersion = 10.2.1;
-						SystemCapabilities = {
-							com.apple.Sandbox = {
-								enabled = 0;
-							};
-						};
-					};
 					E3FE2CBE1E726CE800C6713A = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = YG56YK5RN5;
@@ -259,7 +184,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = E3FE2CB61E726CE800C6713A;
@@ -268,20 +192,11 @@
 			projectRoot = "";
 			targets = (
 				E3FE2CBE1E726CE800C6713A /* Touch Bar Simulator */,
-				3C2E1373231C3F2900E0EB8E /* Touch Bar Simulator Launcher */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3C2E1372231C3F2900E0EB8E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C2E137C231C3F2900E0EB8E /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E3FE2CBD1E726CE800C6713A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,25 +208,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3C2E1382231C453B00E0EB8E /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed\"\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		E3679C9A215A1ECA0080270F /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -334,14 +230,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3C2E1370231C3F2900E0EB8E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C2E1377231C3F2900E0EB8E /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E3FE2CBB1E726CE800C6713A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,73 +247,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		3C2E1386231C45CA00E0EB8E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3C2E1373231C3F2900E0EB8E /* Touch Bar Simulator Launcher */;
-			targetProxy = 3C2E1385231C45CA00E0EB8E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		3C2E137A231C3F2900E0EB8E /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3C2E137B231C3F2900E0EB8E /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		3C2E137F231C3F2900E0EB8E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Touch Bar Simulator Launcher/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.Touch-Bar-Simulator-Launcher";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		3C2E1380231C3F2900E0EB8E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Touch Bar Simulator Launcher/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sindresorhus.Touch-Bar-Simulator-Launcher";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		E3FE2CCA1E726CE800C6713A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -613,15 +435,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3C2E1381231C3F2900E0EB8E /* Build configuration list for PBXNativeTarget "Touch Bar Simulator Launcher" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3C2E137F231C3F2900E0EB8E /* Debug */,
-				3C2E1380231C3F2900E0EB8E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E3FE2CBA1E726CE800C6713A /* Build configuration list for PBXProject "Touch Bar Simulator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

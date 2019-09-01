@@ -1,5 +1,4 @@
 import Cocoa
-import ServiceManagement
 import Sparkle
 import Defaults
 
@@ -26,10 +25,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		_ = SUUpdater()
 		_ = window
 		_ = statusItem
-
-		defaults.observe(.openAtLogin, tiedToLifetimeOf: self, options: [.initial, .new]) { change in
-			SMLoginItemSetEnabled("com.sindresorhus.Touch-Bar-Simulator-Launcher" as CFString, change.newValue)
-		}
 	}
 
 	@objc
@@ -91,8 +86,6 @@ extension AppDelegate: NSMenuDelegate {
 		menu.addItem(NSMenuItem("Show on All Desktops").bindState(to: .showOnAllDesktops))
 
 		menu.addItem(NSMenuItem("Hide and Show Automatically").bindState(to: .dockBehavior))
-
-		menu.addItem(NSMenuItem("Open at Login").bindState(to: .openAtLogin))
 
 		menu.addItem(NSMenuItem.separator())
 
