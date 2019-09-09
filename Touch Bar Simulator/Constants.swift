@@ -12,5 +12,4 @@ extension Defaults.Keys {
 	static let lastFloatingPosition = OptionalKey<CGPoint>("lastFloatingPosition")
 	static let dockBehavior = Key<Bool>("dockBehavior", default: false)
 	static let lastWindowDockingWithDockBehavior = Key<TouchBarWindow.Docking>("windowDockingWithDockBehavior", default: .dockedToTop)
-	static let launchAtLogin = Key<Bool>("launchAtLogin", default: false)
 }
