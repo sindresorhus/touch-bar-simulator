@@ -11,8 +11,10 @@ final class TouchBarWindow: NSPanel {
 				window.addTitlebar()
 			case .dockedToTop:
 				window.removeTitlebar()
+				window.roundCorners([.layerMaxXMinYCorner, .layerMinXMinYCorner])
 			case .dockedToBottom:
 				window.removeTitlebar()
+				window.roundCorners([.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
 			}
 
 			reposition(window: window)
@@ -294,8 +296,13 @@ final class TouchBarWindow: NSPanel {
 
 	func removeTitlebar() {
 		styleMask.remove(.titled)
-		// Round corners
-		self.contentView?.layer?.cornerRadius = 5.0
+	}
+	
+	func roundCorners(_ corners: CACornerMask) {
+		self.contentView?.layer?.cornerRadius = 7.5
+		self.contentView?.layer?.maskedCorners = corners
+		self.contentView?.layer?.borderWidth = 0.0
+		self.contentView?.layer?.borderColor = .clear
 		self.isOpaque = false
 		self.backgroundColor = .clear
 	}
