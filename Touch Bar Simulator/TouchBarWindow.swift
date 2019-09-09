@@ -294,6 +294,10 @@ final class TouchBarWindow: NSPanel {
 
 	func removeTitlebar() {
 		styleMask.remove(.titled)
+		// Round corners
+		self.contentView?.layer?.cornerRadius = 5.0
+		self.isOpaque = false
+		self.backgroundColor = .clear
 	}
 
 	func makeScreenshotButton(_ toolbarView: NSView) -> NSButton {
