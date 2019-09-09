@@ -281,6 +281,9 @@ final class TouchBarWindow: NSPanel {
 	}
 
 	func addTitlebar() {
+		self.contentView?.layer?.cornerRadius = 0
+		self.contentView?.layer?.maskedCorners = []
+		
 		styleMask.insert(.titled)
 		title = "Touch Bar Simulator"
 
@@ -300,6 +303,8 @@ final class TouchBarWindow: NSPanel {
 	
 	func roundCorners(_ corners: CACornerMask) {
 		self.contentView?.layer?.cornerRadius = 7.5
+		self.contentView?.layer?.maskedCorners = []
+
 		self.contentView?.layer?.maskedCorners = corners
 		self.contentView?.layer?.borderWidth = 0.0
 		self.contentView?.layer?.borderColor = .clear
