@@ -22,12 +22,12 @@ private final class ToolbarSliderCell: NSSliderCell {
 		var frame = knobRect.insetBy(dx: 0, dy: 6.5)
 		if let shadow = self.shadow {
 			// Make room on either side of the view for the shadow to spill into,
-			// rather than clip on the edges
+			// rather than clip on the edges.
 			frame.origin.x *= ((barRect.width - shadow.shadowBlurRadius * 2) / barRect.width)
 			frame.origin.x += shadow.shadowBlurRadius
 		}
 
-		// Make the slider grey
+		// Make the slider grey.
 		var greySliderFrame = barRect
 		greySliderFrame.origin.x -= 1
 		greySliderFrame.origin.y = barRect.origin.y + 1
@@ -46,7 +46,7 @@ private final class ToolbarSliderCell: NSSliderCell {
 		fillColor.set()
 		path.fill()
 
-		// Border should not draw a shadow
+		// Border should not draw a shadow.
 		NSShadow().set()
 
 		// Border
@@ -81,7 +81,7 @@ extension NSSlider {
 	// itself brighter for some reason.
 	func alwaysRedisplayOnValueChanged() -> Self {
 		addAction { sender in
-			if (defaults[.windowTransparency] - sender.doubleValue) != 0 {
+			if (Defaults[.windowTransparency] - sender.doubleValue) != 0 {
 				sender.needsDisplay = true
 			}
 		}

@@ -4,12 +4,14 @@ import Defaults
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	lazy var window = with(TouchBarWindow()) {
-		$0.alphaValue = CGFloat(defaults[.windowTransparency])
+		$0.alphaValue = CGFloat(Defaults[.windowTransparency])
 		$0.setUp()
 	}
 
 	lazy var statusItem = with(NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)) {
-		$0.menu = with(NSMenu()) { $0.delegate = self }
+		$0.menu = with(NSMenu()) {
+			$0.delegate = self
+		}
 		$0.button!.image = NSImage(named: "MenuBarIcon")
 		$0.button!.toolTip = "Right-click or option-click for menu"
 	}
@@ -95,7 +97,7 @@ extension AppDelegate: NSMenuDelegate {
 	}
 
 	private func statusItemShouldShowMenu() -> Bool {
-		return !NSApp.isLeftMouseDown || NSApp.isOptionKeyDown
+		!NSApp.isLeftMouseDown || NSApp.isOptionKeyDown
 	}
 
 	func menuNeedsUpdate(_ menu: NSMenu) {
@@ -111,7 +113,7 @@ extension AppDelegate: NSMenuDelegate {
 	private func statusItemButtonClicked() {
 		// When the user explicitly wants the Touch Bar to appear then `dockBahavior` should be disabled.
 		// This is also how the macOS Dock behaves.
-		defaults[.dockBehavior] = false
+		Defaults[.dockBehavior] = false
 
 		toggleView()
 
