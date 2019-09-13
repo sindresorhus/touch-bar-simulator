@@ -1,7 +1,7 @@
 import Cocoa
 
 /**
-Convenience function for initializing an object and modifying its properties
+Convenience function for initializing an object and modifying its properties.
 
 ```
 let label = with(NSTextField()) {
@@ -19,8 +19,8 @@ func with<T>(_ item: T, update: (inout T) throws -> Void) rethrows -> T {
 }
 
 extension CGRect {
-	func adding(padding: Double) -> CGRect {
-		return CGRect(
+	func adding(padding: Double) -> Self {
+		Self(
 			x: origin.x - CGFloat(padding),
 			y: origin.y - CGFloat(padding),
 			width: width + CGFloat(padding * 2),
@@ -29,10 +29,10 @@ extension CGRect {
 	}
 
 	/**
-	Returns a CGRect where `self` is centered in `rect`
+	Returns a `CGRect` where `self` is centered in `rect`.
 	*/
-	func centered(in rect: CGRect, xOffset: Double = 0, yOffset: Double = 0) -> CGRect {
-		return CGRect(
+	func centered(in rect: Self, xOffset: Double = 0, yOffset: Double = 0) -> Self {
+		Self(
 			x: ((rect.width - size.width) / 2) + CGFloat(xOffset),
 			y: ((rect.height - size.height) / 2) + CGFloat(yOffset),
 			width: size.width,
@@ -42,9 +42,7 @@ extension CGRect {
 }
 
 extension NSWindow {
-	var toolbarView: NSView? {
-		return standardWindowButton(.closeButton)?.superview
-	}
+	var toolbarView: NSView? { standardWindowButton(.closeButton)?.superview }
 }
 
 extension NSWindow {
@@ -60,6 +58,7 @@ extension NSWindow {
 		guard let screen = NSScreen.main else {
 			return
 		}
+
 		let visibleFrame = screen.visibleFrame
 
 		let x: CGFloat, y: CGFloat
@@ -73,7 +72,7 @@ extension NSWindow {
 		}
 		switch yPositioning {
 		case .top:
-			// Defect fix: keep docked windows below menubar area
+			// Defect fix: keep docked windows below menubar area.
 			// Previously, the window would obstruct menubar clicks when the menubar was set to auto-hide.
 			// Now, the window stays below that area.
 			let menubarThickness = NSStatusBar.system.thickness
@@ -96,9 +95,7 @@ extension NSView {
 
 extension NSMenuItem {
 	var isChecked: Bool {
-		get {
-			return state == .on
-		}
+		get { state == .on }
 		set {
 			state = newValue ? .on : .off
 		}
@@ -130,7 +127,7 @@ extension NSMenuItem {
 final class AssociatedObject<T: Any> {
 	subscript(index: Any) -> T? {
 		get {
-			return objc_getAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque()) as! T?
+			objc_getAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque()) as! T?
 		} set {
 			objc_setAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque(), newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 		}
@@ -179,7 +176,7 @@ extension TargetActionSender {
 	*/
 	var onAction: ((Self) -> Void)? {
 		get {
-			return (TargetActionSenderAssociatedKeys.trampoline[self] as? ActionTrampoline<Self>)?.action
+			(TargetActionSenderAssociatedKeys.trampoline[self] as? ActionTrampoline<Self>)?.action
 		}
 		set {
 			guard let newValue = newValue else {
@@ -207,13 +204,8 @@ extension TargetActionSender {
 }
 
 extension NSApplication {
-	var isLeftMouseDown: Bool {
-		return currentEvent?.type == .leftMouseDown
-	}
-
-	var isOptionKeyDown: Bool {
-		return NSEvent.modifierFlags.contains(.option)
-	}
+	var isLeftMouseDown: Bool { currentEvent?.type == .leftMouseDown }
+	var isOptionKeyDown: Bool { NSEvent.modifierFlags.contains(.option) }
 }
 
 // TODO: Find a namespace to put this onto. I don't like free-floating functions.
@@ -228,7 +220,7 @@ func pressKey(keyCode: CGKeyCode, flags: CGEventFlags = []) {
 
 extension NSWindow.Level {
 	private static func level(for cgLevelKey: CGWindowLevelKey) -> NSWindow.Level {
-		return NSWindow.Level(rawValue: Int(CGWindowLevelForKey(cgLevelKey)))
+		NSWindow.Level(rawValue: Int(CGWindowLevelForKey(cgLevelKey)))
 	}
 
 	public static let desktop = level(for: .desktopWindow)

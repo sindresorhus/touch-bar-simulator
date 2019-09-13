@@ -13,6 +13,8 @@ whitelist_rules:
   - comma
   - compiler_protocol_init
   - conditional_returns_on_newline
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
   - contains_over_first_not_nil
   - control_statement
   - deployment_target
@@ -21,8 +23,10 @@ whitelist_rules:
   - discouraged_object_literal
   - discouraged_optional_boolean
   - discouraged_optional_collection
+  - duplicate_enum_cases
   - duplicate_imports
   - dynamic_inline
+  - empty_collection_literal
   - empty_count
   - empty_enum_arguments
   - empty_parameters
@@ -48,6 +52,7 @@ whitelist_rules:
   - legacy_constant
   - legacy_constructor
   - legacy_hashing
+  - legacy_multiple
   - legacy_nsgeometry_functions
   - legacy_random
   - literal_expression_end_indentation
@@ -63,7 +68,9 @@ whitelist_rules:
   - nimble_operator
   - no_extension_access_modifier
   - no_fallthrough_only
+  - no_space_in_method_call
   - notification_center_detachment
+  - nsobject_prefer_isequal
   - number_separator
   - object_literal
   - opening_brace
@@ -76,6 +83,8 @@ whitelist_rules:
   - private_unit_test
   - prohibited_super_call
   - protocol_property_accessors_order
+  - reduce_boolean
+  - reduce_into
   - redundant_discardable_let
   - redundant_nil_coalescing
   - redundant_objc_attribute
@@ -95,6 +104,7 @@ whitelist_rules:
   - switch_case_alignment
   - switch_case_on_newline
   - syntactic_sugar
+  - todo
   - toggle_bool
   - trailing_closure
   - trailing_comma
@@ -105,7 +115,9 @@ whitelist_rules:
   - unavailable_function
   - unneeded_break_in_switch
   - unneeded_parentheses_in_closure_argument
+  - unowned_variable_capture
   - untyped_error_in_catch
+  - unused_capture_list
   - unused_closure_parameter
   - unused_control_flow_label
   - unused_enumerated
@@ -117,15 +129,13 @@ whitelist_rules:
   - vertical_whitespace_closing_braces
   - vertical_whitespace_opening_braces
   - void_return
-  - weak_computed_property
   - weak_delegate
   - xct_specific_matcher
   - xctfail_message
   - yoda_condition
-  - todo
 analyzer_rules:
+  - unused_declaration
   - unused_import
-  - unused_private_declaration
 force_cast: warning
 force_unwrapping: warning
 number_separator:
@@ -134,6 +144,18 @@ object_literal:
   image_literal: false
 discouraged_object_literal:
   color_literal: false
+type_contents_order:
+  order:
+    - case
+    - [type_alias, associated_type, subtype]
+    - type_property
+    - type_method
+    - ib_outlet
+    - [ib_inspectable, instance_property]
+    - initializer
+    - subscript
+    - view_life_cycle_method
+    - [ib_action, other_method]
 identifier_name:
   max_length:
     warning: 100

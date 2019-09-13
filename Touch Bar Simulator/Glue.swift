@@ -5,7 +5,7 @@ import Defaults
 
 extension Defaults {
 	@discardableResult
-	func observe<T: Codable, Weak: AnyObject>(
+	static func observe<T: Codable, Weak: AnyObject>(
 		_ key: Key<T>,
 		tiedToLifetimeOf weaklyHeldObject: Weak,
 		options: NSKeyValueObservingOptions = [.initial, .new, .old],
@@ -40,17 +40,17 @@ extension NSMenuItem {
 	*/
 	func bindState(to key: Defaults.Key<Bool>) -> Self {
 		addAction { _ in
-			defaults[key].toggle()
+			Defaults[key].toggle()
 		}
 
-		defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
+		Defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
 			self.isChecked = change.newValue
 		}
 
 		return self
 	}
 
-	// TODO: The doc comments here are out of date
+	// TODO: The doc comments here are out of date.
 	/**
 	Adds an action to this menu item that sets the value of `key` in the
 	defaults system to `value`, and initializes this item's state based on
@@ -66,10 +66,10 @@ extension NSMenuItem {
 	*/
 	func bindChecked<Value: Equatable>(to key: Defaults.Key<Value>, value: Value) -> Self {
 		addAction { _ in
-			defaults[key] = value
+			Defaults[key] = value
 		}
 
-		defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
+		Defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
 			self.isChecked = (change.newValue == value)
 		}
 
@@ -91,10 +91,10 @@ extension NSSlider {
 	*/
 	func bindDoubleValue(to key: Defaults.Key<Double>) -> Self {
 		addAction { sender in
-			defaults[key] = sender.doubleValue
+			Defaults[key] = sender.doubleValue
 		}
 
-		defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
+		Defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
 			self.doubleValue = change.newValue
 		}
 

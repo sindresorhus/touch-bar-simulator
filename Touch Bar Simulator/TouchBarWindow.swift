@@ -21,7 +21,7 @@ final class TouchBarWindow: NSPanel {
 		func reposition(window: NSWindow) {
 			switch self {
 			case .floating:
-				if let prevPosition = defaults[.lastFloatingPosition] {
+				if let prevPosition = Defaults[.lastFloatingPosition] {
 					window.setFrameOrigin(prevPosition)
 				}
 			case .dockedToTop:
@@ -32,18 +32,22 @@ final class TouchBarWindow: NSPanel {
 		}
 	}
 
+	override var canBecomeMain: Bool { false }
+
+	override var canBecomeKey: Bool { false }
+
 	var docking: Docking = .floating {
 		didSet {
 			if oldValue == .floating && docking != .floating {
-				defaults[.lastFloatingPosition] = frame.origin
+				Defaults[.lastFloatingPosition] = frame.origin
 			}
 
-			if self.docking == .floating {
+			if docking == .floating {
 				dockBehavior = false
 			}
 
 			// Prevent the Touch Bar from momentarily becoming visible.
-			if self.docking == .floating || !dockBehavior {
+			if docking == .floating || !dockBehavior {
 				stopDockBehaviorTimer()
 				docking.dock(window: self)
 				setIsVisible(true)
@@ -51,7 +55,7 @@ final class TouchBarWindow: NSPanel {
 				return
 			}
 
-			// When docking is set to `dockedToTop` or `dockedToBottom` dockBehavior should start
+			// When docking is set to `dockedToTop` or `dockedToBottom` dockBehavior should start.
 			if dockBehavior {
 				setIsVisible(false)
 				docking.dock(window: self)
@@ -80,7 +84,14 @@ final class TouchBarWindow: NSPanel {
 
 	func startDockBehaviorTimer() {
 		stopDockBehaviorTimer()
-		dockBehaviorTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleDockBehavior), userInfo: nil, repeats: true)
+
+		dockBehaviorTimer = Timer.scheduledTimer(
+			timeInterval: 0.1,
+			target: self,
+			selector: #selector(handleDockBehavior),
+			userInfo: nil,
+			repeats: true
+		)
 	}
 
 	func stopDockBehaviorTimer() {
@@ -88,23 +99,23 @@ final class TouchBarWindow: NSPanel {
 		dockBehaviorTimer = Timer()
 	}
 
-	var dockBehavior: Bool = defaults[.dockBehavior] {
+	var dockBehavior: Bool = Defaults[.dockBehavior] {
 		didSet {
-			defaults[.dockBehavior] = self.dockBehavior
-			if self.docking == .dockedToBottom || self.docking == .dockedToTop {
-				defaults[.lastWindowDockingWithDockBehavior] = self.docking
+			Defaults[.dockBehavior] = dockBehavior
+			if docking == .dockedToBottom || docking == .dockedToTop {
+				Defaults[.lastWindowDockingWithDockBehavior] = docking
 			}
 
 			if dockBehavior {
-				if self.docking == .dockedToBottom || self.docking == .dockedToTop {
-					self.docking = defaults[.lastWindowDockingWithDockBehavior]
+				if docking == .dockedToBottom || docking == .dockedToTop {
+					docking = Defaults[.lastWindowDockingWithDockBehavior]
 					startDockBehaviorTimer()
-				} else if self.docking == .floating {
-					defaults[.windowDocking] = defaults[.lastWindowDockingWithDockBehavior]
+				} else if docking == .floating {
+					Defaults[.windowDocking] = Defaults[.lastWindowDockingWithDockBehavior]
 				}
 			} else {
 				stopDockBehaviorTimer()
-				self.setIsVisible(true)
+				setIsVisible(true)
 			}
 		}
 	}
@@ -119,25 +130,25 @@ final class TouchBarWindow: NSPanel {
 		}
 
 		var detectionRect: NSRect = .zero
-		if self.docking == .dockedToBottom {
-			if self.isVisible {
+		if docking == .dockedToBottom {
+			if isVisible {
 				detectionRect = CGRect(
 					x: 0,
 					y: 0,
 					width: visibleFrame.width,
-					height: self.frame.height + (screenFrame.height - visibleFrame.height - NSStatusBar.system.thickness)
+					height: frame.height + (screenFrame.height - visibleFrame.height - NSStatusBar.system.thickness)
 				)
 			} else {
 				detectionRect = CGRect(x: 0, y: 0, width: visibleFrame.width, height: 1)
 			}
-		} else if self.docking == .dockedToTop {
-			if self.isVisible {
+		} else if docking == .dockedToTop {
+			if isVisible {
 				detectionRect = CGRect(
 					x: 0,
 					// Without `+ 1`, the Touch Bar would glitch (toggling rapidly).
-					y: screenFrame.height - self.frame.height - NSStatusBar.system.thickness + 1,
+					y: screenFrame.height - frame.height - NSStatusBar.system.thickness + 1,
 					width: visibleFrame.width,
-					height: self.frame.height + NSStatusBar.system.thickness)
+					height: frame.height + NSStatusBar.system.thickness)
 			} else {
 				detectionRect = CGRect(
 					x: 0,
@@ -167,7 +178,7 @@ final class TouchBarWindow: NSPanel {
 			showTouchBarTimer = Timer()
 			showAnimationDidRun = false
 
-			if self.isVisible && !dismissAnimationDidRun {
+			if isVisible && !dismissAnimationDidRun {
 				performActionWithAnimation(action: .dismiss)
 				dismissAnimationDidRun = true
 			}
@@ -175,10 +186,10 @@ final class TouchBarWindow: NSPanel {
 	}
 
 	func moveToStartPoint() {
-		if self.docking == .dockedToTop {
-			self.moveTo(x: .center, y: .top)
-		} else if self.docking == .dockedToBottom {
-			self.moveTo(x: .center, y: .bottom)
+		if docking == .dockedToTop {
+			moveTo(x: .center, y: .top)
+		} else if docking == .dockedToBottom {
+			moveTo(x: .center, y: .bottom)
 		}
 	}
 
@@ -187,25 +198,25 @@ final class TouchBarWindow: NSPanel {
 
 	func showTouchBarWithAnimation() {
 		guard
-			self.docking == .dockedToTop ||
-			self.docking == .dockedToBottom
+			docking == .dockedToTop ||
+			docking == .dockedToBottom
 		else {
 			return
 		}
 
 		var startOrigin: CGPoint!
-		let endFrame = self.frame
-		self.setIsVisible(true)
-		if self.docking == .dockedToTop {
-			startOrigin = CGPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height)
-		} else if self.docking == .dockedToBottom {
-			startOrigin = CGPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
+		let endFrame = frame
+		setIsVisible(true)
+		if docking == .dockedToTop {
+			startOrigin = CGPoint(x: frame.origin.x, y: frame.origin.y + frame.height)
+		} else if docking == .dockedToBottom {
+			startOrigin = CGPoint(x: frame.origin.x, y: 0 - frame.height)
 		}
-		self.setFrameOrigin(startOrigin)
+		setFrameOrigin(startOrigin)
 
 		NSAnimationContext.runAnimationGroup({ context in
 			context.duration = TimeInterval(0.3)
-			self.animator().setFrame(endFrame, display: false, animate: true)
+			animator().setFrame(endFrame, display: false, animate: true)
 		}, completionHandler: {
 			self.moveToStartPoint()
 		})
@@ -213,22 +224,22 @@ final class TouchBarWindow: NSPanel {
 
 	func dismissTouchBarWithAnimation() {
 		guard
-			self.docking == .dockedToTop ||
-			self.docking == .dockedToBottom
+			docking == .dockedToTop ||
+			docking == .dockedToBottom
 		else {
 			return
 		}
 
-		var endFrame = self.frame
-		if self.docking == .dockedToTop {
-			endFrame.origin = NSPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height + NSStatusBar.system.thickness)
-		} else if self.docking == .dockedToBottom {
-			endFrame.origin = NSPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
+		var endFrame = frame
+		if docking == .dockedToTop {
+			endFrame.origin = NSPoint(x: frame.origin.x, y: frame.origin.y + frame.height + NSStatusBar.system.thickness)
+		} else if docking == .dockedToBottom {
+			endFrame.origin = NSPoint(x: frame.origin.x, y: 0 - frame.height)
 		}
 
 		NSAnimationContext.runAnimationGroup({ context in
 			context.duration = TimeInterval(0.3)
-			self.animator().setFrame(endFrame, display: false, animate: true)
+			animator().setFrame(endFrame, display: false, animate: true)
 		}, completionHandler: {
 			self.setIsVisible(false)
 			self.moveToStartPoint()
@@ -237,38 +248,41 @@ final class TouchBarWindow: NSPanel {
 
 	func performActionWithAnimation(action: TouchBarAction) {
 		guard
-			self.docking == .dockedToTop ||
-				self.docking == .dockedToBottom
-			else {
-				return
+			docking == .dockedToTop ||
+			docking == .dockedToBottom
+		else {
+			return
 		}
 
 		var startOrigin: CGPoint!
-		var endFrame = self.frame
+		var endFrame = frame
 
 		if action == .show {
-			self.setIsVisible(true)
-			if self.docking == .dockedToTop {
-				startOrigin = CGPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height)
-			} else if self.docking == .dockedToBottom {
-				startOrigin = CGPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
+			setIsVisible(true)
+
+			if docking == .dockedToTop {
+				startOrigin = CGPoint(x: frame.origin.x, y: frame.origin.y + frame.height)
+			} else if docking == .dockedToBottom {
+				startOrigin = CGPoint(x: frame.origin.x, y: 0 - frame.height)
 			}
-			self.setFrameOrigin(startOrigin)
+
+			setFrameOrigin(startOrigin)
 		} else if action == .dismiss {
-			if self.docking == .dockedToTop {
-				endFrame.origin = NSPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.height + NSStatusBar.system.thickness)
-			} else if self.docking == .dockedToBottom {
-				endFrame.origin = NSPoint(x: self.frame.origin.x, y: 0 - self.frame.height)
+			if docking == .dockedToTop {
+				endFrame.origin = NSPoint(x: frame.origin.x, y: frame.origin.y + frame.height + NSStatusBar.system.thickness)
+			} else if docking == .dockedToBottom {
+				endFrame.origin = NSPoint(x: frame.origin.x, y: 0 - frame.height)
 			}
 		}
 
 		NSAnimationContext.runAnimationGroup({ context in
 			context.duration = TimeInterval(0.3)
-			self.animator().setFrame(endFrame, display: false, animate: true)
+			animator().setFrame(endFrame, display: false, animate: true)
 		}, completionHandler: {
 			if action == .dismiss {
 				self.setIsVisible(false)
 			}
+
 			self.moveToStartPoint()
 		})
 	}
@@ -316,14 +330,6 @@ final class TouchBarWindow: NSPanel {
 		return slider
 	}
 
-	override var canBecomeMain: Bool {
-		return false
-	}
-
-	override var canBecomeKey: Bool {
-		return false
-	}
-
 	private var defaultsObservations: [DefaultsObservation] = []
 
 	func setUp() {
@@ -337,21 +343,21 @@ final class TouchBarWindow: NSPanel {
 		view.addSubview(touchBarView)
 
 		// TODO: These could use the `observe` method with `tiedToLifetimeOf` so we don't have to manually invalidate them.
-		defaultsObservations.append(defaults.observe(.windowTransparency) { change in
+		defaultsObservations.append(Defaults.observe(.windowTransparency) { change in
 			self.alphaValue = CGFloat(change.newValue)
 		})
 
-		defaultsObservations.append(defaults.observe(.windowDocking) { change in
+		defaultsObservations.append(Defaults.observe(.windowDocking) { change in
 			self.docking = change.newValue
 		})
 
 		// TODO: We could maybe simplify this by creating another `Default` extension to bind a default to a KeyPath:
 		// `defaults.bind(.showOnAllDesktops, to: \.showOnAllDesktop)`
-		defaultsObservations.append(defaults.observe(.showOnAllDesktops) { change in
+		defaultsObservations.append(Defaults.observe(.showOnAllDesktops) { change in
 			self.showOnAllDesktops = change.newValue
 		})
 
-		defaultsObservations.append(defaults.observe(.dockBehavior) { change in
+		defaultsObservations.append(Defaults.observe(.dockBehavior) { change in
 			self.dockBehavior = change.newValue
 		})
 
@@ -388,8 +394,8 @@ final class TouchBarWindow: NSPanel {
 			backing: .buffered,
 			defer: false
 		)
-		self.level = .assistiveTechHigh
 
+		self.level = .assistiveTechHigh
 		self._setPreventsActivation(true)
 		self.isRestorable = true
 		self.hidesOnDeactivate = false

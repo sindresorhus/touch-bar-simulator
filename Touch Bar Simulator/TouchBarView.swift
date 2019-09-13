@@ -20,9 +20,7 @@ final class TouchBarView: NSView {
 		stop()
 	}
 
-	override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
-		return true
-	}
+	override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
 
 	func start() {
 		stream = SLSDFRDisplayStreamCreate(0, .main) { status, _, frameSurface, _ in
@@ -38,7 +36,7 @@ final class TouchBarView: NSView {
 	}
 
 	func stop() {
-		guard let stream = stream else {
+		guard let stream = self.stream else {
 			return
 		}
 
