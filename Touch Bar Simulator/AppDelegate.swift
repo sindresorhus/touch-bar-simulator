@@ -91,6 +91,7 @@ extension AppDelegate: NSMenuDelegate {
 		menu.addItem(NSMenuItem("Hide and Show Automatically").bindState(to: .dockBehavior))
 
 		menu.addItem(NSMenuItem("Launch at Login", isChecked: LaunchAtLogin.isEnabled) { item in
+			item.isChecked.toggle()
 			LaunchAtLogin.isEnabled = item.isChecked
 		})
 
