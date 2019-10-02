@@ -69,7 +69,7 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 - [Website](https://sindresorhus.com/touch-bar-simulator/)
 - [Product Hunt submission](https://www.producthunt.com/posts/touch-bar-simulator)
 - [Gifski](https://github.com/sindresorhus/Gifski) - Convert videos to high-quality GIFs on your Mac
-- [More apps…](https://sindresorhus.com/#apps)
+- [More apps…](https://sindresorhus.com/apps)
 
 
 ## Maintainers
