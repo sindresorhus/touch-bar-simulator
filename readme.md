@@ -10,8 +10,6 @@ Clicking the menu bar icon toggles the Touch Bar window.
 
 Right-clicking or option-clicking the menu bar icon displays a menu with options to dock the window to the top or bottom of the screen, make it show on all desktops at once, access toolbar features in docked mode, automatically show and hide the Touch Bar, or quit the app.
 
-You can add a toggle shortcut in `System Preferences` → `Keyboard` → `Shortcuts` → `Services` → `Toggle Touch Bar`.
-
 **Important:** If clicking in the simulator or the screenshot button is not working, you need to go to "System Preferences" → "Security & Privacy" → "Accessibility", and ensure "Touch Bar Simulator.app" is checked. If it's already checked, try unchecking and checking it again.
 
 <img src="screenshot.png" width="1129">
@@ -45,6 +43,14 @@ You can capture a screenshot of the Touch Bar by either:
 ### Why is this not on the App Store?
 
 Apple would never allow it as it uses private APIs.
+
+### Can I set a keyboard shortcut?
+
+You can set a shortcut to toggle the Touch Bar window using the included macOS Service.
+
+**tl;dr** `System Preferences` → `Keyboard` → `Shortcuts` → `Services` → `Toggle Touch Bar` → add your shortcut.
+
+Navigate to Keyboard in System Preferences, then click the Shortcuts tab and then Services in the list on the left. Scroll the list on the right down to the "General" section, then check the box beside "Toggle Touch Bar" and add your shortcut next to it.
 
 ### Can I contribute localizations?
 
