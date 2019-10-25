@@ -10,8 +10,6 @@ Clicking the menu bar icon toggles the Touch Bar window.
 
 Right-clicking or option-clicking the menu bar icon displays a menu with options to dock the window to the top or bottom of the screen, make it show on all desktops at once, access toolbar features in docked mode, automatically show and hide the Touch Bar, or quit the app.
 
-**Important:** If clicking in the simulator or the screenshot button is not working, you need to go to "System Preferences" → "Security & Privacy" → "Accessibility", and ensure "Touch Bar Simulator.app" is checked. If it's already checked, try unchecking and checking it again.
-
 <img src="screenshot.png" width="1129">
 
 
@@ -39,6 +37,10 @@ You can capture a screenshot of the Touch Bar by either:
 
 
 ## FAQ
+
+### Clicking in the simulator window is not working
+
+Go to “System Preferences › Security & Privacy › Accessibility“ and ensure “Touch Bar Simulator.app“ is checked. If it's already checked, try unchecking and checking it again.
 
 ### Why is this not on the App Store?
 
