@@ -10,7 +10,6 @@
 		3C37035421FBEBD300177657 /* Defaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C37035321FBEBD300177657 /* Defaults.framework */; };
 		3C37035521FBEBD300177657 /* Defaults.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C37035321FBEBD300177657 /* Defaults.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C8493AD21FD3B7F00F12966 /* Glue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8493AC21FD3B7F00F12966 /* Glue.swift */; };
-		3C906EEC231C5FB50099B139 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; };
 		3C906EED231C5FB90099B139 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; };
 		3C906EEE231C5FB90099B139 /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */; };
@@ -76,7 +75,6 @@
 				E39A157E214CFE7100F86D5D /* DFRFoundation.framework in Frameworks */,
 				E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */,
 				3C906EED231C5FB90099B139 /* LaunchAtLogin.framework in Frameworks */,
-				3C906EEC231C5FB50099B139 /* LaunchAtLogin.framework in Frameworks */,
 				3C37035421FBEBD300177657 /* Defaults.framework in Frameworks */,
 				E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */,
 			);
@@ -172,7 +170,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Sindre Sorhus";
 				TargetAttributes = {
 					E3FE2CBE1E726CE800C6713A = {

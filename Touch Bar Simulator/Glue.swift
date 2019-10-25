@@ -43,6 +43,7 @@ extension NSMenuItem {
 			Defaults[key].toggle()
 		}
 
+		// swiftlint:disable:next unowned_variable_capture
 		Defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
 			self.isChecked = change.newValue
 		}
@@ -69,6 +70,7 @@ extension NSMenuItem {
 			Defaults[key] = value
 		}
 
+		// swiftlint:disable:next unowned_variable_capture
 		Defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
 			self.isChecked = (change.newValue == value)
 		}
@@ -94,6 +96,7 @@ extension NSSlider {
 			Defaults[key] = sender.doubleValue
 		}
 
+		// swiftlint:disable:next unowned_variable_capture
 		Defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
 			self.doubleValue = change.newValue
 		}

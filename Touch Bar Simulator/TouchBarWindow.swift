@@ -3,7 +3,9 @@ import Defaults
 
 final class TouchBarWindow: NSPanel {
 	enum Docking: String, Codable {
-		case floating, dockedToTop, dockedToBottom
+		case floating
+		case dockedToTop
+		case dockedToBottom
 
 		func dock(window: TouchBarWindow) {
 			switch self {

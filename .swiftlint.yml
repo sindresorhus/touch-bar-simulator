@@ -16,6 +16,7 @@ whitelist_rules:
   - contains_over_filter_count
   - contains_over_filter_is_empty
   - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
   - control_statement
   - deployment_target
   - discarded_notification_center_observer
@@ -37,6 +38,7 @@ whitelist_rules:
   - fallthrough
   - fatal_error_message
   - first_where
+  - flatmap_over_map_reduce
   - for_where
   - generic_type_name
   - identical_operands
@@ -64,7 +66,6 @@ whitelist_rules:
   - multiline_literal_brackets
   - multiline_parameters
   - multiline_parameters_brackets
-  - multiple_closures_with_trailing_closure
   - nimble_operator
   - no_extension_access_modifier
   - no_fallthrough_only
@@ -175,6 +176,7 @@ identifier_name:
     - 'x2'
     - 'y1'
     - 'y2'
-macOS_deployment_target: '10.14'
+deployment_target:
+  macOS_deployment_target: '10.14'
 excluded:
   - Carthage
