@@ -198,56 +198,6 @@ final class TouchBarWindow: NSPanel {
 	var showAnimationDidRun = false
 	var dismissAnimationDidRun = false
 
-	func showTouchBarWithAnimation() {
-		guard
-			docking == .dockedToTop ||
-			docking == .dockedToBottom
-		else {
-			return
-		}
-
-		var startOrigin: CGPoint!
-		let endFrame = frame
-		setIsVisible(true)
-		if docking == .dockedToTop {
-			startOrigin = CGPoint(x: frame.origin.x, y: frame.origin.y + frame.height)
-		} else if docking == .dockedToBottom {
-			startOrigin = CGPoint(x: frame.origin.x, y: 0 - frame.height)
-		}
-		setFrameOrigin(startOrigin)
-
-		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = TimeInterval(0.3)
-			animator().setFrame(endFrame, display: false, animate: true)
-		}, completionHandler: {
-			self.moveToStartPoint()
-		})
-	}
-
-	func dismissTouchBarWithAnimation() {
-		guard
-			docking == .dockedToTop ||
-			docking == .dockedToBottom
-		else {
-			return
-		}
-
-		var endFrame = frame
-		if docking == .dockedToTop {
-			endFrame.origin = NSPoint(x: frame.origin.x, y: frame.origin.y + frame.height + NSStatusBar.system.thickness)
-		} else if docking == .dockedToBottom {
-			endFrame.origin = NSPoint(x: frame.origin.x, y: 0 - frame.height)
-		}
-
-		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = TimeInterval(0.3)
-			animator().setFrame(endFrame, display: false, animate: true)
-		}, completionHandler: {
-			self.setIsVisible(false)
-			self.moveToStartPoint()
-		})
-	}
-
 	func performActionWithAnimation(action: TouchBarAction) {
 		guard
 			docking == .dockedToTop ||
