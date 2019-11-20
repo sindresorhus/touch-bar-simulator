@@ -150,7 +150,7 @@ final class TouchBarWindow: NSPanel {
 				detectionRect = CGRect(
 					x: 0,
 					// Without `+ 1`, the Touch Bar would glitch (toggling rapidly).
-					y: screenFrame.height - frame.height - NSStatusBar.system.thickness + 1,
+					y: screenFrame.height - frame.height - NSStatusBar.system.thickness - CGFloat(Defaults[.windowPadding]) + 1,
 					width: visibleFrame.width,
 					height: frame.height + NSStatusBar.system.thickness + CGFloat(Defaults[.windowPadding]))
 			} else {
