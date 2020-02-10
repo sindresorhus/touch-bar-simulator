@@ -1,4 +1,5 @@
 import Cocoa
+import Combine
 
 /**
 Convenience function for initializing an object and modifying its properties.
@@ -17,6 +18,7 @@ func with<T>(_ item: T, update: (inout T) throws -> Void) rethrows -> T {
 	try update(&this)
 	return this
 }
+
 
 extension CGRect {
 	func adding(padding: Double) -> Self {
@@ -41,9 +43,11 @@ extension CGRect {
 	}
 }
 
+
 extension NSWindow {
 	var toolbarView: NSView? { standardWindowButton(.closeButton)?.superview }
 }
+
 
 extension NSWindow {
 	enum MoveXPositioning {
@@ -87,11 +91,13 @@ extension NSWindow {
 	}
 }
 
+
 extension NSView {
 	func addSubviews(_ subviews: NSView...) {
 		subviews.forEach { addSubview($0) }
 	}
 }
+
 
 extension NSMenuItem {
 	var isChecked: Bool {
@@ -101,6 +107,7 @@ extension NSMenuItem {
 		}
 	}
 }
+
 
 extension NSMenuItem {
 	convenience init(
@@ -124,6 +131,7 @@ extension NSMenuItem {
 	}
 }
 
+
 final class AssociatedObject<T: Any> {
 	subscript(index: Any) -> T? {
 		get {
@@ -133,6 +141,7 @@ final class AssociatedObject<T: Any> {
 		}
 	}
 }
+
 
 @objc
 protocol TargetActionSender: AnyObject {
@@ -203,10 +212,12 @@ extension TargetActionSender {
 	}
 }
 
+
 extension NSApplication {
 	var isLeftMouseDown: Bool { currentEvent?.type == .leftMouseDown }
 	var isOptionKeyDown: Bool { NSEvent.modifierFlags.contains(.option) }
 }
+
 
 // TODO: Find a namespace to put this onto. I don't like free-floating functions.
 func pressKey(keyCode: CGKeyCode, flags: CGEventFlags = []) {
@@ -217,6 +228,7 @@ func pressKey(keyCode: CGKeyCode, flags: CGEventFlags = []) {
 	keyDown?.post(tap: .cghidEventTap)
 	keyUp?.post(tap: .cghidEventTap)
 }
+
 
 extension NSWindow.Level {
 	private static func level(for cgLevelKey: CGWindowLevelKey) -> NSWindow.Level {
@@ -235,4 +247,44 @@ extension NSWindow.Level {
 
 	public static let minimum = level(for: .minimumWindow)
 	public static let maximum = level(for: .maximumWindow)
+}
+
+
+struct App {
+	static let url = Bundle.main.bundleURL
+
+	static func quit() {
+		NSApp.terminate(nil)
+	}
+
+	static func relaunch() {
+		let configuration = NSWorkspace.OpenConfiguration()
+		configuration.createsNewApplicationInstance = true
+
+		NSWorkspace.shared.openApplication(at: url, configuration: configuration) { _, error in
+			DispatchQueue.main.async {
+				if let error = error {
+					NSApp.presentError(error)
+					return
+				}
+
+				quit()
+			}
+		}
+	}
+}
+
+
+extension NSScreen {
+	// Returns a publisher that sends updates when anything related to screens change.
+	// This includes screens being added/removed, resolution change, and the screen frame changing (dock and menu bar being toggled).
+	static var publisher: AnyPublisher<Void, Never> {
+		Publishers.Merge(
+			NotificationCenter.default.publisher(for: NSApplication.didChangeScreenParametersNotification),
+			// We use a wake up notification as the screen setup might have changed during sleep. For example, a screen could have been unplugged.
+			NotificationCenter.default.publisher(for: NSWorkspace.didWakeNotification)
+		)
+			.map { _ in }
+			.eraseToAnyPublisher()
+	}
 }

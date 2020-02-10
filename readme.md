@@ -12,7 +12,6 @@ Right-clicking or option-clicking the menu bar icon displays a menu with options
 
 <img src="screenshot.png" width="1129">
 
-
 ## Getting started
 
 #### [Download the latest release](https://sindresorhus.com/touch-bar-simulator)
@@ -24,7 +23,7 @@ $ brew cask install touch-bar-simulator
 ```
 
 
-*Requires macOS 10.14 or later.*
+*Requires macOS 10.15 or later.*
 
 
 ## Screenshot
@@ -64,13 +63,11 @@ No, we're not interested in localizing the app.
 
 Xcode 10 moved the required private symbols needed to trigger the Touch Bar simulator into the main IDEKit framework, which has a lot of dependencies on its own. I managed to get it working by including all those frameworks, but the app ended up being 700 MB... I then went back to the drawing board. I discovered a way to communicate with the Touch Bar simulator directly. The result of this is a faster and more stable app.
 
-
 ## Build
 
 ```
 ./build
 ```
-
 
 ## Related
 
@@ -78,7 +75,6 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 - [Product Hunt submission](https://www.producthunt.com/posts/touch-bar-simulator)
 - [Gifski](https://github.com/sindresorhus/Gifski) - Convert videos to high-quality GIFs on your Mac
 - [More apps…](https://sindresorhus.com/apps)
-
 
 ## Maintainers
 

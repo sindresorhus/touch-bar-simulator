@@ -1,4 +1,5 @@
 import Cocoa
+import Combine
 import Defaults
 
 final class TouchBarWindow: NSPanel {
@@ -35,12 +36,11 @@ final class TouchBarWindow: NSPanel {
 	}
 
 	override var canBecomeMain: Bool { false }
-
 	override var canBecomeKey: Bool { false }
 
 	var docking: Docking = .floating {
 		didSet {
-			if oldValue == .floating && docking != .floating {
+			if oldValue == .floating, docking != .floating {
 				Defaults[.lastFloatingPosition] = frame.origin
 			}
 
@@ -64,11 +64,6 @@ final class TouchBarWindow: NSPanel {
 				startDockBehaviorTimer()
 			}
 		}
-	}
-
-	@objc
-	func didChangeScreenParameters(_ notification: Notification) {
-		docking.reposition(window: self)
 	}
 
 	var showOnAllDesktops: Bool = false {
@@ -171,7 +166,11 @@ final class TouchBarWindow: NSPanel {
 				return
 			}
 
-			showTouchBarTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+			showTouchBarTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+				guard let self = self else {
+					return
+				}
+
 				self.performActionWithAnimation(action: .show)
 				self.showAnimationDidRun = true
 			}
@@ -180,7 +179,7 @@ final class TouchBarWindow: NSPanel {
 			showTouchBarTimer = Timer()
 			showAnimationDidRun = false
 
-			if isVisible && !dismissAnimationDidRun {
+			if isVisible, !dismissAnimationDidRun {
 				performActionWithAnimation(action: .dismiss)
 				dismissAnimationDidRun = true
 			}
@@ -333,6 +332,7 @@ final class TouchBarWindow: NSPanel {
 	}
 
 	private var defaultsObservations: [DefaultsObservation] = []
+	private var cancellable: AnyCancellable?
 
 	func setUp() {
 		let view = contentView!
@@ -345,22 +345,22 @@ final class TouchBarWindow: NSPanel {
 		view.addSubview(touchBarView)
 
 		// TODO: These could use the `observe` method with `tiedToLifetimeOf` so we don't have to manually invalidate them.
-		defaultsObservations.append(Defaults.observe(.windowTransparency) { change in
-			self.alphaValue = CGFloat(change.newValue)
+		defaultsObservations.append(Defaults.observe(.windowTransparency) { [weak self] change in
+			self?.alphaValue = CGFloat(change.newValue)
 		})
 
-		defaultsObservations.append(Defaults.observe(.windowDocking) { change in
-			self.docking = change.newValue
+		defaultsObservations.append(Defaults.observe(.windowDocking) { [weak self] change in
+			self?.docking = change.newValue
 		})
 
 		// TODO: We could maybe simplify this by creating another `Default` extension to bind a default to a KeyPath:
 		// `defaults.bind(.showOnAllDesktops, to: \.showOnAllDesktop)`
-		defaultsObservations.append(Defaults.observe(.showOnAllDesktops) { change in
-			self.showOnAllDesktops = change.newValue
+		defaultsObservations.append(Defaults.observe(.showOnAllDesktops) { [weak self] change in
+			self?.showOnAllDesktops = change.newValue
 		})
 
-		defaultsObservations.append(Defaults.observe(.dockBehavior) { change in
-			self.dockBehavior = change.newValue
+		defaultsObservations.append(Defaults.observe(.dockBehavior) { [weak self] change in
+			self?.dockBehavior = change.newValue
 		})
 
 		center()
@@ -374,7 +374,13 @@ final class TouchBarWindow: NSPanel {
 			orderFront(nil)
 		}
 
-		NotificationCenter.default.addObserver(self, selector: #selector(didChangeScreenParameters(_:)), name: NSApplication.didChangeScreenParametersNotification, object: nil)
+		cancellable = NSScreen.publisher.sink { [weak self] in
+			guard let self = self else {
+				return
+			}
+
+			self.docking.reposition(window: self)
+		}
 	}
 
 	deinit {
