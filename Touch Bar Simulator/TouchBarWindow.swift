@@ -333,7 +333,7 @@ final class TouchBarWindow: NSPanel {
 				return
 			}
 
-			self.docking.reposition(window: self)
+			self.docking.reposition(window: self, padding: CGFloat(Defaults[.windowPadding]))
 		}
 	}
 
