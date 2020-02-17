@@ -8,7 +8,7 @@ final class TouchBarWindow: NSPanel {
 		case dockedToTop
 		case dockedToBottom
 
-		func dock(window: TouchBarWindow, padding: CGFloat) {
+		func dock(window: TouchBarWindow, padding: Double) {
 			switch self {
 			case .floating:
 				window.addTitlebar()
@@ -21,7 +21,9 @@ final class TouchBarWindow: NSPanel {
 			reposition(window: window, padding: padding)
 		}
 
-		func reposition(window: NSWindow, padding: CGFloat) {
+		func reposition(window: NSWindow, padding: Double) {
+			let padding = CGFloat(padding)
+
 			switch self {
 			case .floating:
 				if let prevPosition = Defaults[.lastFloatingPosition] {
@@ -53,7 +55,7 @@ final class TouchBarWindow: NSPanel {
 			// Prevent the Touch Bar from momentarily becoming visible.
 			if docking == .floating || !dockBehavior {
 				stopDockBehaviorTimer()
-				docking.dock(window: self, padding: CGFloat(Defaults[.windowPadding]))
+				docking.dock(window: self, padding: Defaults[.windowPadding])
 				setIsVisible(true)
 				orderFront(nil)
 				return
@@ -62,7 +64,7 @@ final class TouchBarWindow: NSPanel {
 			// When docking is set to `dockedToTop` or `dockedToBottom` dockBehavior should start.
 			if dockBehavior {
 				setIsVisible(false)
-				docking.dock(window: self, padding: CGFloat(Defaults[.windowPadding]))
+				docking.dock(window: self, padding: Defaults[.windowPadding])
 				startDockBehaviorTimer()
 			}
 		}
@@ -202,7 +204,7 @@ final class TouchBarWindow: NSPanel {
 		var endY: CGFloat!
 
 		if action == .show {
-			self.docking.reposition(window: self, padding: -frame.height)
+			self.docking.reposition(window: self, padding: Double(-frame.height))
 			setIsVisible(true)
 
 			if docking == .dockedToTop {
@@ -226,7 +228,7 @@ final class TouchBarWindow: NSPanel {
 			animator().setFrame(endFrame, display: false, animate: true)
 		}, completionHandler: {
 			if action == .show {
-				self.docking.reposition(window: self, padding: CGFloat(Defaults[.windowPadding]))
+				self.docking.reposition(window: self, padding: Defaults[.windowPadding])
 			} else if action == .dismiss {
 				self.setIsVisible(false)
 				self.docking.reposition(window: self, padding: 0)
@@ -300,7 +302,7 @@ final class TouchBarWindow: NSPanel {
 				guard let self = self else {
 					return
 				}
-				self.docking.reposition(window: self, padding: CGFloat(change.newValue))
+				self.docking.reposition(window: self, padding: change.newValue)
 			}
 			// TODO: We could maybe simplify this by creating another `Default` extension to bind a default to a KeyPath:
 			// `defaults.bind(.showOnAllDesktops, to: \.showOnAllDesktops)`
@@ -328,7 +330,7 @@ final class TouchBarWindow: NSPanel {
 				return
 			}
 
-			self.docking.reposition(window: self, padding: CGFloat(Defaults[.windowPadding]))
+			self.docking.reposition(window: self, padding: Defaults[.windowPadding])
 		}
 	}
 
