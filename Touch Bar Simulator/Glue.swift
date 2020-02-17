@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 import Defaults
 
 // TODO: Upstream all these to https://github.com/sindresorhus/Defaults
