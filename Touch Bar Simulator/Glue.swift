@@ -20,10 +20,10 @@ extension NSMenuItem {
 			Defaults[key].toggle()
 		}
 
-		// swiftlint:disable:next unowned_variable_capture
-		Defaults.observe(key) { [unowned self] change in
-			self.isChecked = change.newValue
-		}.tieToLifetime(of: self) // swiftlint:disable:this multiline_function_chains
+		Defaults.observe(key) { [weak self] change in
+			self?.isChecked = change.newValue
+		}
+			.tieToLifetime(of: self)
 
 		return self
 	}
@@ -48,10 +48,10 @@ extension NSMenuItem {
 			Defaults[key] = value
 		}
 
-		// swiftlint:disable:next unowned_variable_capture
-		Defaults.observe(key) { [unowned self] change in
-			self.isChecked = (change.newValue == value)
-		}.tieToLifetime(of: self) // swiftlint:disable:this multiline_function_chains
+		Defaults.observe(key) { [weak self] change in
+			self?.isChecked = (change.newValue == value)
+		}
+			.tieToLifetime(of: self)
 
 		return self
 	}
@@ -75,10 +75,10 @@ extension NSSlider {
 			Defaults[key] = sender.doubleValue
 		}
 
-		// swiftlint:disable:next unowned_variable_capture
-		Defaults.observe(key) { [unowned self] change in
-			self.doubleValue = change.newValue
-		}.tieToLifetime(of: self) // swiftlint:disable:this multiline_function_chains
+		Defaults.observe(key) { [weak self] change in
+			self?.doubleValue = change.newValue
+		}
+			.tieToLifetime(of: self)
 
 		return self
 	}
