@@ -1,5 +1,6 @@
 import Cocoa
 import Combine
+import Defaults
 
 /**
 Convenience function for initializing an object and modifying its properties.
@@ -286,5 +287,28 @@ extension NSScreen {
 		)
 			.map { _ in }
 			.eraseToAnyPublisher()
+	}
+}
+
+extension Collection where Element == DefaultsObservation {
+	@discardableResult
+	func tieAllToLifetime(of weaklyHeldObject: AnyObject) -> Self {
+		for observation in self {
+			observation.tieToLifetime(of: weaklyHeldObject)
+		}
+		return self
+	}
+}
+
+extension Defaults {
+	static func tiedToLifetime(of weaklyHeldObject: AnyObject, @ArrayBuilder<DefaultsObservation> _ observations: () -> [DefaultsObservation]) {
+		observations().tieAllToLifetime(of: weaklyHeldObject)
+	}
+}
+
+@_functionBuilder
+struct ArrayBuilder<T> {
+	static func buildBlock(_ elements: T...) -> [T] {
+		return elements
 	}
 }

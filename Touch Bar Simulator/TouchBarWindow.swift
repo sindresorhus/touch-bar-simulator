@@ -289,29 +289,27 @@ final class TouchBarWindow: NSPanel {
 		touchBarView.frame = touchBarView.frame.centered(in: view.bounds)
 		view.addSubview(touchBarView)
 
-		for observation in [
+		Defaults.tiedToLifetime(of: self) {
 			Defaults.observe(.windowTransparency) { [weak self] change in
 				self?.alphaValue = CGFloat(change.newValue)
-			},
+			}
 			Defaults.observe(.windowDocking) { [weak self] change in
 				self?.docking = change.newValue
-			},
+			}
 			Defaults.observe(.windowPadding) { [weak self] change in
 				guard let self = self else {
 					return
 				}
 				self.docking.reposition(window: self, padding: CGFloat(change.newValue))
-			},
+			}
 			// TODO: We could maybe simplify this by creating another `Default` extension to bind a default to a KeyPath:
 			// `defaults.bind(.showOnAllDesktops, to: \.showOnAllDesktops)`
 			Defaults.observe(.showOnAllDesktops) { [weak self] change in
 				self?.showOnAllDesktops = change.newValue
-			},
+			}
 			Defaults.observe(.dockBehavior) { [weak self] change in
 				self?.dockBehavior = change.newValue
 			}
-		] {
-			observation.tieToLifetime(of: self)
 		}
 
 		center()
