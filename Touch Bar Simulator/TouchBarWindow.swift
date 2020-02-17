@@ -1,4 +1,5 @@
 import Cocoa
+import Combine
 import Defaults
 
 final class TouchBarWindow: NSPanel {
@@ -37,12 +38,11 @@ final class TouchBarWindow: NSPanel {
 	}
 
 	override var canBecomeMain: Bool { false }
-
 	override var canBecomeKey: Bool { false }
 
 	var docking: Docking = .floating {
 		didSet {
-			if oldValue == .floating && docking != .floating {
+			if oldValue == .floating, docking != .floating {
 				Defaults[.lastFloatingPosition] = frame.origin
 			}
 
@@ -66,11 +66,6 @@ final class TouchBarWindow: NSPanel {
 				startDockBehaviorTimer()
 			}
 		}
-	}
-
-	@objc
-	func didChangeScreenParameters(_ notification: Notification) {
-		docking.reposition(window: self, padding: CGFloat(Defaults[.windowPadding]))
 	}
 
 	var showOnAllDesktops: Bool = false {
@@ -173,7 +168,11 @@ final class TouchBarWindow: NSPanel {
 				return
 			}
 
-			showTouchBarTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+			showTouchBarTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+				guard let self = self else {
+					return
+				}
+
 				self.performActionWithAnimation(action: .show)
 				self.showAnimationDidRun = true
 			}
@@ -182,7 +181,7 @@ final class TouchBarWindow: NSPanel {
 			showTouchBarTimer = Timer()
 			showAnimationDidRun = false
 
-			if isVisible && !dismissAnimationDidRun {
+			if isVisible, !dismissAnimationDidRun {
 				performActionWithAnimation(action: .dismiss)
 				dismissAnimationDidRun = true
 			}
@@ -279,6 +278,7 @@ final class TouchBarWindow: NSPanel {
 	}
 
 	private var defaultsObservations: [DefaultsObservation] = []
+	private var cancellable: AnyCancellable?
 
 	func setUp() {
 		let view = contentView!
@@ -328,7 +328,13 @@ final class TouchBarWindow: NSPanel {
 			orderFront(nil)
 		}
 
-		NotificationCenter.default.addObserver(self, selector: #selector(didChangeScreenParameters(_:)), name: NSApplication.didChangeScreenParametersNotification, object: nil)
+		cancellable = NSScreen.publisher.sink { [weak self] in
+			guard let self = self else {
+				return
+			}
+
+			self.docking.reposition(window: self)
+		}
 	}
 
 	deinit {

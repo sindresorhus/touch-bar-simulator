@@ -4,6 +4,8 @@
 
 Launch the Touch Bar simulator from anywhere without needing to have Xcode installed, whereas Apple requires you to launch it from inside Xcode. It also comes with a handy transparency slider, a screenshot button, and a menu bar icon and system service to toggle the Touch Bar with a click or keyboard shortcut.
 
+**Important:** There is a [problem](https://github.com/sindresorhus/touch-bar-simulator/issues/61) with using this on Catalina. If you launch Xcode or relaunch Touch Bar Simulator, you will no longer be able to interact (click) with the Touch Bar view until you restart your computer. Which is not ideal. So if you want to use this reliably; don't launch Xcode and don't restart this app.
+
 <img src="screenshot-menu-bar.png" width="277" align="left">
 
 Clicking the menu bar icon toggles the Touch Bar window.
@@ -11,7 +13,6 @@ Clicking the menu bar icon toggles the Touch Bar window.
 Right-clicking or option-clicking the menu bar icon displays a menu with options to dock the window to the top or bottom of the screen, make it show on all desktops at once, access toolbar features in docked mode, automatically show and hide the Touch Bar, or quit the app.
 
 <img src="screenshot.png" width="1129">
-
 
 ## Getting started
 
@@ -24,7 +25,7 @@ $ brew cask install touch-bar-simulator
 ```
 
 
-*Requires macOS 10.14 or later.*
+*Requires macOS 10.15 or later.*
 
 
 ## Screenshot
@@ -64,13 +65,11 @@ No, we're not interested in localizing the app.
 
 Xcode 10 moved the required private symbols needed to trigger the Touch Bar simulator into the main IDEKit framework, which has a lot of dependencies on its own. I managed to get it working by including all those frameworks, but the app ended up being 700 MB... I then went back to the drawing board. I discovered a way to communicate with the Touch Bar simulator directly. The result of this is a faster and more stable app.
 
-
 ## Build
 
 ```
 ./build
 ```
-
 
 ## Related
 
@@ -78,7 +77,6 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 - [Product Hunt submission](https://www.producthunt.com/posts/touch-bar-simulator)
 - [Gifski](https://github.com/sindresorhus/Gifski) - Convert videos to high-quality GIFs on your Mac
 - [More apps…](https://sindresorhus.com/apps)
-
 
 ## Maintainers
 

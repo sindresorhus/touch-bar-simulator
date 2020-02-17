@@ -24,10 +24,34 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
+		checkAccessibilityPermission()
 		NSApp.servicesProvider = self
 		_ = SUUpdater()
 		_ = window
 		_ = statusItem
+	}
+
+	func checkAccessibilityPermission() {
+		// We intentionally don't use the system prompt as our dialog explains it better.
+		let options = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as String: false] as CFDictionary
+		if AXIsProcessTrustedWithOptions(options) {
+			return
+		}
+
+		NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
+
+		let alert = NSAlert()
+		alert.messageText = "Touch Bar Simulator needs accessibility access."
+		alert.informativeText = "In the System Preferences window that just opened, find “Touch Bar Simulator” in the list and check its checkbox. Then click the “Continue” button here."
+		alert.addButton(withTitle: "Continue")
+		alert.addButton(withTitle: "Quit")
+
+		guard alert.runModal() == .alertFirstButtonReturn else {
+			App.quit()
+			return
+		}
+
+		App.relaunch()
 	}
 
 	@objc

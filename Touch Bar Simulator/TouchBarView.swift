@@ -3,9 +3,13 @@ import Cocoa
 final class TouchBarView: NSView {
 	private var stream: CGDisplayStream?
 	private let displayView = NSView()
+	private let initialDFRStatus: Int32
 
 	override init(frame: CGRect) {
+		initialDFRStatus = DFRGetStatus()
+
 		super.init(frame: .zero)
+
 		wantsLayer = true
 		start()
 		setFrameSize(DFRGetScreenSize())
@@ -23,15 +27,22 @@ final class TouchBarView: NSView {
 	override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
 
 	func start() {
-		stream = SLSDFRDisplayStreamCreate(0, .main) { status, _, frameSurface, _ in
-			guard status == .frameComplete else {
+		if (initialDFRStatus & 0x01) == 0 {
+			DFRSetStatus(2)
+		}
+
+		stream = SLSDFRDisplayStreamCreate(0, .main) { [weak self] status, _, frameSurface, _ in
+			guard
+				let self = self,
+				status == .frameComplete,
+				let layer = self.layer
+			else {
 				return
 			}
 
-			self.layer!.contents = frameSurface
+			layer.contents = frameSurface
 		}.takeUnretainedValue()
 
-		DFRSetStatus(2)
 		stream?.start()
 	}
 
@@ -40,9 +51,9 @@ final class TouchBarView: NSView {
 			return
 		}
 
-		DFRSetStatus(0)
 		stream.stop()
 		self.stream = nil
+		DFRSetStatus(initialDFRStatus)
 	}
 
 	private func mouseEvent(_ event: NSEvent) {
