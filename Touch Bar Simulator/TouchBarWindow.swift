@@ -277,7 +277,6 @@ final class TouchBarWindow: NSPanel {
 		return slider
 	}
 
-	private var defaultsObservations: [DefaultsObservation] = []
 	private var cancellable: AnyCancellable?
 
 	func setUp() {
@@ -291,27 +290,25 @@ final class TouchBarWindow: NSPanel {
 		view.addSubview(touchBarView)
 
 		for observation in [
-			// swiftlint:disable:next unowned_variable_capture
-			Defaults.observe(.windowTransparency) { [unowned self] change in
-			    self.alphaValue = CGFloat(change.newValue)
+			Defaults.observe(.windowTransparency) { [weak self] change in
+				self?.alphaValue = CGFloat(change.newValue)
 			},
-			// swiftlint:disable:next unowned_variable_capture
-			Defaults.observe(.windowDocking) { [unowned self] change in
-				self.docking = change.newValue
+			Defaults.observe(.windowDocking) { [weak self] change in
+				self?.docking = change.newValue
 			},
-			// swiftlint:disable:next unowned_variable_capture
-			Defaults.observe(.windowPadding) { [unowned self] change in
+			Defaults.observe(.windowPadding) { [weak self] change in
+				guard let self = self else {
+					return
+				}
 				self.docking.reposition(window: self, padding: CGFloat(change.newValue))
 			},
 			// TODO: We could maybe simplify this by creating another `Default` extension to bind a default to a KeyPath:
 			// `defaults.bind(.showOnAllDesktops, to: \.showOnAllDesktops)`
-			// swiftlint:disable:next unowned_variable_capture
-			Defaults.observe(.showOnAllDesktops) { [unowned self] change in
-				self.showOnAllDesktops = change.newValue
+			Defaults.observe(.showOnAllDesktops) { [weak self] change in
+				self?.showOnAllDesktops = change.newValue
 			},
-			// swiftlint:disable:next unowned_variable_capture
-			Defaults.observe(.dockBehavior) { [unowned self] change in
-				self.dockBehavior = change.newValue
+			Defaults.observe(.dockBehavior) { [weak self] change in
+				self?.dockBehavior = change.newValue
 			}
 		] {
 			observation.tieToLifetime(of: self)
@@ -334,12 +331,6 @@ final class TouchBarWindow: NSPanel {
 			}
 
 			self.docking.reposition(window: self, padding: CGFloat(Defaults[.windowPadding]))
-		}
-	}
-
-	deinit {
-		for observation in defaultsObservations {
-			observation.invalidate()
 		}
 	}
 
