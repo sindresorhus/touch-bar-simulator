@@ -75,7 +75,7 @@ private final class ToolbarSliderCell: NSSliderCell {
 
 extension NSSlider {
 	// Redisplaying the slider prevents shadow artifacts that result
-	// from moving a knob that draws a shadow
+	// from moving a knob that draws a shadow.
 	// However, only do so if its value has changed, because if a
 	// redisplay is attempted without a change, then the slider draws
 	// itself brighter for some reason.

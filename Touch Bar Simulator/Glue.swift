@@ -1,32 +1,8 @@
 import Foundation
+import AppKit
 import Defaults
 
 // TODO: Upstream all these to https://github.com/sindresorhus/Defaults
-
-extension Defaults {
-	@discardableResult
-	static func observe<T: Codable, Weak: AnyObject>(
-		_ key: Key<T>,
-		tiedToLifetimeOf weaklyHeldObject: Weak,
-		options: NSKeyValueObservingOptions = [.initial, .new, .old],
-		handler: @escaping (KeyChange<T>) -> Void
-	) -> DefaultsObservation {
-		var observation: DefaultsObservation!
-		observation = observe(key, options: options) { [weak weaklyHeldObject] change in
-			guard let temporaryStrongReference = weaklyHeldObject else {
-				// Will never occur on first call (outer function holds a strong reference),
-				// so observation will never be nil
-				observation.invalidate()
-				return
-			}
-
-			_ = temporaryStrongReference
-			handler(change)
-		}
-
-		return observation
-	}
-}
 
 extension NSMenuItem {
 	/**
@@ -38,15 +14,16 @@ extension NSMenuItem {
 	let menuItem = NSMenuItem(title: "Invert Colors").bindState(to: .invertColors)
 	```
 	*/
+	@discardableResult
 	func bindState(to key: Defaults.Key<Bool>) -> Self {
 		addAction { _ in
 			Defaults[key].toggle()
 		}
 
-		// swiftlint:disable:next unowned_variable_capture
-		Defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
-			self.isChecked = change.newValue
+		Defaults.observe(key) { [weak self] change in
+			self?.isChecked = change.newValue
 		}
+			.tieToLifetime(of: self)
 
 		return self
 	}
@@ -65,15 +42,16 @@ extension NSMenuItem {
 	let menuItem = NSMenuItem(title: "Duck").bindChecked(to: .billingType, value: .duck)
 	```
 	*/
+	@discardableResult
 	func bindChecked<Value: Equatable>(to key: Defaults.Key<Value>, value: Value) -> Self {
 		addAction { _ in
 			Defaults[key] = value
 		}
 
-		// swiftlint:disable:next unowned_variable_capture
-		Defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
-			self.isChecked = (change.newValue == value)
+		Defaults.observe(key) { [weak self] change in
+			self?.isChecked = (change.newValue == value)
 		}
+			.tieToLifetime(of: self)
 
 		return self
 	}
@@ -91,15 +69,16 @@ extension NSSlider {
 	let slider = NSSlider().bindDoubleValue(to: .transparency)
 	```
 	*/
+	@discardableResult
 	func bindDoubleValue(to key: Defaults.Key<Double>) -> Self {
 		addAction { sender in
 			Defaults[key] = sender.doubleValue
 		}
 
-		// swiftlint:disable:next unowned_variable_capture
-		Defaults.observe(key, tiedToLifetimeOf: self) { [unowned self] change in
-			self.doubleValue = change.newValue
+		Defaults.observe(key) { [weak self] change in
+			self?.doubleValue = change.newValue
 		}
+			.tieToLifetime(of: self)
 
 		return self
 	}

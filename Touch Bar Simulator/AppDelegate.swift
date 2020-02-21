@@ -88,19 +88,33 @@ extension AppDelegate: NSMenuDelegate {
 		}
 		menu.items.append(contentsOf: statusMenuDockingItems)
 
-		menu.addItem(NSMenuItem(title: "Transparency", action: nil, keyEquivalent: ""))
-		let transparencyItem = NSMenuItem("Transparency")
-		let transparencyView = NSView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 20)))
-		let slider = MenubarSlider().alwaysRedisplayOnValueChanged().bindDoubleValue(to: .windowTransparency)
-		slider.frame = CGRect(x: 20, y: 4, width: 180, height: 11)
-		slider.minValue = 0.5
-		transparencyView.addSubview(slider)
-		slider.translatesAutoresizingMaskIntoConstraints = false
-		slider.leadingAnchor.constraint(equalTo: transparencyView.leadingAnchor, constant: 24).isActive = true
-		slider.trailingAnchor.constraint(equalTo: transparencyView.trailingAnchor, constant: -9).isActive = true
-		slider.centerYAnchor.constraint(equalTo: transparencyView.centerYAnchor).isActive = true
-		transparencyItem.view = transparencyView
-		menu.addItem(transparencyItem)
+		func sliderMenuItem(_ title: String, boundTo key: Defaults.Key<Double>, min: Double, max: Double) -> NSMenuItem {
+			let menuItem = NSMenuItem(title)
+			let containerView = NSView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 20)))
+
+			let slider = MenubarSlider().alwaysRedisplayOnValueChanged()
+			slider.frame = CGRect(x: 20, y: 4, width: 180, height: 11)
+			slider.minValue = min
+			slider.maxValue = max
+			slider.bindDoubleValue(to: key)
+
+			containerView.addSubview(slider)
+			slider.translatesAutoresizingMaskIntoConstraints = false
+			slider.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24).isActive = true
+			slider.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -9).isActive = true
+			slider.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+			menuItem.view = containerView
+
+			return menuItem
+		}
+
+		if Defaults[.windowDocking] != .floating {
+			menu.addItem(NSMenuItem("Padding"))
+			menu.addItem(sliderMenuItem("Padding", boundTo: .windowPadding, min: 0.0, max: 120.0))
+		}
+
+		menu.addItem(NSMenuItem("Transparency"))
+		menu.addItem(sliderMenuItem("Transparency", boundTo: .windowTransparency, min: 0.5, max: 1.0))
 
 		menu.addItem(NSMenuItem.separator())
 
