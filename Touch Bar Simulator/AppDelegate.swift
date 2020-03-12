@@ -113,8 +113,8 @@ extension AppDelegate: NSMenuDelegate {
 			menu.addItem(sliderMenuItem("Padding", boundTo: .windowPadding, min: 0.0, max: 120.0))
 		}
 
-		menu.addItem(NSMenuItem("Transparency"))
-		menu.addItem(sliderMenuItem("Transparency", boundTo: .windowTransparency, min: 0.5, max: 1.0))
+		menu.addItem(NSMenuItem("Opacity"))
+		menu.addItem(sliderMenuItem("Opacity", boundTo: .windowTransparency, min: 0.5, max: 1.0))
 
 		menu.addItem(NSMenuItem.separator())
 
