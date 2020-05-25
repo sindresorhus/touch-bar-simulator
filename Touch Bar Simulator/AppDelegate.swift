@@ -1,7 +1,9 @@
 import Cocoa
+import SwiftUI
 import Sparkle
 import Defaults
 import LaunchAtLogin
+import KeyboardShortcuts
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	lazy var window = with(TouchBarWindow()) {
@@ -17,6 +19,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		$0.button!.toolTip = "Right-click or option-click for menu"
 	}
 
+	struct KeyboardShortcutRecorder: SwiftUI.View {
+		var title: String
+		var shortcut: KeyboardShortcuts.Name
+		var body: some View {
+			HStack {
+				Text(title)
+				KeyboardShortcuts.Recorder(for: shortcut)
+			}
+		}
+	}
+
+	lazy var keyboardShortcutsVC = NSHostingController(rootView:
+		AnyView(
+			VStack(alignment: .center) {
+				Text("Keyboard Shortcuts:")
+				KeyboardShortcutRecorder(title: "Toggle Touch Bar", shortcut: .toggleTouchBar)
+			}
+			.padding(8)
+			.fixedSize()
+		)
+	)
+
 	func applicationWillFinishLaunching(_ notification: Notification) {
 		UserDefaults.standard.register(defaults: [
 			"NSApplicationCrashOnExceptions": true
@@ -25,7 +49,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		checkAccessibilityPermission()
-		NSApp.servicesProvider = self
+		KeyboardShortcuts.onKeyUp(for: .toggleTouchBar) {
+			self.toggleView()
+		}
 		_ = SUUpdater()
 		_ = window
 		_ = statusItem
@@ -58,11 +84,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	func captureScreenshot() {
 		let KEY_6: CGKeyCode = 0x58
 		pressKey(keyCode: KEY_6, flags: [.maskShift, .maskCommand])
-	}
-
-	@objc
-	func toggleView(_ pboard: NSPasteboard, userData: String, error: NSErrorPointer) {
-		toggleView()
 	}
 
 	func toggleView() {
@@ -131,6 +152,16 @@ extension AppDelegate: NSMenuDelegate {
 		menu.addItem(NSMenuItem("Launch at Login", isChecked: LaunchAtLogin.isEnabled) { item in
 			item.isChecked.toggle()
 			LaunchAtLogin.isEnabled = item.isChecked
+		})
+
+		menu.addItem(NSMenuItem("Keyboard Shortcuts…") { _ in
+			guard let button = self.statusItem.button else {
+				return
+			}
+			let popover = NSPopover()
+			popover.contentViewController = self.keyboardShortcutsVC
+			popover.behavior = .transient
+			popover.show(relativeTo: button.frame, of: button, preferredEdge: .maxY)
 		})
 
 		menu.addItem(NSMenuItem.separator())

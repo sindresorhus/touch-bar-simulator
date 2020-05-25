@@ -1,5 +1,6 @@
 import Foundation
 import Defaults
+import KeyboardShortcuts
 
 struct Constants {
 	static let windowAutosaveName = "TouchBarWindow"
@@ -13,4 +14,8 @@ extension Defaults.Keys {
 	static let lastFloatingPosition = OptionalKey<CGPoint>("lastFloatingPosition")
 	static let dockBehavior = Key<Bool>("dockBehavior", default: false)
 	static let lastWindowDockingWithDockBehavior = Key<TouchBarWindow.Docking>("windowDockingWithDockBehavior", default: .dockedToTop)
+}
+
+extension KeyboardShortcuts.Name {
+	static let toggleTouchBar = Name("toggleTouchBar")
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C48E6A6247C370E00D22565 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 3C48E6A5247C370E00D22565 /* KeyboardShortcuts */; };
 		3C8493AD21FD3B7F00F12966 /* Glue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8493AC21FD3B7F00F12966 /* Glue.swift */; };
 		3C906EED231C5FB90099B139 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; };
 		3C906EEE231C5FB90099B139 /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -75,6 +76,7 @@
 				E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */,
 				3C906EED231C5FB90099B139 /* LaunchAtLogin.framework in Frameworks */,
 				E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */,
+				3C48E6A6247C370E00D22565 /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +161,7 @@
 			name = "Touch Bar Simulator";
 			packageProductDependencies = (
 				E31957F823F140D500856B40 /* Defaults */,
+				3C48E6A5247C370E00D22565 /* KeyboardShortcuts */,
 			);
 			productName = "Touch Bar Simulator";
 			productReference = E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */;
@@ -196,6 +199,7 @@
 			mainGroup = E3FE2CB61E726CE800C6713A;
 			packageReferences = (
 				E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */,
+				3C48E6A4247C370E00D22565 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 			);
 			productRefGroup = E3FE2CC01E726CE800C6713A /* Products */;
 			projectDirPath = "";
@@ -328,6 +332,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					Combine,
+				);
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
@@ -381,6 +389,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					Combine,
+				);
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -493,6 +505,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3C48E6A4247C370E00D22565 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 		E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
@@ -504,6 +524,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3C48E6A5247C370E00D22565 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C48E6A4247C370E00D22565 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
 		E31957F823F140D500856B40 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */;
