@@ -17,8 +17,7 @@ struct KeyboardShortcutsView: View {
 		VStack {
 			ShortcutRecorder(title: "Toggle Touch Bar", shortcut: .toggleTouchBar)
 		}
-		.padding()
-		.padding(4)
+		.padding(20)
 		.fixedSize()
 	}
 }
