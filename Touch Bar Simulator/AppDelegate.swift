@@ -30,7 +30,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		_ = SUUpdater()
 		_ = window
 		_ = statusItem
-		
+
 		KeyboardShortcuts.onKeyUp(for: .toggleTouchBar) {
 			self.toggleView()
 		}
