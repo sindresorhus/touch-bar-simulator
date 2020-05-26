@@ -290,6 +290,7 @@ extension NSScreen {
 	}
 }
 
+
 extension Collection where Element == DefaultsObservation {
 	@discardableResult
 	func tieAllToLifetime(of weaklyHeldObject: AnyObject) -> Self {
@@ -306,16 +307,20 @@ extension Defaults {
 	}
 }
 
+
 @_functionBuilder
 struct ArrayBuilder<T> {
-	static func buildBlock(_ elements: T...) -> [T] {
-		elements
-	}
+	static func buildBlock(_ elements: T...) -> [T] { elements }
 }
 
+
 extension NSStatusBarButton {
+	private var buttonCell: NSButtonCell? { cell as? NSButtonCell }
+
 	/**
-	Whether the button is prevented from highlighting on click.
+	Whether the status bar button is prevented from (blue) highlighting on click.
+	
+	Can be useful if clicking the status bar button triggers an action instead of opening a menu/popover.
 	*/
 	var preventsHighlight: Bool {
 		get {
@@ -325,6 +330,4 @@ extension NSStatusBarButton {
 			buttonCell?.highlightsBy = newValue ? [] : [.changeBackgroundCellMask]
 		}
 	}
-
-	private var buttonCell: NSButtonCell? { cell as? NSButtonCell }
 }
