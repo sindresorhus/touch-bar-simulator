@@ -49,7 +49,7 @@ Apple would never allow it as it uses private APIs.
 
 ### Can I set a keyboard shortcut?
 
-Yes, this is now integrated into the app. Right-click or option-click the menu bar icon, select "Keyboard Shortcuts…", and add your shortcut. 
+Right-click or option-click the menu bar icon, select “Keyboard Shortcuts…”, and add your shortcut. 
 
 ### Can I contribute localizations?
 
