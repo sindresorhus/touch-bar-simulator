@@ -49,11 +49,7 @@ Apple would never allow it as it uses private APIs.
 
 ### Can I set a keyboard shortcut?
 
-You can set a shortcut to toggle the Touch Bar window using the included macOS Service.
-
-**tl;dr** `System Preferences` → `Keyboard` → `Shortcuts` → `Services` → `Toggle Touch Bar` → add your shortcut.
-
-Navigate to Keyboard in System Preferences, then click the Shortcuts tab and then Services in the list on the left. Scroll the list on the right down to the "General" section, then check the box beside "Toggle Touch Bar" and add your shortcut next to it.
+Right-click or option-click the menu bar icon, select “Keyboard Shortcuts…”, and add your shortcut. 
 
 ### Can I contribute localizations?
 
