@@ -18,6 +18,7 @@ struct KeyboardShortcutsView: View {
 			ShortcutRecorder(title: "Toggle Touch Bar", shortcut: .toggleTouchBar)
 		}
 		.padding()
+		.padding(4)
 		.fixedSize()
 	}
 }
