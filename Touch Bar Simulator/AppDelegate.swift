@@ -15,6 +15,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		$0.button!.image = NSImage(named: "MenuBarIcon")
 		$0.button!.toolTip = "Right-click or option-click for menu"
+		($0.button!.cell as? NSButtonCell)?.highlightsBy = []
 	}
 
 	func applicationWillFinishLaunching(_ notification: Notification) {
@@ -149,7 +150,12 @@ extension AppDelegate: NSMenuDelegate {
 	}
 
 	func menuWillOpen(_ menu: NSMenu) {
-		if !statusItemShouldShowMenu() {
+		let statusItemButtonCell = statusItem.button!.cell as? NSButtonCell
+		if statusItemShouldShowMenu() {
+			statusItemButtonCell?.highlightsBy = [.changeBackgroundCellMask]
+		} else {
+			statusItemButtonCell?.highlightsBy = []
+
 			statusItemButtonClicked()
 		}
 	}
