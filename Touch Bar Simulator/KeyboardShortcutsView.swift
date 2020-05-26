@@ -1,23 +1,24 @@
 import SwiftUI
 import KeyboardShortcuts
 
-struct KeyboardShortcutsView: View {
-	private struct ShortcutRecorder: SwiftUI.View {
-		var title: String
-		var shortcut: KeyboardShortcuts.Name
-		var body: some View {
-			HStack {
-				Text(title + ":")
-				KeyboardShortcuts.Recorder(for: shortcut)
-			}
+private struct ShortcutRecorder: View {
+	var title: String
+	var shortcut: KeyboardShortcuts.Name
+
+	var body: some View {
+		HStack {
+			Text("\(title):")
+			KeyboardShortcuts.Recorder(for: shortcut)
 		}
 	}
+}
 
+struct KeyboardShortcutsView: View {
 	var body: some View {
 		VStack {
 			ShortcutRecorder(title: "Toggle Touch Bar", shortcut: .toggleTouchBar)
 		}
-		.padding(20)
-		.fixedSize()
+			.padding(20)
+			.fixedSize()
 	}
 }
