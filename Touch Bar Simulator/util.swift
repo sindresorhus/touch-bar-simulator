@@ -309,7 +309,7 @@ extension Defaults {
 @_functionBuilder
 struct ArrayBuilder<T> {
 	static func buildBlock(_ elements: T...) -> [T] {
-		return elements
+		elements
 	}
 }
 
