@@ -326,7 +326,5 @@ extension NSStatusBarButton {
 		}
 	}
 
-	private var buttonCell: NSButtonCell? {
-		cell as? NSButtonCell
-	}
+	private var buttonCell: NSButtonCell? { cell as? NSButtonCell }
 }
