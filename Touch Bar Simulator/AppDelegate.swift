@@ -15,7 +15,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		$0.button!.image = NSImage(named: "MenuBarIcon")
 		$0.button!.toolTip = "Right-click or option-click for menu"
-		($0.button!.cell as? NSButtonCell)?.highlightsBy = []
+		$0.button!.preventsHighlight = true
 	}
 
 	func applicationWillFinishLaunching(_ notification: Notification) {
