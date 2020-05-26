@@ -150,12 +150,10 @@ extension AppDelegate: NSMenuDelegate {
 	}
 
 	func menuWillOpen(_ menu: NSMenu) {
-		let statusItemButtonCell = statusItem.button!.cell as? NSButtonCell
-		if statusItemShouldShowMenu() {
-			statusItemButtonCell?.highlightsBy = [.changeBackgroundCellMask]
-		} else {
-			statusItemButtonCell?.highlightsBy = []
+		let shouldShowMenu = statusItemShouldShowMenu()
 
+		statusItem.button!.preventsHighlight = !shouldShowMenu
+		if !shouldShowMenu {
 			statusItemButtonClicked()
 		}
 	}

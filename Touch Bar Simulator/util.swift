@@ -312,3 +312,18 @@ struct ArrayBuilder<T> {
 		return elements
 	}
 }
+
+extension NSStatusBarButton {
+	var preventsHighlight: Bool {
+		get {
+			buttonCell?.highlightsBy.isEmpty ?? false
+		}
+		set {
+			buttonCell?.highlightsBy = newValue ? [] : [.changeBackgroundCellMask]
+		}
+	}
+
+	private var buttonCell: NSButtonCell? {
+		cell as? NSButtonCell
+	}
+}
