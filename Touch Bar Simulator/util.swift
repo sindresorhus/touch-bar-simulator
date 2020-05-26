@@ -314,6 +314,9 @@ struct ArrayBuilder<T> {
 }
 
 extension NSStatusBarButton {
+	/**
+	Whether the button is prevented from highlighting on click.
+	*/
 	var preventsHighlight: Bool {
 		get {
 			buttonCell?.highlightsBy.isEmpty ?? false
