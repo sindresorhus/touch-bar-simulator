@@ -49,12 +49,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		checkAccessibilityPermission()
-		KeyboardShortcuts.onKeyUp(for: .toggleTouchBar) {
-			self.toggleView()
-		}
 		_ = SUUpdater()
 		_ = window
 		_ = statusItem
+		
+		KeyboardShortcuts.onKeyUp(for: .toggleTouchBar) {
+			self.toggleView()
+		}
 	}
 
 	func checkAccessibilityPermission() {
