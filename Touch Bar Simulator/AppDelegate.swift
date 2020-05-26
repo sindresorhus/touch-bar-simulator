@@ -19,28 +19,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		$0.button!.toolTip = "Right-click or option-click for menu"
 	}
 
-	struct KeyboardShortcutRecorder: SwiftUI.View {
-		var title: String
-		var shortcut: KeyboardShortcuts.Name
-		var body: some View {
-			HStack {
-				Text(title)
-				KeyboardShortcuts.Recorder(for: shortcut)
-			}
-		}
-	}
-
-	lazy var keyboardShortcutsVC = NSHostingController(rootView:
-		AnyView(
-			VStack(alignment: .center) {
-				Text("Keyboard Shortcuts:")
-				KeyboardShortcutRecorder(title: "Toggle Touch Bar", shortcut: .toggleTouchBar)
-			}
-			.padding(8)
-			.fixedSize()
-		)
-	)
-
 	func applicationWillFinishLaunching(_ notification: Notification) {
 		UserDefaults.standard.register(defaults: [
 			"NSApplicationCrashOnExceptions": true
@@ -160,7 +138,7 @@ extension AppDelegate: NSMenuDelegate {
 				return
 			}
 			let popover = NSPopover()
-			popover.contentViewController = self.keyboardShortcutsVC
+			popover.contentViewController = NSHostingController(rootView: KeyboardShortcutsView())
 			popover.behavior = .transient
 			popover.show(relativeTo: button.frame, of: button, preferredEdge: .maxY)
 		})
