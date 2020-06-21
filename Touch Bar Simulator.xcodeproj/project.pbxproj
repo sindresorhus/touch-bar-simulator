@@ -18,7 +18,7 @@
 		E31957F923F140D500856B40 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = E31957F823F140D500856B40 /* Defaults */; };
 		E35579EB21595EDC001CB642 /* TouchBarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35579EA21595EDC001CB642 /* TouchBarWindow.swift */; };
 		E356A16321028D81000148AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E356A16221028D81000148AD /* main.swift */; };
-		E35831A41F4D7EE0003BE371 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35831A31F4D7EE0003BE371 /* util.swift */; };
+		E35831A41F4D7EE0003BE371 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35831A31F4D7EE0003BE371 /* Utilities.swift */; };
 		E3930B10216625BE00F66410 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3930B0F216625BE00F66410 /* Constants.swift */; };
 		E39A157E214CFE7100F86D5D /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39A157D214CFE7100F86D5D /* DFRFoundation.framework */; };
 		E39A157F214CFE7100F86D5D /* DFRFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E39A157D214CFE7100F86D5D /* DFRFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -56,7 +56,7 @@
 		E34D6548214BBDAE00786C24 /* Touch Bar Simulator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Touch Bar Simulator.entitlements"; sourceTree = "<group>"; };
 		E35579EA21595EDC001CB642 /* TouchBarWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TouchBarWindow.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E356A16221028D81000148AD /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = main.swift; sourceTree = "<group>"; usesTabs = 1; };
-		E35831A31F4D7EE0003BE371 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = util.swift; sourceTree = "<group>"; usesTabs = 1; };
+		E35831A31F4D7EE0003BE371 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Utilities.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3930B0F216625BE00F66410 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Constants.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E39A157D214CFE7100F86D5D /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		E39A1589214D011F00F86D5D /* SkyLight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyLight.framework; path = ../../../../../System/Library/PrivateFrameworks/SkyLight.framework; sourceTree = "<group>"; };
@@ -119,14 +119,14 @@
 		E3FE2CC11E726CE800C6713A /* Touch Bar Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				E3930B0F216625BE00F66410 /* Constants.swift */,
 				E3FE2CC21E726CE800C6713A /* AppDelegate.swift */,
 				E35579EA21595EDC001CB642 /* TouchBarWindow.swift */,
 				E39A158D214D0C4F00F86D5D /* TouchBarView.swift */,
 				AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */,
 				3CF6C770247CC3DF007554B9 /* KeyboardShortcutsView.swift */,
-				E3930B0F216625BE00F66410 /* Constants.swift */,
 				3C8493AC21FD3B7F00F12966 /* Glue.swift */,
-				E35831A31F4D7EE0003BE371 /* util.swift */,
+				E35831A31F4D7EE0003BE371 /* Utilities.swift */,
 				E3FE2CC41E726CE800C6713A /* Assets.xcassets */,
 				E356A16421028DAB000148AD /* Other */,
 			);
@@ -270,7 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E35831A41F4D7EE0003BE371 /* util.swift in Sources */,
+				E35831A41F4D7EE0003BE371 /* Utilities.swift in Sources */,
 				AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */,
 				3C8493AD21FD3B7F00F12966 /* Glue.swift in Sources */,
 				3CF6C771247CC3DF007554B9 /* KeyboardShortcutsView.swift in Sources */,
@@ -506,7 +506,7 @@
 			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.0;
+				minimumVersion = 0.2.2;
 			};
 		};
 		E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */ = {
@@ -514,7 +514,7 @@
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.1;
+				minimumVersion = 4.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

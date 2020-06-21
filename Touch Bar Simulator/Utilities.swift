@@ -319,9 +319,9 @@ extension NSStatusBarButton {
 
 	/**
 	Whether the status bar button is prevented from (blue) highlighting on click.
-	
+
 	The default is `false`.
-	
+
 	Can be useful if clicking the status bar button triggers an action instead of opening a menu/popover.
 	*/
 	var preventsHighlight: Bool {

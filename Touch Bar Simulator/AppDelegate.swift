@@ -1,4 +1,3 @@
-import Cocoa
 import SwiftUI
 import Sparkle
 import Defaults

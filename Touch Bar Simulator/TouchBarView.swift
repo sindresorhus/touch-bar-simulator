@@ -6,7 +6,7 @@ final class TouchBarView: NSView {
 	private let initialDFRStatus: Int32
 
 	override init(frame: CGRect) {
-		initialDFRStatus = DFRGetStatus()
+		self.initialDFRStatus = DFRGetStatus()
 
 		super.init(frame: .zero)
 

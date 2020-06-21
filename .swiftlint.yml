@@ -78,7 +78,6 @@ whitelist_rules:
   - operator_usage_whitespace
   - operator_whitespace
   - overridden_super_call
-  - pattern_matching_keywords
   - private_action
   - private_outlet
   - private_unit_test
