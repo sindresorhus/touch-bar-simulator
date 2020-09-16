@@ -31,8 +31,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		_ = window
 		_ = statusItem
 
-		KeyboardShortcuts.onKeyUp(for: .toggleTouchBar) {
-			self.toggleView()
+		KeyboardShortcuts.onKeyUp(for: .toggleTouchBar) { [self] in
+			toggleView()
 		}
 	}
 
@@ -43,7 +43,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 			return
 		}
 
-		NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
+		"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility".openUrl()
 
 		let alert = NSAlert()
 		alert.messageText = "Touch Bar Simulator needs accessibility access."
@@ -118,8 +118,8 @@ extension AppDelegate: NSMenuDelegate {
 
 		menu.addItem(NSMenuItem.separator())
 
-		menu.addItem(NSMenuItem("Capture Screenshot", keyEquivalent: "6", keyModifiers: [.shift, .command]) { _ in
-			self.captureScreenshot()
+		menu.addItem(NSMenuItem("Capture Screenshot", keyEquivalent: "6", keyModifiers: [.shift, .command]) { [self] _ in
+			captureScreenshot()
 		})
 
 		menu.addItem(NSMenuItem.separator())
@@ -133,8 +133,8 @@ extension AppDelegate: NSMenuDelegate {
 			LaunchAtLogin.isEnabled = item.isChecked
 		})
 
-		menu.addItem(NSMenuItem("Keyboard Shortcuts…") { _ in
-			guard let button = self.statusItem.button else {
+		menu.addItem(NSMenuItem("Keyboard Shortcuts…") { [self] _ in
+			guard let button = statusItem.button else {
 				return
 			}
 			let popover = NSPopover()

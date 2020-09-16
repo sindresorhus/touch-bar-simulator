@@ -47,7 +47,7 @@ final class TouchBarView: NSView {
 	}
 
 	func stop() {
-		guard let stream = self.stream else {
+		guard let stream = stream else {
 			return
 		}
 

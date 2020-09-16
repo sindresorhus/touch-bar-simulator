@@ -130,7 +130,7 @@ final class TouchBarWindow: NSPanel {
 			return
 		}
 
-		var detectionRect: NSRect = .zero
+		var detectionRect = CGRect.zero
 		if docking == .dockedToBottom {
 			if isVisible {
 				detectionRect = CGRect(
@@ -228,12 +228,12 @@ final class TouchBarWindow: NSPanel {
 		NSAnimationContext.runAnimationGroup({ context in
 			context.duration = TimeInterval(0.3)
 			animator().setFrame(endFrame, display: false, animate: true)
-		}, completionHandler: {
+		}, completionHandler: { [self] in
 			if action == .show {
-				self.docking.reposition(window: self, padding: Defaults[.windowPadding])
+				docking.reposition(window: self, padding: Defaults[.windowPadding])
 			} else if action == .dismiss {
-				self.setIsVisible(false)
-				self.docking.reposition(window: self, padding: 0)
+				setIsVisible(false)
+				docking.reposition(window: self, padding: 0)
 			}
 		})
 	}
@@ -247,7 +247,7 @@ final class TouchBarWindow: NSPanel {
 		styleMask.insert(.titled)
 		title = "Touch Bar Simulator"
 
-		guard let toolbarView = self.toolbarView else {
+		guard let toolbarView = toolbarView else {
 			return
 		}
 
@@ -304,6 +304,7 @@ final class TouchBarWindow: NSPanel {
 				guard let self = self else {
 					return
 				}
+
 				self.docking.reposition(window: self, padding: change.newValue)
 			}
 			// TODO: We could maybe simplify this by creating another `Default` extension to bind a default to a KeyPath:

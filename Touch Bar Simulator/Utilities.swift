@@ -333,3 +333,22 @@ extension NSStatusBarButton {
 		}
 	}
 }
+
+
+/// Convenience for opening URLs.
+extension URL {
+	func open() {
+		NSWorkspace.shared.open(self)
+	}
+}
+
+extension String {
+	/**
+	```
+	"https://sindresorhus.com".openUrl()
+	```
+	*/
+	func openUrl() {
+		URL(string: self)?.open()
+	}
+}

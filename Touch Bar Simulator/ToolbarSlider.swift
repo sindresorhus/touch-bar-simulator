@@ -20,7 +20,7 @@ private final class ToolbarSliderCell: NSSliderCell {
 
 	override func drawKnob(_ knobRect: CGRect) {
 		var frame = knobRect.insetBy(dx: 0, dy: 6.5)
-		if let shadow = self.shadow {
+		if let shadow = shadow {
 			// Make room on either side of the view for the shadow to spill into,
 			// rather than clip on the edges.
 			frame.origin.x *= ((barRect.width - shadow.shadowBlurRadius * 2) / barRect.width)
@@ -65,7 +65,7 @@ private final class ToolbarSliderCell: NSSliderCell {
 		// A knob shadow requires a small skew in the origin of the knob (see above),
 		// which causes the knob to not go all the way to the ends of the bar.
 		// Fix this by shortening the bar.
-		if let shadow = self.shadow {
+		if let shadow = shadow {
 			barRect = barRect.insetBy(dx: shadow.shadowBlurRadius * 2, dy: 0)
 		}
 

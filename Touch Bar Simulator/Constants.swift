@@ -17,5 +17,5 @@ extension Defaults.Keys {
 }
 
 extension KeyboardShortcuts.Name {
-	static let toggleTouchBar = Name("toggleTouchBar")
+	static let toggleTouchBar = Self("toggleTouchBar")
 }
