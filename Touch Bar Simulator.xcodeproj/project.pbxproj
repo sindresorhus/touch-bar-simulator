@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		3C48E6A6247C370E00D22565 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 3C48E6A5247C370E00D22565 /* KeyboardShortcuts */; };
 		3C8493AD21FD3B7F00F12966 /* Glue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8493AC21FD3B7F00F12966 /* Glue.swift */; };
-		3C906EED231C5FB90099B139 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; };
-		3C906EEE231C5FB90099B139 /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3CF6C771247CC3DF007554B9 /* KeyboardShortcutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF6C770247CC3DF007554B9 /* KeyboardShortcutsView.swift */; };
 		AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */; };
 		E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; };
 		E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E31957F923F140D500856B40 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = E31957F823F140D500856B40 /* Defaults */; };
+		E3445091251573A4004A5FC1 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = E3445090251573A4004A5FC1 /* LaunchAtLogin */; };
 		E35579EB21595EDC001CB642 /* TouchBarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35579EA21595EDC001CB642 /* TouchBarWindow.swift */; };
 		E356A16321028D81000148AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E356A16221028D81000148AD /* main.swift */; };
 		E35831A41F4D7EE0003BE371 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35831A31F4D7EE0003BE371 /* Utilities.swift */; };
@@ -38,7 +37,6 @@
 			files = (
 				E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */,
 				E39A158B214D011F00F86D5D /* SkyLight.framework in Embed Frameworks */,
-				3C906EEE231C5FB90099B139 /* LaunchAtLogin.framework in Embed Frameworks */,
 				E39A157F214CFE7100F86D5D /* DFRFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -49,7 +47,6 @@
 /* Begin PBXFileReference section */
 		3C37035321FBEBD300177657 /* Defaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Defaults.framework; path = Carthage/Build/Mac/Defaults.framework; sourceTree = "<group>"; };
 		3C8493AC21FD3B7F00F12966 /* Glue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Glue.swift; sourceTree = "<group>"; usesTabs = 1; };
-		3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
 		3CF6C770247CC3DF007554B9 /* KeyboardShortcutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutsView.swift; sourceTree = "<group>"; };
 		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarSlider.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E30988DE1E88DD060078CA9E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
@@ -73,10 +70,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3445091251573A4004A5FC1 /* LaunchAtLogin in Frameworks */,
 				E31957F923F140D500856B40 /* Defaults in Frameworks */,
 				E39A157E214CFE7100F86D5D /* DFRFoundation.framework in Frameworks */,
 				E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */,
-				3C906EED231C5FB90099B139 /* LaunchAtLogin.framework in Frameworks */,
 				E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */,
 				3C48E6A6247C370E00D22565 /* KeyboardShortcuts in Frameworks */,
 			);
@@ -138,7 +135,6 @@
 			children = (
 				E30988DE1E88DD060078CA9E /* Sparkle.framework */,
 				3C37035321FBEBD300177657 /* Defaults.framework */,
-				3C906EEB231C5FB50099B139 /* LaunchAtLogin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -165,6 +161,7 @@
 			packageProductDependencies = (
 				E31957F823F140D500856B40 /* Defaults */,
 				3C48E6A5247C370E00D22565 /* KeyboardShortcuts */,
+				E3445090251573A4004A5FC1 /* LaunchAtLogin */,
 			);
 			productName = "Touch Bar Simulator";
 			productReference = E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */;
@@ -203,6 +200,7 @@
 			packageReferences = (
 				E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */,
 				3C48E6A4247C370E00D22565 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+				E344508F251573A4004A5FC1 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 			);
 			productRefGroup = E3FE2CC01E726CE800C6713A /* Products */;
 			projectDirPath = "";
@@ -241,7 +239,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Carthage/Build/Mac/LaunchAtLogin.framework/Resources/copy-helper.sh\"\n";
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E3679C9A215A1ECA0080270F /* SwiftLint */ = {
@@ -506,12 +504,20 @@
 			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.2;
+				minimumVersion = 0.5.0;
 			};
 		};
 		E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
+		E344508F251573A4004A5FC1 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
@@ -529,6 +535,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
+		};
+		E3445090251573A4004A5FC1 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E344508F251573A4004A5FC1 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
