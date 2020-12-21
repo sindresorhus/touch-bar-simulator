@@ -21,7 +21,7 @@ Right-clicking or option-clicking the menu bar icon displays a menu with options
 Or install it with [Homebrew-Cask](https://caskroom.github.io):
 
 ```
-$ brew cask install touch-bar-simulator
+$ brew install --cask touch-bar-simulator
 ```
 
 
