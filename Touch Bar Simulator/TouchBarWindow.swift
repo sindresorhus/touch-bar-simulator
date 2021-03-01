@@ -70,7 +70,7 @@ final class TouchBarWindow: NSPanel {
 		}
 	}
 
-	var showOnAllDesktops: Bool = false {
+	var showOnAllDesktops = false {
 		didSet {
 			if showOnAllDesktops {
 				collectionBehavior = .canJoinAllSpaces
@@ -352,7 +352,7 @@ final class TouchBarWindow: NSPanel {
 		)
 
 		self.level = .assistiveTechHigh
-		self._setPreventsActivation(true)
+		_setPreventsActivation(true)
 		self.isRestorable = true
 		self.hidesOnDeactivate = false
 		self.worksWhenModal = true

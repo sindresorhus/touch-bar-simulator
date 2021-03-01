@@ -95,7 +95,7 @@ final class ToolbarSlider: NSSlider {
 		super.init(frame: frame)
 
 		let knobShadow = NSShadow()
-		knobShadow.shadowColor = NSColor.black.withAlphaComponent(0.7)
+		knobShadow.shadowColor = .black.withAlphaComponent(0.7)
 		knobShadow.shadowOffset = CGSize(width: 0.8, height: -0.8)
 		knobShadow.shadowBlurRadius = 5
 
@@ -113,7 +113,7 @@ final class MenubarSlider: NSSlider {
 		super.init(frame: frame)
 
 		let knobShadow = NSShadow()
-		knobShadow.shadowColor = NSColor.black.withAlphaComponent(0.6)
+		knobShadow.shadowColor = .black.withAlphaComponent(0.6)
 		knobShadow.shadowOffset = CGSize(width: 0.8, height: -0.8)
 		knobShadow.shadowBlurRadius = 4
 

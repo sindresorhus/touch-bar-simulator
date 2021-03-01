@@ -24,7 +24,7 @@
 		E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39A1589214D011F00F86D5D /* SkyLight.framework */; };
 		E39A158B214D011F00F86D5D /* SkyLight.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E39A1589214D011F00F86D5D /* SkyLight.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E39A158E214D0C4F00F86D5D /* TouchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A158D214D0C4F00F86D5D /* TouchBarView.swift */; };
-		E3FE2CC31E726CE800C6713A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE2CC21E726CE800C6713A /* AppDelegate.swift */; };
+		E3FE2CC31E726CE800C6713A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE2CC21E726CE800C6713A /* App.swift */; };
 		E3FE2CC51E726CE800C6713A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3FE2CC41E726CE800C6713A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		E39A1589214D011F00F86D5D /* SkyLight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyLight.framework; path = ../../../../../System/Library/PrivateFrameworks/SkyLight.framework; sourceTree = "<group>"; };
 		E39A158D214D0C4F00F86D5D /* TouchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TouchBarView.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Bar Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3FE2CC21E726CE800C6713A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
+		E3FE2CC21E726CE800C6713A /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = App.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E3FE2CC41E726CE800C6713A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3FE2CC91E726CE800C6713A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3FE2CD21E726EA100C6713A /* Touch Bar Simulator-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "Touch Bar Simulator-Bridging-Header.h"; sourceTree = "<group>"; usesTabs = 1; };
@@ -117,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				E3930B0F216625BE00F66410 /* Constants.swift */,
-				E3FE2CC21E726CE800C6713A /* AppDelegate.swift */,
+				E3FE2CC21E726CE800C6713A /* App.swift */,
 				E35579EA21595EDC001CB642 /* TouchBarWindow.swift */,
 				E39A158D214D0C4F00F86D5D /* TouchBarView.swift */,
 				AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */,
@@ -275,7 +275,7 @@
 				E356A16321028D81000148AD /* main.swift in Sources */,
 				E35579EB21595EDC001CB642 /* TouchBarWindow.swift in Sources */,
 				E3930B10216625BE00F66410 /* Constants.swift in Sources */,
-				E3FE2CC31E726CE800C6713A /* AppDelegate.swift in Sources */,
+				E3FE2CC31E726CE800C6713A /* App.swift in Sources */,
 				E39A158E214D0C4F00F86D5D /* TouchBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,7 +504,7 @@
 			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.5.0;
+				minimumVersion = 0.6.0;
 			};
 		};
 		E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */ = {

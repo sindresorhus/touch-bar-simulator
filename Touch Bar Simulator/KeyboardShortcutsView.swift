@@ -6,7 +6,7 @@ private struct ShortcutRecorder: View {
 	var shortcut: KeyboardShortcuts.Name
 
 	var body: some View {
-		HStack {
+		HStack(alignment: .firstTextBaseline) {
 			Text("\(title):")
 			KeyboardShortcuts.Recorder(for: shortcut)
 		}

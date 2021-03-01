@@ -52,11 +52,15 @@ extension NSWindow {
 
 extension NSWindow {
 	enum MoveXPositioning {
-		case left, center, right
+		case left
+		case center
+		case right
 	}
 
 	enum MoveYPositioning {
-		case top, center, bottom
+		case top
+		case center
+		case bottom
 	}
 
 	func moveTo(x xPositioning: MoveXPositioning, y yPositioning: MoveYPositioning) {
@@ -77,7 +81,7 @@ extension NSWindow {
 		}
 		switch yPositioning {
 		case .top:
-			// Defect fix: keep docked windows below menubar area.
+			// Defect fix: Keep docked windows below menubar area.
 			// Previously, the window would obstruct menubar clicks when the menubar was set to auto-hide.
 			// Now, the window stays below that area.
 			let menubarThickness = NSStatusBar.system.thickness
@@ -133,8 +137,8 @@ extension NSMenuItem {
 }
 
 
-final class AssociatedObject<T: Any> {
-	subscript(index: Any) -> T? {
+final class ObjectAssociation<T: Any> {
+	subscript(index: AnyObject) -> T? {
 		get {
 			objc_getAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque()) as! T?
 		} set {
@@ -169,8 +173,8 @@ private final class ActionTrampoline<Sender>: NSObject {
 	}
 }
 
-private struct TargetActionSenderAssociatedKeys {
-	fileprivate static let trampoline = AssociatedObject<AnyObject>()
+private enum TargetActionSenderAssociatedKeys {
+	fileprivate static let trampoline = ObjectAssociation<AnyObject>()
 }
 
 extension TargetActionSender {
@@ -232,8 +236,8 @@ func pressKey(keyCode: CGKeyCode, flags: CGEventFlags = []) {
 
 
 extension NSWindow.Level {
-	private static func level(for cgLevelKey: CGWindowLevelKey) -> NSWindow.Level {
-		NSWindow.Level(rawValue: Int(CGWindowLevelForKey(cgLevelKey)))
+	private static func level(for cgLevelKey: CGWindowLevelKey) -> Self {
+		.init(rawValue: Int(CGWindowLevelForKey(cgLevelKey)))
 	}
 
 	public static let desktop = level(for: .desktopWindow)
@@ -251,7 +255,7 @@ extension NSWindow.Level {
 }
 
 
-struct App {
+enum SSApp {
 	static let url = Bundle.main.bundleURL
 
 	static func quit() {
@@ -283,7 +287,7 @@ extension NSScreen {
 		Publishers.Merge(
 			NotificationCenter.default.publisher(for: NSApplication.didChangeScreenParametersNotification),
 			// We use a wake up notification as the screen setup might have changed during sleep. For example, a screen could have been unplugged.
-			NotificationCenter.default.publisher(for: NSWorkspace.didWakeNotification)
+			NSWorkspace.shared.notificationCenter.publisher(for: NSWorkspace.didWakeNotification)
 		)
 			.map { _ in }
 			.eraseToAnyPublisher()
@@ -308,8 +312,8 @@ extension Defaults {
 }
 
 
-@_functionBuilder
-struct ArrayBuilder<T> {
+@resultBuilder
+enum ArrayBuilder<T> {
 	static func buildBlock(_ elements: T...) -> [T] { elements }
 }
 
@@ -325,9 +329,7 @@ extension NSStatusBarButton {
 	Can be useful if clicking the status bar button triggers an action instead of opening a menu/popover.
 	*/
 	var preventsHighlight: Bool {
-		get {
-			buttonCell?.highlightsBy.isEmpty ?? false
-		}
+		get { buttonCell?.highlightsBy.isEmpty ?? false }
 		set {
 			buttonCell?.highlightsBy = newValue ? [] : [.changeBackgroundCellMask]
 		}

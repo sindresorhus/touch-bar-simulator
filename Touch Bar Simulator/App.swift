@@ -5,12 +5,12 @@ import LaunchAtLogin
 import KeyboardShortcuts
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
-	lazy var window = with(TouchBarWindow()) {
+	private(set) lazy var window = with(TouchBarWindow()) {
 		$0.alphaValue = CGFloat(Defaults[.windowTransparency])
 		$0.setUp()
 	}
 
-	lazy var statusItem = with(NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)) {
+	private(set) lazy var statusItem = with(NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)) {
 		$0.menu = with(NSMenu()) {
 			$0.delegate = self
 		}
@@ -52,11 +52,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		alert.addButton(withTitle: "Quit")
 
 		guard alert.runModal() == .alertFirstButtonReturn else {
-			App.quit()
+			SSApp.quit()
 			return
 		}
 
-		App.relaunch()
+		SSApp.relaunch()
 	}
 
 	@objc
