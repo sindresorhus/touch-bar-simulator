@@ -52,11 +52,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		alert.addButton(withTitle: "Quit")
 
 		guard alert.runModal() == .alertFirstButtonReturn else {
-			App.quit()
+			SSApp.quit()
 			return
 		}
 
-		App.relaunch()
+		SSApp.relaunch()
 	}
 
 	@objc

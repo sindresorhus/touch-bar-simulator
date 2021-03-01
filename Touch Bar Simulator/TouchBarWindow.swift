@@ -352,7 +352,7 @@ final class TouchBarWindow: NSPanel {
 		)
 
 		self.level = .assistiveTechHigh
-		self._setPreventsActivation(true)
+		_setPreventsActivation(true)
 		self.isRestorable = true
 		self.hidesOnDeactivate = false
 		self.worksWhenModal = true

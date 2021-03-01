@@ -1,4 +1,4 @@
-whitelist_rules:
+only_rules:
   - anyobject_protocol
   - array_init
   - block_based_kvo
@@ -35,7 +35,7 @@ whitelist_rules:
   - empty_parentheses_with_trailing_closure
   - empty_string
   - empty_xctest_method
-  - enum_case_associated_value_count
+  - enum_case_associated_values_count
   - explicit_init
   - fallthrough
   - fatal_error_message
@@ -48,6 +48,7 @@ whitelist_rules:
   - identifier_name
   - implicit_getter
   - implicit_return
+  - inclusive_language
   - inert_defer
   - is_disjoint
   - joined_default_parameter
@@ -86,7 +87,6 @@ whitelist_rules:
   - private_action
   - private_outlet
   - private_unit_test
-  - prohibited_nan_comparison
   - prohibited_super_call
   - protocol_property_accessors_order
   - reduce_boolean
@@ -100,7 +100,6 @@ whitelist_rules:
   - redundant_type_annotation
   - redundant_void_return
   - required_enum_case
-  - return_value_from_void_function
   - return_arrow_whitespace
   - shorthand_operator
   - sorted_first_last
@@ -111,19 +110,19 @@ whitelist_rules:
   - switch_case_alignment
   - switch_case_on_newline
   - syntactic_sugar
+  - test_case_accessibility
   - toggle_bool
   - trailing_closure
   - trailing_comma
   - trailing_newline
   - trailing_semicolon
   - trailing_whitespace
-  - tuple_pattern
   - unavailable_function
   - unneeded_break_in_switch
-  - unneeded_notification_center_removal
   - unneeded_parentheses_in_closure_argument
   - unowned_variable_capture
   - untyped_error_in_catch
+  - unused_capture_list
   - unused_closure_parameter
   - unused_control_flow_label
   - unused_enumerated
@@ -142,9 +141,6 @@ whitelist_rules:
 analyzer_rules:
   - unused_declaration
   - unused_import
-force_cast: warning
-force_try: warning
-force_unwrapping: warning
 number_separator:
   minimum_length: 5
 identifier_name:
