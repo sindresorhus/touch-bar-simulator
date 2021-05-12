@@ -263,7 +263,7 @@ final class TouchBarWindow: NSPanel {
 
 	func makeScreenshotButton(_ toolbarView: NSView) -> NSButton {
 		let button = NSButton()
-		button.image = NSImage(named: "ScreenshotButton")
+		button.image = NSImage(systemSymbolName: "camera.fill", accessibilityDescription: "Capture screenshot of the Touch Bar")
 		button.imageScaling = .scaleProportionallyDown
 		button.isBordered = false
 		button.bezelStyle = .shadowlessSquare
@@ -276,7 +276,7 @@ final class TouchBarWindow: NSPanel {
 
 	func makeTransparencySlider(_ parentView: NSView) -> ToolbarSlider {
 		let slider = ToolbarSlider().alwaysRedisplayOnValueChanged().bindDoubleValue(to: .windowTransparency)
-		slider.frame = CGRect(x: parentView.frame.width - 160, y: 4, width: 140, height: 11)
+		slider.frame = CGRect(x: parentView.frame.width - 160, y: 1, width: 140, height: 11)
 		slider.minValue = 0.5
 		return slider
 	}

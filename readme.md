@@ -24,9 +24,7 @@ Or install it with [Homebrew-Cask](https://caskroom.github.io):
 $ brew install touch-bar-simulator
 ```
 
-
-*Requires macOS 10.15 or later.*
-
+*Requires macOS 11 or later.*
 
 ## Screenshot
 
@@ -35,7 +33,6 @@ You can capture a screenshot of the Touch Bar by either:
 1. Clicking the screenshot button in the Touch Bar window or options menu which saves it to `~/Desktop`.
 2. Pressing <kbd>⇧⌘6</kbd> which saves it to `~/Desktop`.
 3. Pressing <kbd>⌃⇧⌘6</kbd> which saves it to the clipboard.
-
 
 ## FAQ
 
@@ -67,12 +64,14 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 ./build
 ```
 
-## Related
+## Other apps
 
-- [Website](https://sindresorhus.com/touch-bar-simulator/)
-- [Product Hunt submission](https://www.producthunt.com/posts/touch-bar-simulator)
 - [Gifski](https://github.com/sindresorhus/Gifski) - Convert videos to high-quality GIFs on your Mac
 - [More apps…](https://sindresorhus.com/apps)
+
+## Links
+
+- [Product Hunt submission](https://www.producthunt.com/posts/touch-bar-simulator)
 
 ## Maintainers
 

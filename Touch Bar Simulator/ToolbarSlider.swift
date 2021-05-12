@@ -19,7 +19,7 @@ private final class ToolbarSliderCell: NSSliderCell {
 	}
 
 	override func drawKnob(_ knobRect: CGRect) {
-		var frame = knobRect.insetBy(dx: 0, dy: 6.5)
+		var frame = knobRect.insetBy(dx: 0, dy: 10)
 		if let shadow = shadow {
 			// Make room on either side of the view for the shadow to spill into,
 			// rather than clip on the edges.
@@ -30,9 +30,9 @@ private final class ToolbarSliderCell: NSSliderCell {
 		// Make the slider grey.
 		var greySliderFrame = barRect
 		greySliderFrame.origin.x -= 1
-		greySliderFrame.origin.y = barRect.origin.y + 1
+		greySliderFrame.origin.y = barRect.origin.y
 		greySliderFrame.size.width = frame.origin.x
-		greySliderFrame.size.height = 3
+		greySliderFrame.size.height = 4
 		let greySliderPath = NSBezierPath(roundedRect: greySliderFrame, xRadius: 1.5, yRadius: 1.5)
 		NSColor.lightGray.setFill()
 		greySliderPath.fill()
@@ -42,7 +42,9 @@ private final class ToolbarSliderCell: NSSliderCell {
 		shadow?.set()
 
 		// Circle
-		let path = NSBezierPath(roundedRect: frame, xRadius: 4, yRadius: 12)
+		var circleFrame = frame
+		circleFrame.origin.y -= 2
+		let path = NSBezierPath(roundedRect: circleFrame, xRadius: 4, yRadius: 12)
 		fillColor.set()
 		path.fill()
 
