@@ -24,10 +24,10 @@ func with<T>(_ item: T, update: (inout T) throws -> Void) rethrows -> T {
 extension CGRect {
 	func adding(padding: Double) -> Self {
 		Self(
-			x: origin.x - CGFloat(padding),
-			y: origin.y - CGFloat(padding),
-			width: width + CGFloat(padding * 2),
-			height: height + CGFloat(padding * 2)
+			x: origin.x - padding,
+			y: origin.y - padding,
+			width: width + padding * 2,
+			height: height + padding * 2
 		)
 	}
 
@@ -36,8 +36,8 @@ extension CGRect {
 	*/
 	func centered(in rect: Self, xOffset: Double = 0, yOffset: Double = 0) -> Self {
 		Self(
-			x: ((rect.width - size.width) / 2) + CGFloat(xOffset),
-			y: ((rect.height - size.height) / 2) + CGFloat(yOffset),
+			x: ((rect.width - size.width) / 2) + xOffset,
+			y: ((rect.height - size.height) / 2) + yOffset,
 			width: size.width,
 			height: size.height
 		)
@@ -70,7 +70,8 @@ extension NSWindow {
 
 		let visibleFrame = screen.visibleFrame
 
-		let x: CGFloat, y: CGFloat
+		let x: Double
+		let y: Double
 		switch xPositioning {
 		case .left:
 			x = visibleFrame.minX

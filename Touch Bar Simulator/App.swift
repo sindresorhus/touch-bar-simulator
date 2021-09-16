@@ -6,7 +6,7 @@ import KeyboardShortcuts
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	private(set) lazy var window = with(TouchBarWindow()) {
-		$0.alphaValue = CGFloat(Defaults[.windowTransparency])
+		$0.alphaValue = Defaults[.windowTransparency]
 		$0.setUp()
 	}
 

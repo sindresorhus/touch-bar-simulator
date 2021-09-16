@@ -3,6 +3,7 @@ import Combine
 import Defaults
 
 final class TouchBarWindow: NSPanel {
+	// TODO: Migrate this to not use `Codable`.
 	enum Docking: String, Codable {
 		case floating
 		case dockedToTop
@@ -22,8 +23,6 @@ final class TouchBarWindow: NSPanel {
 		}
 
 		func reposition(window: NSWindow, padding: Double) {
-			let padding = CGFloat(padding)
-
 			switch self {
 			case .floating:
 				if let prevPosition = Defaults[.lastFloatingPosition] {
@@ -137,7 +136,7 @@ final class TouchBarWindow: NSPanel {
 					x: 0,
 					y: 0,
 					width: visibleFrame.width,
-					height: frame.height + (screenFrame.height - visibleFrame.height - NSStatusBar.system.thickness + CGFloat(Defaults[.windowPadding]))
+					height: frame.height + (screenFrame.height - visibleFrame.height - NSStatusBar.system.thickness + Defaults[.windowPadding])
 				)
 			} else {
 				detectionRect = CGRect(x: 0, y: 0, width: visibleFrame.width, height: 1)
@@ -147,9 +146,9 @@ final class TouchBarWindow: NSPanel {
 				detectionRect = CGRect(
 					x: 0,
 					// Without `+ 1`, the Touch Bar would glitch (toggling rapidly).
-					y: screenFrame.height - frame.height - NSStatusBar.system.thickness - CGFloat(Defaults[.windowPadding]) + 1,
+					y: screenFrame.height - frame.height - NSStatusBar.system.thickness - Defaults[.windowPadding] + 1,
 					width: visibleFrame.width,
-					height: frame.height + NSStatusBar.system.thickness + CGFloat(Defaults[.windowPadding])
+					height: frame.height + NSStatusBar.system.thickness + Defaults[.windowPadding]
 				)
 			} else {
 				detectionRect = CGRect(
@@ -203,20 +202,20 @@ final class TouchBarWindow: NSPanel {
 			return
 		}
 
-		var endY: CGFloat!
+		var endY: Double!
 
 		if action == .show {
-			docking.reposition(window: self, padding: Double(-frame.height))
+			docking.reposition(window: self, padding: -frame.height)
 			setIsVisible(true)
 
 			if docking == .dockedToTop {
-				endY = frame.minY - frame.height - CGFloat(Defaults[.windowPadding])
+				endY = frame.minY - frame.height - Defaults[.windowPadding]
 			} else if docking == .dockedToBottom {
-				endY = frame.minY + frame.height + CGFloat(Defaults[.windowPadding])
+				endY = frame.minY + frame.height + Defaults[.windowPadding]
 			}
 		} else if action == .dismiss {
 			if docking == .dockedToTop {
-				endY = frame.minY + frame.height + NSStatusBar.system.thickness + CGFloat(Defaults[.windowPadding])
+				endY = frame.minY + frame.height + NSStatusBar.system.thickness + Defaults[.windowPadding]
 			} else if docking == .dockedToBottom {
 				endY = 0 - frame.height
 			}
@@ -295,7 +294,7 @@ final class TouchBarWindow: NSPanel {
 
 		Defaults.tiedToLifetime(of: self) {
 			Defaults.observe(.windowTransparency) { [weak self] change in
-				self?.alphaValue = CGFloat(change.newValue)
+				self?.alphaValue = change.newValue
 			}
 			Defaults.observe(.windowDocking) { [weak self] change in
 				self?.docking = change.newValue

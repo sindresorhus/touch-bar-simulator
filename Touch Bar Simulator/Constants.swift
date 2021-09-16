@@ -2,7 +2,7 @@ import Foundation
 import Defaults
 import KeyboardShortcuts
 
-struct Constants {
+enum Constants {
 	static let windowAutosaveName = "TouchBarWindow"
 }
 
