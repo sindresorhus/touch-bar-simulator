@@ -24,7 +24,7 @@ Or install it with [Homebrew-Cask](https://caskroom.github.io):
 $ brew install touch-bar-simulator
 ```
 
-*Requires macOS 11 or later.*
+*Requires macOS 12 or later.*
 
 ## Screenshot
 

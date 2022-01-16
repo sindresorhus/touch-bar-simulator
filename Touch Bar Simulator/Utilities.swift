@@ -138,7 +138,7 @@ extension NSMenuItem {
 }
 
 
-final class ObjectAssociation<T: Any> {
+final class ObjectAssociation<T> {
 	subscript(index: AnyObject) -> T? {
 		get {
 			objc_getAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque()) as! T?

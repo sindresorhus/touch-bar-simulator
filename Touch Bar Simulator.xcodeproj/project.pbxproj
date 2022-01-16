@@ -11,8 +11,6 @@
 		3C8493AD21FD3B7F00F12966 /* Glue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8493AC21FD3B7F00F12966 /* Glue.swift */; };
 		3CF6C771247CC3DF007554B9 /* KeyboardShortcutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF6C770247CC3DF007554B9 /* KeyboardShortcutsView.swift */; };
 		AF6C7BC61E7FAF38004A27E0 /* ToolbarSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */; };
-		E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; };
-		E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E30988DE1E88DD060078CA9E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E31957F923F140D500856B40 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = E31957F823F140D500856B40 /* Defaults */; };
 		E3445091251573A4004A5FC1 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = E3445090251573A4004A5FC1 /* LaunchAtLogin */; };
 		E35579EB21595EDC001CB642 /* TouchBarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35579EA21595EDC001CB642 /* TouchBarWindow.swift */; };
@@ -24,6 +22,7 @@
 		E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39A1589214D011F00F86D5D /* SkyLight.framework */; };
 		E39A158B214D011F00F86D5D /* SkyLight.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E39A1589214D011F00F86D5D /* SkyLight.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E39A158E214D0C4F00F86D5D /* TouchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A158D214D0C4F00F86D5D /* TouchBarView.swift */; };
+		E3D07F1327947D6C006320B7 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = E3D07F1227947D6C006320B7 /* Sparkle */; };
 		E3FE2CC31E726CE800C6713A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE2CC21E726CE800C6713A /* App.swift */; };
 		E3FE2CC51E726CE800C6713A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3FE2CC41E726CE800C6713A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -35,7 +34,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E30988E01E88DD060078CA9E /* Sparkle.framework in Embed Frameworks */,
 				E39A158B214D011F00F86D5D /* SkyLight.framework in Embed Frameworks */,
 				E39A157F214CFE7100F86D5D /* DFRFoundation.framework in Embed Frameworks */,
 			);
@@ -45,11 +43,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3C37035321FBEBD300177657 /* Defaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Defaults.framework; path = Carthage/Build/Mac/Defaults.framework; sourceTree = "<group>"; };
 		3C8493AC21FD3B7F00F12966 /* Glue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Glue.swift; sourceTree = "<group>"; usesTabs = 1; };
 		3CF6C770247CC3DF007554B9 /* KeyboardShortcutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutsView.swift; sourceTree = "<group>"; };
 		AF6C7BC51E7FAF38004A27E0 /* ToolbarSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarSlider.swift; sourceTree = "<group>"; usesTabs = 1; };
-		E30988DE1E88DD060078CA9E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		E34D6548214BBDAE00786C24 /* Touch Bar Simulator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Touch Bar Simulator.entitlements"; sourceTree = "<group>"; };
 		E35579EA21595EDC001CB642 /* TouchBarWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TouchBarWindow.swift; sourceTree = "<group>"; usesTabs = 1; };
 		E356A16221028D81000148AD /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = main.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -70,11 +66,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3D07F1327947D6C006320B7 /* Sparkle in Frameworks */,
 				E3445091251573A4004A5FC1 /* LaunchAtLogin in Frameworks */,
 				E31957F923F140D500856B40 /* Defaults in Frameworks */,
 				E39A157E214CFE7100F86D5D /* DFRFoundation.framework in Frameworks */,
 				E39A158A214D011F00F86D5D /* SkyLight.framework in Frameworks */,
-				E30988DF1E88DD060078CA9E /* Sparkle.framework in Frameworks */,
 				3C48E6A6247C370E00D22565 /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,7 +94,6 @@
 			children = (
 				E3FE2CC11E726CE800C6713A /* Touch Bar Simulator */,
 				E3FE2CC01E726CE800C6713A /* Products */,
-				E3FE2CD91E7272AD00C6713A /* Frameworks */,
 				E39A1589214D011F00F86D5D /* SkyLight.framework */,
 				E39A157D214CFE7100F86D5D /* DFRFoundation.framework */,
 			);
@@ -130,15 +125,6 @@
 			path = "Touch Bar Simulator";
 			sourceTree = "<group>";
 		};
-		E3FE2CD91E7272AD00C6713A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E30988DE1E88DD060078CA9E /* Sparkle.framework */,
-				3C37035321FBEBD300177657 /* Defaults.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,6 +148,7 @@
 				E31957F823F140D500856B40 /* Defaults */,
 				3C48E6A5247C370E00D22565 /* KeyboardShortcuts */,
 				E3445090251573A4004A5FC1 /* LaunchAtLogin */,
+				E3D07F1227947D6C006320B7 /* Sparkle */,
 			);
 			productName = "Touch Bar Simulator";
 			productReference = E3FE2CBF1E726CE800C6713A /* Touch Bar Simulator.app */;
@@ -174,7 +161,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1410;
 				ORGANIZATIONNAME = "Sindre Sorhus";
 				TargetAttributes = {
 					E3FE2CBE1E726CE800C6713A = {
@@ -201,6 +188,7 @@
 				E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */,
 				3C48E6A4247C370E00D22565 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 				E344508F251573A4004A5FC1 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				E3D07F1127947D6C006320B7 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = E3FE2CC01E726CE800C6713A /* Products */;
 			projectDirPath = "";
@@ -244,6 +232,7 @@
 		};
 		E3679C9A215A1ECA0080270F /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -258,7 +247,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed\"\nfi\n";
+			shellScript = "PATH=\"/opt/homebrew/bin/:${PATH}\"\nswiftlint\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -315,6 +304,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -332,7 +322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -375,6 +365,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -386,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -404,6 +395,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 8;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YG56YK5RN5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -413,9 +405,9 @@
 					/Applications/Xcode.app/Contents/Frameworks,
 					/Applications/Xcode.app/Contents/PlugIns,
 					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks,
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "Touch Bar Simulator/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -445,6 +437,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 8;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = YG56YK5RN5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -454,9 +447,9 @@
 					/Applications/Xcode.app/Contents/Frameworks,
 					/Applications/Xcode.app/Contents/PlugIns,
 					/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks,
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "Touch Bar Simulator/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -504,7 +497,7 @@
 			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 1.2.1;
+				minimumVersion = 1.3.0;
 			};
 		};
 		E31957F723F140D500856B40 /* XCRemoteSwiftPackageReference "Defaults" */ = {
@@ -512,7 +505,7 @@
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				minimumVersion = 6.1.0;
 			};
 		};
 		E344508F251573A4004A5FC1 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
@@ -520,7 +513,15 @@
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.1.0;
+				minimumVersion = 4.2.0;
+			};
+		};
+		E3D07F1127947D6C006320B7 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -540,6 +541,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E344508F251573A4004A5FC1 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
 			productName = LaunchAtLogin;
+		};
+		E3D07F1227947D6C006320B7 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3D07F1127947D6C006320B7 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

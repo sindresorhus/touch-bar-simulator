@@ -16,6 +16,9 @@ extension Defaults.Keys {
 	static let lastWindowDockingWithDockBehavior = Key<TouchBarWindow.Docking>("windowDockingWithDockBehavior", default: .dockedToTop)
 }
 
+extension TouchBarWindow.Docking: Defaults.Serializable {}
+extension CGPoint: Defaults.Serializable {}
+
 extension KeyboardShortcuts.Name {
 	static let toggleTouchBar = Self("toggleTouchBar")
 }

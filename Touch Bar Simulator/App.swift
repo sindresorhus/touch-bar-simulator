@@ -19,6 +19,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		$0.button!.preventsHighlight = true
 	}
 
+	private lazy var updateController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+
 	func applicationWillFinishLaunching(_ notification: Notification) {
 		UserDefaults.standard.register(defaults: [
 			"NSApplicationCrashOnExceptions": true
@@ -27,7 +29,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		checkAccessibilityPermission()
-		_ = SUUpdater()
+		_ = updateController
 		_ = window
 		_ = statusItem
 
