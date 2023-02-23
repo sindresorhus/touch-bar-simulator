@@ -16,12 +16,12 @@ Right-clicking or option-clicking the menu bar icon displays a menu with options
 
 ## Getting started
 
-#### [Download the latest release](https://sindresorhus.com/touch-bar-simulator)
+#### [Download the latest release](https://github.com/sindresorhus/touch-bar-simulator/releases/latest)
 
 Or install it with [Homebrew-Cask](https://caskroom.github.io):
 
-```
-$ brew install touch-bar-simulator
+```sh
+brew install touch-bar-simulator
 ```
 
 *Requires macOS 12 or later.*
@@ -38,7 +38,7 @@ You can capture a screenshot of the Touch Bar by either:
 
 ### Clicking in the simulator window is not working
 
-Go to “System Preferences › Security & Privacy › Accessibility“ and ensure “Touch Bar Simulator.app“ is checked. If it's already checked, try unchecking and checking it again.
+Go to “System Settings › Privacy & Security › Accessibility“ and ensure “Touch Bar Simulator.app“ is checked. If it's already checked, try unchecking and checking it again.
 
 ### Why is this not on the App Store?
 
@@ -60,7 +60,7 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 
 ## Build
 
-```
+```sh
 ./build
 ```
 
@@ -68,10 +68,6 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 
 - [Gifski](https://github.com/sindresorhus/Gifski) - Convert videos to high-quality GIFs on your Mac
 - [More apps…](https://sindresorhus.com/apps)
-
-## Links
-
-- [Product Hunt submission](https://www.producthunt.com/posts/touch-bar-simulator)
 
 ## Maintainers
 
