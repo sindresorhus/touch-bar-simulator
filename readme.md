@@ -2,9 +2,10 @@
 
 > Use the Touch Bar on any Mac
 
-Launch the Touch Bar simulator from anywhere without needing to have Xcode installed, whereas Apple requires you to launch it from inside Xcode. It also comes with a handy transparency slider, a screenshot button, and a menu bar icon and system service to toggle the Touch Bar with a click or keyboard shortcut.
+> [!WARNING]
+> This app is discontinued as it no longer works because of changes in macOS.
 
-**Important:** There is a [problem](https://github.com/sindresorhus/touch-bar-simulator/issues/61) with using this on Catalina. If you launch Xcode or relaunch Touch Bar Simulator, you will no longer be able to interact (click) with the Touch Bar view until you restart your computer. Which is not ideal. So if you want to use this reliably; don't launch Xcode and don't restart this app.
+Launch the Touch Bar simulator from anywhere without needing to have Xcode installed, whereas Apple requires you to launch it from inside Xcode. It also comes with a handy transparency slider, a screenshot button, and a menu bar icon and system service to toggle the Touch Bar with a click or keyboard shortcut.
 
 <img src="screenshot-menu-bar.png" width="277" align="left">
 
@@ -63,13 +64,3 @@ Xcode 10 moved the required private symbols needed to trigger the Touch Bar simu
 ```sh
 ./build
 ```
-
-## Other apps
-
-- [Gifski](https://github.com/sindresorhus/Gifski) - Convert videos to high-quality GIFs on your Mac
-- [More apps…](https://sindresorhus.com/apps)
-
-## Maintainers
-
-- [Sindre Sorhus](https://github.com/sindresorhus)
-- [@ThatsJustCheesy](https://github.com/ThatsJustCheesy)
